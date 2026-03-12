@@ -76,10 +76,13 @@
     }
 
     .nav-logo {
-      height: 42px;
-      width: auto;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      line-height: 1;
     }
 
     .nav-links {
@@ -106,6 +109,7 @@
       color: var(--red) !important;
       padding: 9px 20px;
       font-weight: 700 !important;
+      border-radius: 6px;
       transition: background 0.2s !important;
     }
 
@@ -214,6 +218,7 @@
       display: inline-block;
       transition: background 0.2s, transform 0.15s;
       border: 2px solid var(--red);
+      border-radius: 6px;
     }
 
     .btn-red:hover { background: var(--red2); border-color: var(--red2); transform: translateY(-2px); }
@@ -229,6 +234,7 @@
       padding: 16px 36px;
       display: inline-block;
       border: 2px solid rgba(255,255,255,0.5);
+      border-radius: 6px;
       transition: border-color 0.2s, background 0.2s;
     }
 
@@ -258,17 +264,21 @@
     .info-strip {
       background: var(--dark);
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       flex-wrap: wrap;
       gap: 0;
+      width: 100%;
     }
 
     .info-item {
       display: flex;
       align-items: center;
+      justify-content: center;
+      flex: 1;
       gap: 12px;
-      padding: 20px 40px;
+      padding: 22px 32px;
       border-right: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
     }
 
     .info-item:last-child { border-right: none; }
@@ -576,6 +586,7 @@
       text-decoration: none;
       padding: 16px 40px;
       display: inline-block;
+      border-radius: 6px;
       transition: background 0.2s, transform 0.15s;
     }
 
@@ -757,6 +768,7 @@
       text-decoration: none;
       padding: 15px 32px;
       display: inline-block;
+      border-radius: 6px;
       transition: background 0.2s;
     }
 
@@ -773,6 +785,7 @@
       text-decoration: none;
       padding: 15px 32px;
       display: inline-block;
+      border-radius: 6px;
       transition: border-color 0.2s, background 0.2s;
     }
 
@@ -799,8 +812,12 @@
     }
 
     .footer-logo-img {
-      height: 52px;
-      filter: brightness(0) invert(1);
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      display: block;
       margin-bottom: 16px;
     }
 
@@ -906,7 +923,7 @@
 
   <!-- NAV -->
   <nav>
-    <img src="https://github.com/user-attachments/assets/1776cf39-fb37-4512-b917-4784f1e3f63a" alt="FRAM Café" class="nav-logo" />
+    <span class="nav-logo">FRAM</span>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#menu">Menu</a></li>
@@ -1251,7 +1268,7 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div>
-          <img src="https://github.com/user-attachments/assets/1776cf39-fb37-4512-b917-4784f1e3f63a" alt="FRAM Café" class="footer-logo-img" />
+          <span class="footer-logo-img">FRAM</span>
           <p class="footer-tagline">A cozy neighborhood café on the shore of Lake Union. Open early. Leave late.</p>
         </div>
         <div>
