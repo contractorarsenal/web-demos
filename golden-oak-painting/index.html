@@ -496,5 +496,17 @@ We bring samples to your home so you can see exactly how colors look in your lig
 </footer>
 <script src="script.js"></script>
 <script src="mobile-menu.js"></script>
+<script>
+/* ── DEMO MODE: disable all outbound clicks ── */
+document.addEventListener('click', function(e) {
+  var a = e.target.closest('a');
+  if (a) { e.preventDefault(); return; }
+  var btn = e.target.closest('button');
+  if (btn && btn.id !== 'hamburger') e.preventDefault();
+}, true);
+</script>
+<style>
+a:not(#scrollTop), button:not(#hamburger) { cursor: default !important; }
+</style>
 </body>
 </html>
