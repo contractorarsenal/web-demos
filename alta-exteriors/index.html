@@ -1674,17 +1674,19 @@
     }
   </script>
 
-  <!-- ── DEMO MODE: disable all outbound clicks ── -->
+  <!-- ── DEMO MODE: disable all clicks except back-to-library ── -->
+  <a href="../index.html" id="demoBackBtn" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;background:#091230;color:#2DD4D4;font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 22px;border-radius:6px;border:2px solid #2DD4D4;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.35);white-space:nowrap;">&#8592; Back to Demo Library</a>
   <script>
     document.addEventListener('click', function(e) {
       var a = e.target.closest('a');
+      if (a && a.id === 'demoBackBtn') return;
       if (a) { e.preventDefault(); return; }
       var btn = e.target.closest('button');
       if (btn && btn.id !== 'hamburger' && btn.id !== 'mobileClose') e.preventDefault();
     }, true);
   </script>
   <style>
-    a, button:not(#hamburger):not(#mobileClose) { cursor: default !important; }
+    a:not(#demoBackBtn), button:not(#hamburger):not(#mobileClose) { cursor: default !important; }
   </style>
 </body>
 </html>
