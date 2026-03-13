@@ -3,1524 +3,639 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Strideline — The Most Comfortable Sock on Earth™. 15 years. 21+ million pairs sold. Premium socks trusted by professional athletes across the NFL, NBA, MLS and beyond.">
+<meta name="description" content="Strideline — The Most Comfortable Sock on Earth™. 15 years. 21+ million pairs sold. Premium socks trusted by professional athletes across the NFL, MLS and beyond.">
 <title>Strideline 🧦 The Most Comfortable Sock on Earth™</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --red:     #FC494D;
-    --red-d:   #e03135;
-    --black:   #111111;
-    --dark:    #1a1a1a;
-    --dark2:   #222222;
-    --dark3:   #2c2c2c;
-    --border:  rgba(255,255,255,0.08);
-    --white:   #ffffff;
-    --gray:    #a0a0a0;
-    --gray-l:  #d0d0d0;
-    --yellow:  #FFCC00;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--black);
-    color: var(--white);
-    overflow-x: hidden;
-  }
-
-  /* ── ANNOUNCEMENT BAR ── */
-  .ann-bar {
-    background: var(--red);
-    padding: 10px 24px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .ann-bar a {
-    color: var(--white);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    cursor: default;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 500;
-    background: var(--black);
-    border-bottom: 1px solid var(--border);
-    height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-
-  .nav-logo-img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
-  .nav-logo-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--white);
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gray-l);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .nav-cart {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    background: var(--red);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 9px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-
-  .nav-cart:hover { background: var(--red-d); }
-
-  /* hamburger */
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    padding: 6px;
-  }
-
-  .nav-hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--white);
-    border-radius: 2px;
-  }
-
-  .nav-mobile {
-    display: none;
-    flex-direction: column;
-    position: fixed;
-    top: 68px; left: 0; right: 0;
-    background: var(--dark);
-    padding: 20px 32px;
-    gap: 16px;
-    z-index: 499;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-mobile.open { display: flex; }
-
-  .nav-mobile a {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gray-l);
-    text-decoration: none;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 92vh;
-    background: var(--black);
-    position: relative;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 0;
-  }
-
-  .hero-left {
-    padding: 80px 40px 80px 80px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(252,73,77,0.12);
-    border: 1px solid rgba(252,73,77,0.3);
-    padding: 7px 14px;
-    border-radius: 4px;
-    margin-bottom: 28px;
-  }
-
-  .hero-badge span {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--red);
-  }
-
-  .hero-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(44px, 5.5vw, 74px);
-    font-weight: 900;
-    line-height: 1.0;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    color: var(--white);
-    margin-bottom: 24px;
-  }
-
-  .hero-title .red { color: var(--red); }
-
-  .hero-sub {
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--gray);
-    margin-bottom: 16px;
-    max-width: 420px;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 32px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-  }
-
-  .hero-stat {}
-
-  .hero-stat-num {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--red);
-    line-height: 1;
-    margin-bottom: 2px;
-  }
-
-  .hero-stat-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--gray);
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .btn-red {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--red);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 14px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-    box-shadow: 0 4px 20px rgba(252,73,77,0.35);
-  }
-
-  .btn-red:hover { background: var(--red-d); transform: translateY(-2px); }
-
-  .btn-outline {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 13px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    border: 1.5px solid rgba(255,255,255,0.2);
-    transition: border-color 0.2s;
-  }
-
-  .btn-outline:hover { border-color: rgba(255,255,255,0.5); }
-
-  /* hero right */
-  .hero-right {
-    height: 100%;
-    min-height: 600px;
-    position: relative;
-    background: var(--dark2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .hero-right-bg {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 40% 50%, rgba(252,73,77,0.12) 0%, transparent 65%);
-  }
-
-  .hero-product-showcase {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 40px;
-  }
-
-  .hero-product-icon {
-    font-size: 120px;
-    line-height: 1;
-    display: block;
-    margin-bottom: 24px;
-    filter: drop-shadow(0 8px 32px rgba(252,73,77,0.25));
-  }
-
-  .hero-product-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-
-  .hero-product-price {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--red);
-    margin-bottom: 20px;
-  }
-
-  .hero-color-swatches {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-
-  .swatch {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.15);
-    cursor: default;
-    transition: border-color 0.2s, transform 0.15s;
-  }
-
-  .swatch.active { border-color: var(--red); transform: scale(1.15); }
-
-  .hero-new-badge {
-    display: inline-block;
-    background: var(--red);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-  }
-
-  /* ── TRUST BAR ── */
-  .trust-bar {
-    background: var(--dark2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 56px;
-    flex-wrap: wrap;
-  }
-
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .trust-icon { font-size: 18px; }
-
-  .trust-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray-l);
-  }
-
-  .trust-divider {
-    width: 1px;
-    height: 20px;
-    background: var(--border);
-  }
-
-  /* ── SECTIONS ── */
-  section {
-    padding: 96px 80px;
-  }
-
-  .section-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .section-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 12px;
-  }
-
-  .section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(28px, 3.5vw, 48px);
-    font-weight: 900;
-    line-height: 1.05;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 16px;
-  }
-
-  .section-title .red { color: var(--red); }
-
-  .section-desc {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--gray);
-    max-width: 520px;
-    margin-bottom: 52px;
-  }
-
-  /* ── PRODUCTS ── */
-  .products-section {
-    background: var(--black);
-  }
-
-  .products-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .products-header .section-desc { margin-bottom: 0; }
-
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .product-card {
-    background: var(--dark2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s;
-    cursor: default;
-  }
-
-  .product-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(252,73,77,0.3);
-  }
-
-  .product-card-img {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .product-card-emoji {
-    font-size: 72px;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-  }
-
-  .product-card-label {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: var(--red);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    border-radius: 4px;
-  }
-
-  .product-card-label.new { background: #7a28cb; }
-  .product-card-label.sale { background: #04AF5B; }
-
-  .product-card-body {
-    padding: 20px;
-  }
-
-  .product-card-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
-
-  .product-card-price-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-
-  .product-card-price {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--red);
-  }
-
-  .product-card-price-was {
-    font-size: 12px;
-    color: var(--gray);
-    text-decoration: line-through;
-  }
-
-  .product-card-swatches {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
-
-  .product-card-swatch {
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(255,255,255,0.12);
-  }
-
-  .product-card-more {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--gray);
-  }
-
-  .product-card-btn {
-    display: block;
-    width: 100%;
-    background: transparent;
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1.5px solid rgba(255,255,255,0.15);
-    text-align: center;
-    cursor: default;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .product-card-btn:hover {
-    background: var(--red);
-    border-color: var(--red);
-  }
-
-  /* ── SCIENCE ── */
-  .science-section {
-    background: var(--dark);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .science-header {
-    text-align: center;
-    max-width: 640px;
-    margin: 0 auto 64px;
-  }
-
-  .science-header .section-desc { margin: 0 auto; text-align: center; }
-
-  .science-title-big {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(32px, 4vw, 54px);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    line-height: 1.0;
-    color: var(--white);
-    margin-bottom: 16px;
-  }
-
-  .science-title-big .red { color: var(--red); }
-
-  .science-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2px;
-  }
-
-  .science-card {
-    background: var(--dark2);
-    padding: 32px 24px;
-    border: 1px solid var(--border);
-    border-radius: 0;
-    transition: background 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .science-card:first-child { border-radius: 8px 0 0 8px; }
-  .science-card:last-child { border-radius: 0 8px 8px 0; }
-
-  .science-card:hover { background: var(--dark3); }
-
-  .science-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--red);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-
-  .science-card:hover::before { transform: scaleX(1); }
-
-  .science-icon { font-size: 32px; margin-bottom: 16px; display: block; }
-
-  .science-card-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-
-  .science-card-sub {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 12px;
-  }
-
-  .science-card-desc {
-    font-size: 12.5px;
-    line-height: 1.65;
-    color: var(--gray);
-  }
-
-  /* ── FEATURED BAND ── */
-  .featured-band {
-    background: var(--red);
-    padding: 80px 80px;
-  }
-
-  .featured-band-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .featured-band-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 12px;
-  }
-
-  .featured-band-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(36px, 4.5vw, 60px);
-    font-weight: 900;
-    line-height: 1.0;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 20px;
-  }
-
-  .featured-band-desc {
-    font-size: 15px;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.75);
-    margin-bottom: 32px;
-  }
-
-  .btn-white {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--white);
-    color: var(--red);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 14px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .btn-white:hover { background: #f0f0f0; transform: translateY(-2px); }
-
-  .featured-band-right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-  }
-
-  .featured-pack-card {
-    background: rgba(0,0,0,0.2);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 8px;
-    padding: 24px;
-    text-align: center;
-    flex: 1;
-  }
-
-  .featured-pack-icon { font-size: 48px; display: block; margin-bottom: 12px; }
-
-  .featured-pack-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-
-  .featured-pack-price {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--white);
-  }
-
-  /* ── LEAGUES ── */
-  .leagues-section {
-    background: var(--black);
-    text-align: center;
-  }
-
-  .leagues-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 12px;
-  }
-
-  .leagues-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(28px, 3.5vw, 46px);
-    font-weight: 900;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 16px;
-  }
-
-  .leagues-sub {
-    font-size: 15px;
-    color: var(--gray);
-    margin-bottom: 56px;
-    max-width: 540px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .leagues-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    max-width: 900px;
-    margin: 0 auto 56px;
-  }
-
-  .league-badge {
-    background: var(--dark2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 22px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gray-l);
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .league-badge:hover { border-color: var(--red); color: var(--white); }
-
-  .league-quote {
-    background: var(--dark2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 36px 48px;
-    max-width: 680px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .league-quote::before {
-    content: '"';
-    position: absolute;
-    top: -10px;
-    left: 36px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 72px;
-    font-weight: 900;
-    color: var(--red);
-    line-height: 1;
-  }
-
-  .league-quote-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.6;
-    color: var(--white);
-    margin-bottom: 20px;
-  }
-
-  .league-quote-attr {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--gray);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .league-quote-attr strong { color: var(--red); }
-
-  /* ── CUSTOM ── */
-  .custom-section {
-    background: var(--dark);
-    border-top: 1px solid var(--border);
-  }
-
-  .custom-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .custom-features {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-
-  .custom-feature {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    background: var(--dark2);
-    border: 1px solid var(--border);
-    padding: 20px;
-    border-radius: 4px;
-    transition: border-color 0.2s;
-  }
-
-  .custom-feature:hover { border-color: rgba(252,73,77,0.25); }
-
-  .custom-feature-icon {
-    font-size: 20px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .custom-feature-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 4px;
-  }
-
-  .custom-feature-desc {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--gray);
-  }
-
-  /* ── EMAIL CTA ── */
-  .email-section {
-    background: var(--dark2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-    padding: 64px 80px;
-  }
-
-  .email-section .section-title { margin-bottom: 8px; }
-  .email-section .section-desc { margin: 0 auto 32px; text-align: center; }
-
-  .email-highlight {
-    display: inline-block;
-    background: var(--red);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-  }
-
-  .email-form {
-    display: flex;
-    max-width: 480px;
-    margin: 0 auto;
-    gap: 0;
-  }
-
-  .email-input {
-    flex: 1;
-    background: var(--dark3);
-    border: 1.5px solid rgba(255,255,255,0.12);
-    border-right: none;
-    padding: 14px 20px;
-    border-radius: 8px 0 0 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--white);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .email-input::placeholder { color: var(--gray); }
-  .email-input:focus { border-color: rgba(252,73,77,0.5); }
-
-  .email-submit {
-    background: var(--red);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 14px 24px;
-    border-radius: 0 8px 8px 0;
-    border: none;
-    cursor: default;
-    white-space: nowrap;
-    transition: background 0.2s;
-  }
-
-  .email-submit:hover { background: var(--red-d); }
-
-  .email-note {
-    font-size: 12px;
-    color: var(--gray);
-    margin-top: 12px;
-    letter-spacing: 0.04em;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--dark);
-    border-top: 1px solid var(--border);
-    padding: 64px 80px 32px;
-  }
-
-  .footer-inner { max-width: 1280px; margin: 0 auto; }
-
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 60px;
-    padding-bottom: 48px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 28px;
-  }
-
-  .footer-brand-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-
-  .footer-brand-logo img {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
-  .footer-brand-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: 900;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--white);
-  }
-
-  .footer-brand-desc {
-    font-size: 13px;
-    line-height: 1.7;
-    color: var(--gray);
-    max-width: 260px;
-    margin-bottom: 20px;
-  }
-
-  .footer-brand-tm {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--gray);
-  }
-
-  .footer-col-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 16px;
-  }
-
-  .footer-col-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .footer-col-list a {
-    font-size: 13px;
-    color: var(--gray);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-col-list a:hover { color: var(--white); }
-
-  .footer-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .footer-copy {
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 0.04em;
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 10px;
-  }
-
-  .footer-social a {
-    width: 34px; height: 34px;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-
-  .footer-social a:hover { background: var(--red); }
-
-  /* ── SCROLL TOP ── */
-  .scroll-top {
-    position: fixed;
-    bottom: 90px; right: 24px;
-    width: 40px; height: 40px;
-    border-radius: 6px;
-    background: var(--dark2);
-    border: 1px solid var(--border);
-    color: var(--white);
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.3s, transform 0.3s;
-    z-index: 400;
-  }
-
-  .scroll-top.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 1100px) {
-    .product-grid { grid-template-columns: repeat(2, 1fr); }
-    .science-grid { grid-template-columns: repeat(3, 1fr); }
-    .science-card:first-child { border-radius: 8px; }
-    .science-card:last-child { border-radius: 8px; }
-    .science-card { border-radius: 8px; }
-  }
-
-  @media (max-width: 900px) {
-    section { padding: 72px 40px; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 60px 40px; }
-    .hero-right { min-height: 360px; }
-    .featured-band { padding: 60px 40px; }
-    .featured-band-inner { grid-template-columns: 1fr; gap: 40px; }
-    .custom-inner { grid-template-columns: 1fr; gap: 40px; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-    footer { padding: 48px 40px 28px; }
-    .email-section { padding: 60px 40px; }
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 0 20px; height: 60px; }
-    .nav-links { display: none; }
-    .nav-hamburger { display: flex; }
-
-    section { padding: 64px 20px; }
-    .hero-left { padding: 48px 20px 40px; }
-    .trust-bar { padding: 16px 20px; gap: 20px; }
-    .trust-divider { display: none; }
-    .product-grid { grid-template-columns: 1fr 1fr; }
-    .science-grid { grid-template-columns: 1fr; }
-    .leagues-grid { gap: 8px; }
-    .featured-band { padding: 56px 20px; }
-    .email-section { padding: 56px 20px; }
-    .email-form { flex-direction: column; }
-    .email-input { border-right: 1.5px solid rgba(255,255,255,0.12); border-radius: 8px; border-bottom: none; border-radius: 8px 8px 0 0; }
-    .email-submit { border-radius: 0 0 8px 8px; padding: 14px; }
-    footer { padding: 48px 20px 28px; }
-    .footer-top { grid-template-columns: 1fr; gap: 24px; }
-  }
-
-  @media (max-width: 480px) {
-    .product-grid { grid-template-columns: 1fr; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#FC494D;--red-d:#e03135;--black:#0f0f0f;--dark:#181818;
+  --dark2:#212121;--dark3:#2a2a2a;--border:rgba(255,255,255,0.07);
+  --white:#ffffff;--gray:#909090;--gray-l:#c8c8c8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+
+/* ─── ANN BAR ─── */
+.ann-bar{
+  background:var(--red);padding:11px 24px;text-align:center;
+  font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:0.12em;text-transform:uppercase;color:#fff;
+}
+.ann-bar a{color:#fff;text-decoration:underline;text-underline-offset:3px;cursor:default}
+
+/* ─── NAV ─── */
+nav{
+  position:sticky;top:0;z-index:600;height:66px;background:rgba(15,15,15,0.96);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 48px;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{width:34px;height:34px;border-radius:50%;object-fit:cover}
+.nav-logo-text{font-family:'Montserrat',sans-serif;font-size:17px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:#fff}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray-l);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-search{background:none;border:1px solid var(--border);color:var(--gray);padding:8px 16px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;width:160px;cursor:default}
+.nav-search::placeholder{color:var(--gray)}
+.nav-cart-btn{display:flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:9px 18px;border-radius:6px;text-decoration:none;transition:background 0.2s}
+.nav-cart-btn:hover{background:var(--red-d)}
+.nav-cart-count{background:#fff;color:var(--red);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:transparent;padding:6px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px}
+.nav-mobile{display:none;flex-direction:column;position:fixed;top:66px;left:0;right:0;background:var(--dark);padding:20px 32px;gap:14px;z-index:599;border-bottom:1px solid var(--border)}
+.nav-mobile.open{display:flex}
+.nav-mobile a{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-l);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--border)}
+
+/* ─── HERO ─── */
+.hero{position:relative;height:92vh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.3) 55%,rgba(0,0,0,0.1) 100%)}
+.hero-content{position:relative;z-index:1;padding:60px 80px;max-width:720px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--red);padding:6px 14px;border-radius:4px;margin-bottom:20px}
+.hero-badge span{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#fff}
+.hero-title{font-family:'Montserrat',sans-serif;font-size:clamp(48px,6vw,82px);font-weight:900;line-height:1.0;text-transform:uppercase;color:#fff;margin-bottom:18px;letter-spacing:-0.01em}
+.hero-title em{color:var(--red);font-style:italic}
+.hero-sub{font-size:16px;line-height:1.7;color:rgba(255,255,255,0.75);margin-bottom:32px;max-width:480px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-red{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:14px 28px;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(252,73,77,0.4)}
+.btn-red:hover{background:var(--red-d);transform:translateY(-2px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:13px 28px;border-radius:6px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:background 0.2s}
+.btn-ghost:hover{background:rgba(255,255,255,0.18)}
+.hero-stats{display:flex;gap:40px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.15)}
+.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:900;color:#fff;line-height:1;margin-bottom:3px}
+.hero-stat-label{font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+
+/* ─── TRUST BAR ─── */
+.trust-bar{background:var(--dark2);border-bottom:1px solid var(--border);padding:18px 48px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:10px}
+.trust-icon{font-size:16px}
+.trust-text{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-l)}
+.trust-div{width:1px;height:16px;background:var(--border)}
+
+/* ─── SECTION ─── */
+section{padding:88px 80px}
+.section-inner{max-width:1300px;margin:0 auto}
+.section-eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(28px,3.5vw,46px);font-weight:900;line-height:1.05;text-transform:uppercase;color:#fff;margin-bottom:12px}
+.section-title .red{color:var(--red)}
+.section-sub{font-size:15px;line-height:1.75;color:var(--gray);max-width:500px;margin-bottom:48px}
+
+/* ─── COLLECTION TABS ─── */
+.collection-section{background:var(--black);padding-top:80px}
+.coll-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:48px;overflow-x:auto;scrollbar-width:none}
+.coll-tab{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);padding:14px 24px;border:none;background:none;cursor:default;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:color 0.2s,border-color 0.2s}
+.coll-tab.active,.coll-tab:hover{color:#fff;border-bottom-color:var(--red)}
+
+/* ─── PRODUCT GRID ─── */
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.prod-card{background:var(--dark2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:transform 0.22s,border-color 0.22s;cursor:default;position:relative}
+.prod-card:hover{transform:translateY(-5px);border-color:rgba(252,73,77,0.25)}
+.prod-card-img-wrap{position:relative;overflow:hidden;aspect-ratio:1/1}
+.prod-card-img{width:100%;height:100%;object-fit:cover;transition:transform 0.45s ease}
+.prod-card:hover .prod-card-img{transform:scale(1.06)}
+.prod-card-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px;background:var(--dark3)}
+.prod-badge{position:absolute;top:12px;left:12px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;padding:5px 9px;border-radius:4px;line-height:1}
+.prod-badge.sale{background:#04AF5B;color:#fff}
+.prod-badge.new{background:#7a28cb;color:#fff}
+.prod-badge.hot{background:var(--red);color:#fff}
+.prod-badge.bogo{background:#FF8C00;color:#fff}
+.prod-quick{position:absolute;bottom:12px;left:12px;right:12px;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:10px;border-radius:5px;text-align:center;border:1px solid rgba(255,255,255,0.12);opacity:0;transform:translateY(6px);transition:opacity 0.25s,transform 0.25s;cursor:default}
+.prod-card:hover .prod-quick{opacity:1;transform:translateY(0)}
+.prod-body{padding:18px}
+.prod-type{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:5px}
+.prod-name{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;color:#fff;margin-bottom:6px;line-height:1.3}
+.prod-price-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.prod-price{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;color:#fff}
+.prod-price-was{font-size:12px;color:var(--gray);text-decoration:line-through}
+.prod-save{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#04AF5B}
+.prod-swatches{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.prod-swatch{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,0.1);transition:border-color 0.2s}
+.prod-swatch.active{border-color:var(--red)}
+.prod-more{font-size:11px;color:var(--gray);font-weight:500}
+.prod-add-btn{display:block;width:100%;margin-top:12px;background:transparent;color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:11px;border-radius:5px;border:1.5px solid rgba(255,255,255,0.14);text-align:center;cursor:default;transition:background 0.2s,border-color 0.2s}
+.prod-add-btn:hover{background:var(--red);border-color:var(--red)}
+
+/* ─── HERO SPLIT (featured) ─── */
+.split-section{background:var(--dark)}
+.split-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:600px;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.split-img{position:relative;overflow:hidden}
+.split-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease}
+.split-img:hover img{transform:scale(1.03)}
+.split-content{padding:64px 56px;display:flex;flex-direction:column;justify-content:center;background:var(--dark2)}
+.split-tag{display:inline-block;background:rgba(252,73,77,0.15);border:1px solid rgba(252,73,77,0.3);color:var(--red);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;padding:5px 12px;border-radius:4px;margin-bottom:20px}
+.split-title{font-family:'Montserrat',sans-serif;font-size:clamp(32px,3.5vw,52px);font-weight:900;line-height:1.0;text-transform:uppercase;color:#fff;margin-bottom:18px}
+.split-title .red{color:var(--red)}
+.split-desc{font-size:15px;line-height:1.75;color:var(--gray);margin-bottom:28px}
+.split-price{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:#fff;margin-bottom:24px}
+.split-price span{font-size:14px;color:var(--gray);font-weight:400;margin-left:6px}
+.size-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.size-btn{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:10px 16px;border-radius:5px;border:1.5px solid rgba(255,255,255,0.14);background:none;color:var(--gray-l);cursor:default;transition:background 0.2s,border-color 0.2s,color 0.2s}
+.size-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+.size-btn:hover:not(.active){border-color:rgba(255,255,255,0.4);color:#fff}
+
+/* ─── LIFESTYLE GRID ─── */
+.lifestyle-section{background:var(--black);padding-bottom:0}
+.lifestyle-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:4px}
+.life-cell{position:relative;overflow:hidden}
+.life-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+.life-cell:hover img{transform:scale(1.04)}
+.life-cell.tall{grid-row:span 2}
+.life-cell-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 55%);display:flex;align-items:flex-end;padding:20px}
+.life-cell-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#fff}
+.life-cell-label span{color:var(--red)}
+
+/* ─── SCIENCE ─── */
+.science-section{background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.science-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:64px}
+.science-img-wrap{border-radius:8px;overflow:hidden;aspect-ratio:4/3}
+.science-img-wrap img{width:100%;height:100%;object-fit:cover}
+.science-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+.sci-card{background:var(--dark2);padding:28px 20px;border:1px solid var(--border);transition:background 0.25s;position:relative;overflow:hidden}
+.sci-card:first-child{border-radius:8px 0 0 8px}
+.sci-card:last-child{border-radius:0 8px 8px 0}
+.sci-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.sci-card:hover{background:var(--dark3)}
+.sci-card:hover::before{transform:scaleX(1)}
+.sci-icon{font-size:28px;display:block;margin-bottom:14px}
+.sci-title{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:#fff;margin-bottom:4px}
+.sci-sub{font-family:'Montserrat',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.sci-desc{font-size:12px;line-height:1.65;color:var(--gray)}
+
+/* ─── LEAGUES ─── */
+.leagues-section{background:var(--black)}
+.leagues-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.league-badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.league-badge{background:var(--dark2);border:1px solid var(--border);border-radius:5px;padding:10px 18px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-l);transition:border-color 0.2s,color 0.2s}
+.league-badge:hover{border-color:var(--red);color:#fff}
+.league-photo-stack{position:relative}
+.league-main-img{width:100%;border-radius:10px;object-fit:cover;aspect-ratio:4/5;display:block}
+.league-pill{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.12);border-radius:99px;padding:10px 22px;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.league-pill-dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.league-pill-text{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#fff}
+.league-quote{background:var(--dark2);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:28px 28px 28px 24px;margin-bottom:24px}
+.league-quote-text{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;line-height:1.6;color:#fff;margin-bottom:12px}
+.league-quote-attr{font-size:12px;color:var(--gray);font-weight:500}
+.league-quote-attr strong{color:var(--red)}
+
+/* ─── CUSTOM / RESELLER ─── */
+.custom-section{background:var(--red);padding:80px}
+.custom-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.custom-eyebrow{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:10px}
+.custom-title{font-family:'Montserrat',sans-serif;font-size:clamp(36px,4.5vw,62px);font-weight:900;line-height:1.0;text-transform:uppercase;color:#fff;margin-bottom:20px}
+.custom-desc{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.75);margin-bottom:32px}
+.custom-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--red);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:14px 28px;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s}
+.btn-white:hover{background:#f0f0f0;transform:translateY(-2px)}
+.btn-outline-white{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:13px 28px;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.4);transition:border-color 0.2s}
+.btn-outline-white:hover{border-color:#fff}
+.custom-feat-grid{display:flex;flex-direction:column;gap:3px}
+.custom-feat{display:flex;align-items:flex-start;gap:16px;background:rgba(0,0,0,0.15);border-radius:6px;padding:18px 20px;transition:background 0.2s}
+.custom-feat:hover{background:rgba(0,0,0,0.22)}
+.custom-feat-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.custom-feat-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#fff;margin-bottom:3px}
+.custom-feat-desc{font-size:13px;line-height:1.6;color:rgba(255,255,255,0.72)}
+
+/* ─── EMAIL ─── */
+.email-section{background:var(--dark2);border-top:1px solid var(--border);padding:72px 80px;text-align:center}
+.email-discount-pill{display:inline-block;background:var(--red);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;padding:6px 16px;border-radius:99px;margin-bottom:18px}
+.email-title{font-family:'Montserrat',sans-serif;font-size:clamp(28px,3.5vw,44px);font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:10px}
+.email-sub{font-size:15px;color:var(--gray);margin-bottom:32px}
+.email-form{display:flex;max-width:460px;margin:0 auto}
+.email-input{flex:1;background:var(--dark3);border:1.5px solid rgba(255,255,255,0.1);border-right:none;padding:14px 18px;border-radius:6px 0 0 6px;font-family:'DM Sans',sans-serif;font-size:14px;color:#fff;outline:none}
+.email-input::placeholder{color:var(--gray)}
+.email-input:focus{border-color:rgba(252,73,77,0.4)}
+.email-submit{background:var(--red);color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:14px 22px;border-radius:0 6px 6px 0;border:none;cursor:default;white-space:nowrap;transition:background 0.2s}
+.email-submit:hover{background:var(--red-d)}
+.email-note{font-size:12px;color:var(--gray);margin-top:12px}
+
+/* ─── FOOTER ─── */
+footer{background:#0a0a0a;border-top:1px solid var(--border);padding:64px 80px 32px}
+.footer-inner{max-width:1300px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;padding-bottom:48px;border-bottom:1px solid var(--border);margin-bottom:28px}
+.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-logo-wrap img{width:34px;height:34px;border-radius:50%;object-fit:cover}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;color:#fff}
+.footer-brand-desc{font-size:13px;line-height:1.7;color:var(--gray);max-width:250px;margin-bottom:18px}
+.footer-brand-tm{font-size:11px;color:rgba(255,255,255,0.3);font-weight:600}
+.footer-col-title{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:#fff;margin-bottom:16px}
+.footer-col-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col-list a{font-size:13px;color:var(--gray);text-decoration:none;transition:color 0.2s}
+.footer-col-list a:hover{color:#fff}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25);letter-spacing:0.04em}
+.footer-social{display:flex;gap:8px}
+.footer-social a{width:34px;height:34px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;transition:background 0.2s}
+.footer-social a:hover{background:var(--red);border-color:var(--red)}
+
+/* ─── SCROLL TOP ─── */
+.scroll-top{position:fixed;bottom:90px;right:24px;width:40px;height:40px;border-radius:5px;background:var(--dark2);border:1px solid var(--border);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;text-decoration:none;opacity:0;transform:translateY(8px);transition:opacity 0.3s,transform 0.3s;z-index:400}
+.scroll-top.visible{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1100px){
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .science-grid{grid-template-columns:repeat(3,1fr)}
+  .sci-card{border-radius:8px!important}
+  .leagues-inner{grid-template-columns:1fr;gap:48px}
+  .custom-inner{grid-template-columns:1fr;gap:48px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .science-header{grid-template-columns:1fr;gap:40px}
+  .science-img-wrap{display:none}
+}
+@media(max-width:768px){
+  nav{padding:0 20px;height:60px}
+  .nav-links,.nav-search{display:none}
+  .nav-hamburger{display:flex}
+  section{padding:64px 20px}
+  .hero-content{padding:40px 20px}
+  .trust-bar{padding:14px 20px;gap:16px}
+  .trust-div{display:none}
+  .science-grid{grid-template-columns:1fr 1fr}
+  .lifestyle-grid{grid-template-columns:1fr 1fr}
+  .life-cell.tall{grid-row:span 1}
+  .split-inner{grid-template-columns:1fr}
+  .split-img{min-height:280px}
+  .custom-section{padding:60px 20px}
+  .email-section{padding:56px 20px}
+  .email-form{flex-direction:column}
+  .email-input{border-right:1.5px solid rgba(255,255,255,0.1);border-radius:6px 6px 0 0}
+  .email-submit{border-radius:0 0 6px 6px;padding:14px}
+  footer{padding:48px 20px 28px}
+  .footer-top{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:480px){
+  .prod-grid{grid-template-columns:1fr}
+  .lifestyle-grid{grid-template-columns:1fr}
+  .life-cell.tall{grid-row:span 1}
+  .science-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<!-- ── ANNOUNCEMENT BAR ── -->
+<!-- ANN BAR -->
 <div class="ann-bar">
-  🔥 BOGO on Combed Cotton 4-Packs — Until Monday &nbsp;·&nbsp; <a href="#">Get 10% Off Your First Order →</a>
+  🔥 BOGO on Combed Cotton 4-Packs — Until Monday &nbsp;·&nbsp; <a href="#">Learn More</a>
 </div>
 
-<!-- ── NAV ── -->
+<!-- NAV -->
 <nav id="mainNav">
-  <a href="#hero" class="nav-logo">
-    <img
-      src="https://www.strideline.com/cdn/shop/files/Strideline_Avatar_96x96.png?v=1663606644"
-      alt="Strideline"
-      class="nav-logo-img"
-      onerror="this.style.display='none';"
-    />
+  <a href="#top" class="nav-logo">
+    <img src="https://www.strideline.com/cdn/shop/files/Strideline_Avatar_96x96.png?v=1663606644" alt="Strideline" onerror="this.style.display='none'">
     <span class="nav-logo-text">Strideline</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#products">Shop All</a></li>
-    <li><a href="#products">NFL</a></li>
-    <li><a href="#products">NCAA</a></li>
-    <li><a href="#products">Basics</a></li>
+    <li><a href="#collection" class="active">Shop All</a></li>
+    <li><a href="#collection">NFL</a></li>
+    <li><a href="#collection">NCAA</a></li>
+    <li><a href="#collection">MLS</a></li>
+    <li><a href="#collection">Basics</a></li>
     <li><a href="#custom">Custom</a></li>
     <li><a href="#about">About</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#products" class="nav-cart">🛒 Cart — 0</a>
-    <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <input type="text" class="nav-search" placeholder="Search products…">
+    <a href="#collection" class="nav-cart-btn">
+      🛒 Cart
+      <span class="nav-cart-count">0</span>
+    </a>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <div class="nav-mobile" id="mobileNav">
-  <a href="#products" onclick="closeMobileNav()">Shop All</a>
-  <a href="#products" onclick="closeMobileNav()">NFL</a>
+  <a href="#collection" onclick="closeMobileNav()">Shop All</a>
+  <a href="#collection" onclick="closeMobileNav()">NFL</a>
   <a href="#science" onclick="closeMobileNav()">Technology</a>
   <a href="#custom" onclick="closeMobileNav()">Custom Socks</a>
   <a href="#about" onclick="closeMobileNav()">About</a>
 </div>
 
-<!-- ── HERO ── -->
-<section id="hero" style="padding:0;">
-  <div class="hero">
-    <div class="hero-left">
-      <div class="hero-badge">
-        <span>🔥 Fresh From The Sock Drawer</span>
+<!-- HERO -->
+<div id="top"></div>
+<div class="hero">
+  <img
+    src="https://github.com/user-attachments/assets/2ff43ab3-3e30-46d3-a22a-a290a1d72e98"
+    alt="Strideline Hero"
+    class="hero-img"
+    onerror="this.style.background='#1a1a1a';this.style.display='block';"
+  />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span>🔥 New Drop — Half Calf 8-Packs</span></div>
+    <h1 class="hero-title">
+      The Most<br>
+      Comfortable<br>
+      <em>Sock on Earth™</em>
+    </h1>
+    <p class="hero-sub">15 years. 21+ million pairs sold. Built for everyone from weekend warriors to the pros playing on your screen Sunday.</p>
+    <div class="hero-actions">
+      <a href="#collection" class="btn-red">Shop All Socks →</a>
+      <a href="#science" class="btn-ghost">The Science</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">21M+</div>
+        <div class="hero-stat-label">Pairs Sold</div>
       </div>
-      <h1 class="hero-title">
-        The Most<br>
-        Comfortable<br>
-        <span class="red">Sock on Earth™</span>
-      </h1>
-      <p class="hero-sub">
-        15 years. 21+ million pairs sold. 14 major design iterations. One insanely comfortable sock. Trusted by the pros — loved by everyone.
-      </p>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-num">21M+</div>
-          <div class="hero-stat-label">Pairs Sold</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">15</div>
-          <div class="hero-stat-label">Years Running</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">4</div>
-          <div class="hero-stat-label">Leagues Trusted</div>
-        </div>
+      <div>
+        <div class="hero-stat-num">15 yrs</div>
+        <div class="hero-stat-label">In Business</div>
       </div>
-      <div class="hero-actions">
-        <a href="#products" class="btn-red">Shop All Socks →</a>
-        <a href="#science" class="btn-outline">The Science</a>
+      <div>
+        <div class="hero-stat-num">4+</div>
+        <div class="hero-stat-label">Pro Leagues</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Guaranteed</div>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-right-bg"></div>
-      <div class="hero-product-showcase">
-        <span class="hero-new-badge">New Drop 🔥</span>
-        <span class="hero-product-icon">🧦</span>
-        <div class="hero-product-name">Half Calf 8-Pack</div>
-        <div class="hero-product-price">$49.99</div>
-        <div class="hero-color-swatches">
-          <div class="swatch active" style="background:#111111;"></div>
-          <div class="swatch" style="background:#ffffff;"></div>
-          <div class="swatch" style="background:#888888;"></div>
-          <div class="swatch" style="background:#2b3a6e;"></div>
-          <div class="swatch" style="background:#3d6b4f;"></div>
-          <div class="swatch" style="background:#8b7355;"></div>
-        </div>
-        <a href="#products" class="btn-red" style="display:inline-flex;">Add to Cart →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── TRUST BAR ── -->
-<div class="trust-bar">
-  <div class="trust-item">
-    <span class="trust-icon">⭐</span>
-    <span class="trust-text">Premium Materials</span>
-  </div>
-  <div class="trust-divider"></div>
-  <div class="trust-item">
-    <span class="trust-icon">🏭</span>
-    <span class="trust-text">No Middlemen</span>
-  </div>
-  <div class="trust-divider"></div>
-  <div class="trust-item">
-    <span class="trust-icon">🏈</span>
-    <span class="trust-text">Trusted by the Pros</span>
-  </div>
-  <div class="trust-divider"></div>
-  <div class="trust-item">
-    <span class="trust-icon">💯</span>
-    <span class="trust-text">100% Guarantee</span>
   </div>
 </div>
 
-<!-- ── PRODUCTS ── -->
-<section class="products-section" id="products">
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">⭐</span><span class="trust-text">Premium Materials</span></div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><span class="trust-icon">🏭</span><span class="trust-text">No Middlemen</span></div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><span class="trust-icon">🏈</span><span class="trust-text">Trusted by the Pros</span></div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><span class="trust-icon">💯</span><span class="trust-text">100% Satisfaction Guarantee</span></div>
+  <div class="trust-div"></div>
+  <div class="trust-item"><span class="trust-icon">🚚</span><span class="trust-text">Free Shipping Over $50</span></div>
+</div>
+
+<!-- COLLECTION -->
+<section class="collection-section" id="collection">
   <div class="section-inner">
-    <div class="products-header">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:8px;">
       <div>
         <div class="section-eyebrow">Shop the Collection</div>
         <h2 class="section-title">Stock Up on <span class="red">Essentials</span></h2>
       </div>
-      <p class="section-desc">15 years. 21+ million pairs sold. 4 insanely comfortable sock stacks — nothing basic about them.</p>
+      <p class="section-sub" style="margin-bottom:0;">15 years. 21+ million pairs sold. Nothing basic about them.</p>
     </div>
-    <div class="product-grid">
+    <div class="coll-tabs">
+      <button class="coll-tab active">All Products</button>
+      <button class="coll-tab">Basics</button>
+      <button class="coll-tab">Performance</button>
+      <button class="coll-tab">Combed Cotton</button>
+      <button class="coll-tab">Merino Wool</button>
+      <button class="coll-tab">Eco</button>
+      <button class="coll-tab">Fanwear</button>
+      <button class="coll-tab">Half Calf</button>
+    </div>
 
-      <!-- Half Calf -->
-      <div class="product-card">
-        <div class="product-card-img" style="background:linear-gradient(135deg,#1a1a1a,#2c2c2c);">
-          <span class="product-card-emoji">🧦</span>
-          <span class="product-card-label new">New</span>
+    <div class="prod-grid">
+
+      <!-- Card 1 — Half Calf 8-Pack (photo 1) -->
+      <div class="prod-card">
+        <div class="prod-card-img-wrap">
+          <img
+            src="https://github.com/user-attachments/assets/5543f827-57a0-4dfe-ae37-c1cb2bb9b6de"
+            alt="Half Calf 8-Pack"
+            class="prod-card-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="prod-card-img-placeholder" style="display:none;">🧦</div>
+          <span class="prod-badge new">New</span>
+          <div class="prod-quick">Quick Add to Cart</div>
         </div>
-        <div class="product-card-body">
-          <div class="product-card-name">Half Calf 8-Pack</div>
-          <div class="product-card-price-row">
-            <span class="product-card-price">$49.99</span>
+        <div class="prod-body">
+          <div class="prod-type">Half Calf</div>
+          <div class="prod-name">Half Calf 8-Pack</div>
+          <div class="prod-price-row">
+            <span class="prod-price">$49.99</span>
           </div>
-          <div class="product-card-swatches">
-            <div class="product-card-swatch" style="background:#111;"></div>
-            <div class="product-card-swatch" style="background:#fff;"></div>
-            <div class="product-card-swatch" style="background:#888;"></div>
-            <div class="product-card-swatch" style="background:#2b3a6e;"></div>
+          <div class="prod-swatches">
+            <div class="prod-swatch active" style="background:#111"></div>
+            <div class="prod-swatch" style="background:#fff;border-color:rgba(255,255,255,0.3)"></div>
+            <div class="prod-swatch" style="background:#888"></div>
+            <div class="prod-swatch" style="background:#2b3a6e"></div>
+            <div class="prod-swatch" style="background:#3d6b4f"></div>
           </div>
-          <div class="product-card-more">+4 colors</div>
-          <button class="product-card-btn" style="margin-top:12px;">Add to Cart</button>
+          <div class="prod-more">+ 3 more colors</div>
+          <button class="prod-add-btn">Add to Cart</button>
         </div>
       </div>
 
-      <!-- Combed Cotton Crew 4-Pack -->
-      <div class="product-card">
-        <div class="product-card-img" style="background:linear-gradient(135deg,#1f1f1f,#333);">
-          <span class="product-card-emoji">🧦</span>
-          <span class="product-card-label sale">BOGO</span>
+      <!-- Card 2 — Combed Cotton 4-Pack (photo 2) -->
+      <div class="prod-card">
+        <div class="prod-card-img-wrap">
+          <img
+            src="https://github.com/user-attachments/assets/7ab15458-58b4-447c-a1ef-b66b6831c50d"
+            alt="Combed Cotton Premium Crew 4-Pack"
+            class="prod-card-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="prod-card-img-placeholder" style="display:none;">🧦</div>
+          <span class="prod-badge bogo">BOGO</span>
+          <div class="prod-quick">Quick Add to Cart</div>
         </div>
-        <div class="product-card-body">
-          <div class="product-card-name">Combed Cotton Premium Crew 4-Pack</div>
-          <div class="product-card-price-row">
-            <span class="product-card-price">$49.99</span>
+        <div class="prod-body">
+          <div class="prod-type">Combed Cotton</div>
+          <div class="prod-name">Premium Crew 4-Pack</div>
+          <div class="prod-price-row">
+            <span class="prod-price">$49.99</span>
           </div>
-          <div class="product-card-swatches">
-            <div class="product-card-swatch" style="background:#5b7fa6;"></div>
-            <div class="product-card-swatch" style="background:#fff;"></div>
-            <div class="product-card-swatch" style="background:#111;"></div>
-            <div class="product-card-swatch" style="background:#888;"></div>
-            <div class="product-card-swatch" style="background:#c8a97e;"></div>
+          <div class="prod-swatches">
+            <div class="prod-swatch" style="background:#5b7fa6"></div>
+            <div class="prod-swatch" style="background:#fff;border-color:rgba(255,255,255,0.3)"></div>
+            <div class="prod-swatch" style="background:#111"></div>
+            <div class="prod-swatch" style="background:#888"></div>
+            <div class="prod-swatch" style="background:#c8a97e"></div>
+            <div class="prod-swatch" style="background:#7eb38a"></div>
           </div>
-          <div class="product-card-more">+9 colors</div>
-          <button class="product-card-btn" style="margin-top:12px;">Add to Cart</button>
-        </div>
-      </div>
-
-      <!-- Performance Crew -->
-      <div class="product-card">
-        <div class="product-card-img" style="background:linear-gradient(135deg,#111,#1a1a1a);">
-          <span class="product-card-emoji">🧦</span>
-          <span class="product-card-label" style="background:rgba(252,73,77,0.8);">Pro</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-card-name">Performance Crew Socks</div>
-          <div class="product-card-price-row">
-            <span class="product-card-price">$15.00</span>
-            <span class="product-card-price-was">$16.00</span>
-          </div>
-          <div class="product-card-swatches">
-            <div class="product-card-swatch" style="background:#888;border-color:#fc494d;"></div>
-            <div class="product-card-swatch" style="background:#888;border-color:#ff8c00;"></div>
-          </div>
-          <div class="product-card-more">2 colorways</div>
-          <button class="product-card-btn" style="margin-top:12px;">Add to Cart</button>
+          <div class="prod-more">+ 8 more colors</div>
+          <button class="prod-add-btn">Add to Cart</button>
         </div>
       </div>
 
-      <!-- Merino Wool -->
-      <div class="product-card">
-        <div class="product-card-img" style="background:linear-gradient(135deg,#2a2a2a,#3c3c3c);">
-          <span class="product-card-emoji">🧦</span>
-          <span class="product-card-label sale">Save 24%</span>
+      <!-- Card 3 — Performance 4-Pack (photo 3) -->
+      <div class="prod-card">
+        <div class="prod-card-img-wrap">
+          <img
+            src="https://github.com/user-attachments/assets/fba95986-3492-4207-9b5b-bbe7c57c1a11"
+            alt="Performance Crew 4-Pack"
+            class="prod-card-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="prod-card-img-placeholder" style="display:none;">🧦</div>
+          <span class="prod-badge hot">Pro</span>
+          <div class="prod-quick">Quick Add to Cart</div>
         </div>
-        <div class="product-card-body">
-          <div class="product-card-name">Merino Wool Cloud Crew 3-Pack</div>
-          <div class="product-card-price-row">
-            <span class="product-card-price">$38.00</span>
-            <span class="product-card-price-was">$50.00</span>
+        <div class="prod-body">
+          <div class="prod-type">Performance</div>
+          <div class="prod-name">Premium Crew 4-Pack</div>
+          <div class="prod-price-row">
+            <span class="prod-price">$54.99</span>
           </div>
-          <div class="product-card-swatches">
-            <div class="product-card-swatch" style="background:#d0d0d0;"></div>
-            <div class="product-card-swatch" style="background:#555;"></div>
+          <div class="prod-swatches">
+            <div class="prod-swatch" style="background:#888"></div>
+            <div class="prod-swatch" style="background:#fff;border-color:rgba(255,255,255,0.3)"></div>
+            <div class="prod-swatch" style="background:#111"></div>
           </div>
-          <div class="product-card-more">Light &amp; Dark Grey</div>
-          <button class="product-card-btn" style="margin-top:12px;">Add to Cart</button>
-        </div>
-      </div>
-
-      <!-- Eco Crew 4-Pack -->
-      <div class="product-card">
-        <div class="product-card-img" style="background:linear-gradient(135deg,#1a2a1a,#2d3b2d);">
-          <span class="product-card-emoji">🧦</span>
-          <span class="product-card-label" style="background:#04AF5B;">Eco</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-card-name">Eco Premium Crew 4-Pack</div>
-          <div class="product-card-price-row">
-            <span class="product-card-price">$49.99</span>
-          </div>
-          <div class="product-card-swatches">
-            <div class="product-card-swatch" style="background:#888;"></div>
-            <div class="product-card-swatch" style="background:#fff;"></div>
-            <div class="product-card-swatch" style="background:#111;"></div>
-          </div>
-          <div class="product-card-more">3 colors</div>
-          <button class="product-card-btn" style="margin-top:12px;">Add to Cart</button>
+          <div class="prod-more">3 colors</div>
+          <button class="prod-add-btn">Add to Cart</button>
         </div>
       </div>
 
-      <!-- Basic Crew -->
-      <div class="product-card">
-        <div class="product-card-img" style="background:linear-gradient(135deg,#1f1f1f,#282828);">
-          <span class="product-card-emoji">🧦</span>
+      <!-- Card 4 — Merino Wool 3-Pack (photo 4) -->
+      <div class="prod-card">
+        <div class="prod-card-img-wrap">
+          <img
+            src="https://github.com/user-attachments/assets/70f0d818-e8fe-4854-a591-83a07dc6f4f6"
+            alt="Merino Wool Cloud Crew 3-Pack"
+            class="prod-card-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="prod-card-img-placeholder" style="display:none;">🧦</div>
+          <span class="prod-badge sale">Save 24%</span>
+          <div class="prod-quick">Quick Add to Cart</div>
         </div>
-        <div class="product-card-body">
-          <div class="product-card-name">Basic Crew Socks</div>
-          <div class="product-card-price-row">
-            <span class="product-card-price">From $14.00</span>
+        <div class="prod-body">
+          <div class="prod-type">Merino Wool</div>
+          <div class="prod-name">Cloud Crew 3-Pack</div>
+          <div class="prod-price-row">
+            <span class="prod-price">$38.00</span>
+            <span class="prod-price-was">$50.00</span>
+            <span class="prod-save">Save $12</span>
           </div>
-          <div class="product-card-swatches">
-            <div class="product-card-swatch" style="background:#111;"></div>
-            <div class="product-card-swatch" style="background:#fff;"></div>
-            <div class="product-card-swatch" style="background:#888;"></div>
-            <div class="product-card-swatch" style="background:#2b3a6e;"></div>
+          <div class="prod-swatches">
+            <div class="prod-swatch" style="background:#d0d0d0;border-color:rgba(255,255,255,0.3)"></div>
+            <div class="prod-swatch" style="background:#555"></div>
           </div>
-          <div class="product-card-more">5 colors</div>
-          <button class="product-card-btn" style="margin-top:12px;">Add to Cart</button>
-        </div>
-      </div>
-
-      <!-- Combed Cotton Ankle -->
-      <div class="product-card">
-        <div class="product-card-img" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a);">
-          <span class="product-card-emoji">🧦</span>
-          <span class="product-card-label sale">BOGO</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-card-name">Combed Cotton Premium Ankle 4-Pack</div>
-          <div class="product-card-price-row">
-            <span class="product-card-price">$45.99</span>
-          </div>
-          <div class="product-card-swatches">
-            <div class="product-card-swatch" style="background:#4a7c5a;"></div>
-            <div class="product-card-swatch" style="background:#fff;"></div>
-            <div class="product-card-swatch" style="background:#111;"></div>
-          </div>
-          <div class="product-card-more">+7 colors</div>
-          <button class="product-card-btn" style="margin-top:12px;">Add to Cart</button>
+          <div class="prod-more">Light & Dark Grey</div>
+          <button class="prod-add-btn">Add to Cart</button>
         </div>
       </div>
 
-      <!-- Performance Ankle -->
-      <div class="product-card">
-        <div class="product-card-img" style="background:linear-gradient(135deg,#111,#222);">
-          <span class="product-card-emoji">🧦</span>
-          <span class="product-card-label" style="background:rgba(252,73,77,0.8);">Pro</span>
+      <!-- Card 5 — Eco Crew 4-Pack (photo 5) -->
+      <div class="prod-card">
+        <div class="prod-card-img-wrap">
+          <img
+            src="https://github.com/user-attachments/assets/6f9cd559-8325-448b-857f-0a8d63211f1a"
+            alt="Eco Premium Crew 4-Pack"
+            class="prod-card-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="prod-card-img-placeholder" style="display:none;">🧦</div>
+          <span class="prod-badge sale">Eco</span>
+          <div class="prod-quick">Quick Add to Cart</div>
         </div>
-        <div class="product-card-body">
-          <div class="product-card-name">Performance Ankle 4-Pack</div>
-          <div class="product-card-price-row">
-            <span class="product-card-price">$54.99</span>
+        <div class="prod-body">
+          <div class="prod-type">Eco Collection</div>
+          <div class="prod-name">Premium Crew 4-Pack</div>
+          <div class="prod-price-row">
+            <span class="prod-price">$49.99</span>
           </div>
-          <div class="product-card-swatches">
-            <div class="product-card-swatch" style="background:#fff;border-color:var(--border);"></div>
-            <div class="product-card-swatch" style="background:#888;"></div>
-            <div class="product-card-swatch" style="background:#111;"></div>
+          <div class="prod-swatches">
+            <div class="prod-swatch" style="background:#888"></div>
+            <div class="prod-swatch" style="background:#fff;border-color:rgba(255,255,255,0.3)"></div>
+            <div class="prod-swatch" style="background:#111"></div>
           </div>
-          <div class="product-card-more">3 colors</div>
-          <button class="product-card-btn" style="margin-top:12px;">Add to Cart</button>
+          <div class="prod-more">3 colors</div>
+          <button class="prod-add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Card 6 — Basic Crew (reuse photo 1) -->
+      <div class="prod-card">
+        <div class="prod-card-img-wrap">
+          <img
+            src="https://github.com/user-attachments/assets/2ff43ab3-3e30-46d3-a22a-a290a1d72e98"
+            alt="Basic Crew Socks"
+            class="prod-card-img"
+            style="object-position:center 20%"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="prod-card-img-placeholder" style="display:none;">🧦</div>
+          <div class="prod-quick">Quick Add to Cart</div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-type">Basics</div>
+          <div class="prod-name">Basic Crew Socks</div>
+          <div class="prod-price-row">
+            <span class="prod-price">From $14.00</span>
+          </div>
+          <div class="prod-swatches">
+            <div class="prod-swatch" style="background:#111"></div>
+            <div class="prod-swatch" style="background:#fff;border-color:rgba(255,255,255,0.3)"></div>
+            <div class="prod-swatch" style="background:#888"></div>
+            <div class="prod-swatch" style="background:#2b3a6e"></div>
+          </div>
+          <div class="prod-more">5 colors</div>
+          <button class="prod-add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Card 7 — Combed Cotton Ankle -->
+      <div class="prod-card">
+        <div class="prod-card-img-wrap">
+          <img
+            src="https://github.com/user-attachments/assets/5543f827-57a0-4dfe-ae37-c1cb2bb9b6de"
+            alt="Combed Cotton Ankle 4-Pack"
+            class="prod-card-img"
+            style="object-position:center 60%"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="prod-card-img-placeholder" style="display:none;">🧦</div>
+          <span class="prod-badge bogo">BOGO</span>
+          <div class="prod-quick">Quick Add to Cart</div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-type">Combed Cotton</div>
+          <div class="prod-name">Premium Ankle 4-Pack</div>
+          <div class="prod-price-row">
+            <span class="prod-price">$45.99</span>
+          </div>
+          <div class="prod-swatches">
+            <div class="prod-swatch active" style="background:#4a7c5a"></div>
+            <div class="prod-swatch" style="background:#fff;border-color:rgba(255,255,255,0.3)"></div>
+            <div class="prod-swatch" style="background:#111"></div>
+            <div class="prod-swatch" style="background:#c8a97e"></div>
+          </div>
+          <div class="prod-more">+ 6 more</div>
+          <button class="prod-add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Card 8 — Performance Ankle -->
+      <div class="prod-card">
+        <div class="prod-card-img-wrap">
+          <img
+            src="https://github.com/user-attachments/assets/fba95986-3492-4207-9b5b-bbe7c57c1a11"
+            alt="Performance Ankle 4-Pack"
+            class="prod-card-img"
+            style="object-position:center 30%"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="prod-card-img-placeholder" style="display:none;">🧦</div>
+          <span class="prod-badge hot">Pro</span>
+          <div class="prod-quick">Quick Add to Cart</div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-type">Performance</div>
+          <div class="prod-name">Premium Ankle 4-Pack</div>
+          <div class="prod-price-row">
+            <span class="prod-price">$54.99</span>
+          </div>
+          <div class="prod-swatches">
+            <div class="prod-swatch" style="background:#fff;border-color:rgba(255,255,255,0.3)"></div>
+            <div class="prod-swatch active" style="background:#888"></div>
+            <div class="prod-swatch" style="background:#111"></div>
+          </div>
+          <div class="prod-more">3 colors</div>
+          <button class="prod-add-btn">Add to Cart</button>
         </div>
       </div>
 
@@ -1528,188 +643,246 @@
   </div>
 </section>
 
-<!-- ── SCIENCE ── -->
+<!-- FEATURED PRODUCT SPLIT -->
+<section class="split-section" style="padding:80px">
+  <div class="section-inner">
+    <div class="split-inner">
+      <div class="split-img">
+        <img
+          src="https://github.com/user-attachments/assets/7ab15458-58b4-447c-a1ef-b66b6831c50d"
+          alt="Half Calf 8-Pack Featured"
+          onerror="this.style.background='#222'"
+        />
+      </div>
+      <div class="split-content">
+        <span class="split-tag">🔥 Best Seller</span>
+        <h2 class="split-title">Half Calf<br><span class="red">8-Packs</span></h2>
+        <p class="split-desc">Stack up all season. 8 premium half-calf socks in one box. Available in solid colors and multi-packs built to match every outfit, every day.</p>
+        <div class="split-price">$49.99 <span>/ 8 pairs</span></div>
+        <div style="margin-bottom:12px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray)">Select Size</div>
+        <div class="size-row">
+          <button class="size-btn">S</button>
+          <button class="size-btn active">M / L</button>
+          <button class="size-btn">XL</button>
+        </div>
+        <div class="hero-actions">
+          <a href="#collection" class="btn-red">Add to Cart →</a>
+          <a href="#collection" class="btn-ghost" style="background:rgba(255,255,255,0.06)">View All Packs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFESTYLE PHOTO GRID -->
+<section style="padding:0;background:var(--black)">
+  <div class="lifestyle-grid" style="max-height:640px">
+    <div class="life-cell tall" style="max-height:640px">
+      <img src="https://github.com/user-attachments/assets/70f0d818-e8fe-4854-a591-83a07dc6f4f6" alt="Strideline lifestyle" onerror="this.parentElement.style.background='#222';this.style.display='none'"/>
+      <div class="life-cell-overlay">
+        <div class="life-cell-label">Trusted by <span>The Pros</span></div>
+      </div>
+    </div>
+    <div class="life-cell" style="max-height:318px">
+      <img src="https://github.com/user-attachments/assets/6f9cd559-8325-448b-857f-0a8d63211f1a" alt="Strideline" onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'"/>
+      <div class="life-cell-overlay">
+        <div class="life-cell-label"><span>Eco</span> Collection</div>
+      </div>
+    </div>
+    <div class="life-cell" style="max-height:318px">
+      <img src="https://github.com/user-attachments/assets/2ff43ab3-3e30-46d3-a22a-a290a1d72e98" alt="Strideline" onerror="this.parentElement.style.background='#111';this.style.display='none'"/>
+      <div class="life-cell-overlay">
+        <div class="life-cell-label"><span>Performance</span> Line</div>
+      </div>
+    </div>
+    <div class="life-cell" style="max-height:318px">
+      <img src="https://github.com/user-attachments/assets/fba95986-3492-4207-9b5b-bbe7c57c1a11" alt="Strideline" onerror="this.parentElement.style.background='#1d1d1d';this.style.display='none'"/>
+      <div class="life-cell-overlay">
+        <div class="life-cell-label">Shop <span>Basics</span></div>
+      </div>
+    </div>
+    <div class="life-cell" style="max-height:318px">
+      <img src="https://github.com/user-attachments/assets/5543f827-57a0-4dfe-ae37-c1cb2bb9b6de" alt="Strideline" onerror="this.parentElement.style.background='#222';this.style.display='none'"/>
+      <div class="life-cell-overlay">
+        <div class="life-cell-label">Combed <span>Cotton</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
 <section class="science-section" id="science">
   <div class="section-inner">
     <div class="science-header">
-      <div class="section-eyebrow">✨ Features</div>
-      <div class="science-title-big">Serious Sock<br><span class="red">Science</span></div>
-      <p class="section-desc">Every feature is engineered with intention. We obsess over the details so you can focus on what matters — moving.</p>
+      <div>
+        <div class="section-eyebrow">✨ Features</div>
+        <h2 class="section-title" style="font-size:clamp(32px,4vw,56px)">Serious Sock<br><span class="red">Science</span></h2>
+        <p class="section-sub" style="margin-bottom:0">Every feature engineered with intent. We obsess over the details so you can focus on moving.</p>
+      </div>
+      <div class="science-img-wrap">
+        <img src="https://github.com/user-attachments/assets/70f0d818-e8fe-4854-a591-83a07dc6f4f6" alt="Sock science" onerror="this.parentElement.style.display='none'"/>
+      </div>
     </div>
     <div class="science-grid">
-      <div class="science-card">
-        <span class="science-icon">💪</span>
-        <div class="science-card-title">Direct Compression</div>
-        <div class="science-card-sub">Almost an unfair advantage.</div>
-        <p class="science-card-desc">Built to cradle the arch of your foot, our socks add tension without losing flexion, springing you forward with extra pep in every step.</p>
+      <div class="sci-card">
+        <span class="sci-icon">💪</span>
+        <div class="sci-title">Direct Compression</div>
+        <div class="sci-sub">Almost an unfair advantage.</div>
+        <p class="sci-desc">Built to cradle your arch, adding tension without losing flexion. A little extra pep in every step.</p>
       </div>
-      <div class="science-card">
-        <span class="science-icon">☁️</span>
-        <div class="science-card-title">Zoned Cushioning</div>
-        <div class="science-card-sub">The sixth dimension of socks.</div>
-        <p class="science-card-desc">We blend unique yarns and stitch deliberately for varying levels of snugness, absorbing impact and delivering cloud-like comfort where it matters.</p>
+      <div class="sci-card">
+        <span class="sci-icon">☁️</span>
+        <div class="sci-title">Zoned Cushioning</div>
+        <div class="sci-sub">The sixth dimension of socks.</div>
+        <p class="sci-desc">Unique yarns stitched deliberately for varying snugness — cloud-like comfort exactly where it counts.</p>
       </div>
-      <div class="science-card">
-        <span class="science-icon">🎯</span>
-        <div class="science-card-title">Contour Fit</div>
-        <div class="science-card-sub">Yours and no one else's.</div>
-        <p class="science-card-desc">Labeled for each foot and woven with shape-memory polymers — our socks offer a snug but flexible fit. They'll know you better than you know yourself.</p>
+      <div class="sci-card">
+        <span class="sci-icon">🎯</span>
+        <div class="sci-title">Contour Fit</div>
+        <div class="sci-sub">Yours and no one else's.</div>
+        <p class="sci-desc">Labeled per foot, woven with shape-memory polymers. Snug, flexible, and fit for you specifically.</p>
       </div>
-      <div class="science-card">
-        <span class="science-icon">💧</span>
-        <div class="science-card-title">Moisture Wicking</div>
-        <div class="science-card-sub">Not too hot. Not too cold.</div>
-        <p class="science-card-desc">Our Goldilocks-like socks leverage hydrophilism and capillary action to ventilate sweat away from skin, keeping you dry and at baseline temperature.</p>
+      <div class="sci-card">
+        <span class="sci-icon">💧</span>
+        <div class="sci-title">Moisture Wicking</div>
+        <div class="sci-sub">Not too hot. Not too cold.</div>
+        <p class="sci-desc">Hydrophilism and capillary action ventilate sweat away, keeping you dry and temperature-neutral all day.</p>
       </div>
-      <div class="science-card">
-        <span class="science-icon">🚫</span>
-        <div class="science-card-title">No Stank</div>
-        <div class="science-card-sub">And that's on period.</div>
-        <p class="science-card-desc">Soccer moms and equipment managers love us. Spare them the smelliness — they'll love you for it too. Our antimicrobial fibers stay fresh all day long.</p>
+      <div class="sci-card">
+        <span class="sci-icon">🚫</span>
+        <div class="sci-title">No Stank</div>
+        <div class="sci-sub">And that's on period.</div>
+        <p class="sci-desc">Antimicrobial fibers stay fresh all day. Soccer moms and equipment managers love us — and you will too.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── FEATURED 8-PACK BAND ── -->
-<div class="featured-band">
-  <div class="featured-band-inner">
-    <div>
-      <div class="featured-band-eyebrow">🔥 Fresh From The Sock Drawer</div>
-      <h2 class="featured-band-title">Half Calf<br>8-Packs</h2>
-      <p class="featured-band-desc">Stock up in style. 8 premium half-calf socks in one box — available in crew and a range of solid colors and multi-packs to match any look, any day.</p>
-      <a href="#products" class="btn-white">Shop 8-Packs →</a>
-    </div>
-    <div class="featured-band-right">
-      <div class="featured-pack-card">
-        <span class="featured-pack-icon">🧦</span>
-        <div class="featured-pack-name">Half Calf<br>8-Pack</div>
-        <div class="featured-pack-price">$49.99</div>
-      </div>
-      <div class="featured-pack-card">
-        <span class="featured-pack-icon">🧦</span>
-        <div class="featured-pack-name">Combed Cotton<br>4-Pack</div>
-        <div class="featured-pack-price">$49.99</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── LEAGUES ── -->
+<!-- LEAGUES -->
 <section class="leagues-section" id="about">
   <div class="section-inner">
-    <div class="leagues-eyebrow">Trusted by the Pros</div>
-    <h2 class="leagues-title">Famous Feet<br>Love Strideline</h2>
-    <p class="leagues-sub">We've partnered with all the big leagues to provide your favorite players' favorite socks. From the sideline to the court.</p>
-    <div class="leagues-grid">
-      <div class="league-badge">🏈 NFL</div>
-      <div class="league-badge">🏀 NCAA</div>
-      <div class="league-badge">⚽ MLS</div>
-      <div class="league-badge">🇺🇸 US Soccer</div>
-      <div class="league-badge">⚾ MLBPA</div>
-      <div class="league-badge">💪 Beast Mode</div>
-      <div class="league-badge">🏀 OTE</div>
-      <div class="league-badge">+ More</div>
-    </div>
-    <div class="league-quote">
-      <p class="league-quote-text">Marshawn Lynch made his NFL comeback against the Titans and looked better than ever. The Beast is back — and he made sure his sock game was on point. Strideline, all day.</p>
-      <div class="league-quote-attr"><strong>Marshawn Lynch</strong> &nbsp;·&nbsp; @BeastMode &nbsp;·&nbsp; NFL</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CUSTOM ── -->
-<section class="custom-section" id="custom">
-  <div class="section-inner">
-    <div class="custom-inner">
+    <div class="leagues-inner">
       <div>
-        <div class="section-eyebrow">🎨 Custom Socks</div>
-        <h2 class="section-title">Any Way<br><span class="red">You Want It</span></h2>
-        <p class="section-desc">We are the preferred sock supplier of the industry's elite brands. Market leaders in quality, speed, and price. Bring your design to life.</p>
-        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;">
-          <a href="#custom" class="btn-red">Customize Now →</a>
-          <a href="#custom" class="btn-outline">Become a Reseller</a>
+        <div class="section-eyebrow">Trusted By The Pros</div>
+        <h2 class="section-title">Famous Feet<br><span class="red">Love Strideline</span></h2>
+        <p class="section-sub">We've partnered with all the big leagues to put Strideline on your favorite athletes' feet. From sideline to court to pitch.</p>
+        <div class="league-badges">
+          <div class="league-badge">🏈 NFL</div>
+          <div class="league-badge">🏀 NCAA</div>
+          <div class="league-badge">⚽ MLS</div>
+          <div class="league-badge">🇺🇸 US Soccer</div>
+          <div class="league-badge">⚾ MLBPA</div>
+          <div class="league-badge">💪 Beast Mode</div>
+          <div class="league-badge">🏀 OTE</div>
+        </div>
+        <div class="league-quote">
+          <p class="league-quote-text">"Marshawn Lynch made his NFL comeback against the Titans. The Beast is back — and he made sure his sock game was on point."</p>
+          <div class="league-quote-attr"><strong>@BeastMode</strong> &nbsp;·&nbsp; NFL Running Back</div>
         </div>
       </div>
-      <div class="custom-features">
-        <div class="custom-feature">
-          <span class="custom-feature-icon">🎨</span>
-          <div>
-            <div class="custom-feature-title">Full Design Freedom</div>
-            <p class="custom-feature-desc">Choose your material, size, color, length, and add-ons. We handle the rest — from concept to delivery.</p>
-          </div>
-        </div>
-        <div class="custom-feature">
-          <span class="custom-feature-icon">⚡</span>
-          <div>
-            <div class="custom-feature-title">Market-Leading Speed</div>
-            <p class="custom-feature-desc">We're built to move fast. Custom orders get turned around quickly without sacrificing quality — ever.</p>
-          </div>
-        </div>
-        <div class="custom-feature">
-          <span class="custom-feature-icon">💰</span>
-          <div>
-            <div class="custom-feature-title">Competitive Pricing</div>
-            <p class="custom-feature-desc">No middlemen. We own every step from design to delivery, which means better prices pass through to you.</p>
-          </div>
-        </div>
-        <div class="custom-feature">
-          <span class="custom-feature-icon">🏆</span>
-          <div>
-            <div class="custom-feature-title">Preferred by Elite Brands</div>
-            <p class="custom-feature-desc">We supply the industry's most recognized brands. Your logo deserves the same quality their athletes trust.</p>
-          </div>
+      <div class="league-photo-stack">
+        <img
+          src="https://github.com/user-attachments/assets/6f9cd559-8325-448b-857f-0a8d63211f1a"
+          alt="Pro athletes wearing Strideline"
+          class="league-main-img"
+          onerror="this.style.background='#222';this.style.minHeight='500px';this.src=''"
+        />
+        <div class="league-pill">
+          <div class="league-pill-dot"></div>
+          <div class="league-pill-text">Official Partner — NFL · MLS · NCAA</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── EMAIL CTA ── -->
-<div class="email-section">
-  <div class="section-inner">
-    <span class="email-highlight">10% Off Your First Order</span>
-    <h2 class="section-title">Stay in Stride</h2>
-    <p class="section-desc">Make your inbox more comfortable. Get 10% off your first order when you join the Strideline crew.</p>
-    <div class="email-form">
-      <input type="email" class="email-input" placeholder="Your email address">
-      <button class="email-submit">Subscribe →</button>
+<!-- CUSTOM SOCKS -->
+<div class="custom-section" id="custom">
+  <div class="custom-inner">
+    <div>
+      <div class="custom-eyebrow">🎨 Custom Socks</div>
+      <h2 class="custom-title">Any Way<br>You Want It</h2>
+      <p class="custom-desc">We are the preferred sock supplier of the industry's elite brands — market leaders in quality, speed, and price. Bring your design to life with Strideline.</p>
+      <div class="custom-actions">
+        <a href="#custom" class="btn-white">Customize Now →</a>
+        <a href="#custom" class="btn-outline-white">Become a Reseller</a>
+      </div>
     </div>
-    <p class="email-note">No spam, ever. Just sock drops and exclusive deals.</p>
+    <div class="custom-feat-grid">
+      <div class="custom-feat">
+        <span class="custom-feat-icon">🎨</span>
+        <div>
+          <div class="custom-feat-title">Full Design Freedom</div>
+          <p class="custom-feat-desc">Choose material, size, color, length, and add-ons. We handle everything from concept to delivery.</p>
+        </div>
+      </div>
+      <div class="custom-feat">
+        <span class="custom-feat-icon">⚡</span>
+        <div>
+          <div class="custom-feat-title">Market-Leading Speed</div>
+          <p class="custom-feat-desc">Custom orders turned around fast without ever cutting corners on quality.</p>
+        </div>
+      </div>
+      <div class="custom-feat">
+        <span class="custom-feat-icon">💰</span>
+        <div>
+          <div class="custom-feat-title">Competitive Pricing</div>
+          <p class="custom-feat-desc">No middlemen — we own every step, which means better prices pass directly to you.</p>
+        </div>
+      </div>
+      <div class="custom-feat">
+        <span class="custom-feat-icon">🏆</span>
+        <div>
+          <div class="custom-feat-title">Preferred by Elite Brands</div>
+          <p class="custom-feat-desc">The same quality pro leagues trust is available for your brand, team, or event.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ── FOOTER ── -->
+<!-- EMAIL -->
+<div class="email-section">
+  <div class="section-inner">
+    <span class="email-discount-pill">🎉 Get 10% Off Your First Order</span>
+    <h2 class="email-title">Stay in Stride</h2>
+    <p class="email-sub">Drop your email. Get 10% off your first order and be first for every new drop.</p>
+    <div class="email-form">
+      <input type="email" class="email-input" placeholder="your@email.com">
+      <button class="email-submit">Subscribe →</button>
+    </div>
+    <p class="email-note">No spam. Just sock drops, restocks, and exclusive offers.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-brand-logo">
-          <img
-            src="https://www.strideline.com/cdn/shop/files/Strideline_Avatar_96x96.png?v=1663606644"
-            alt="Strideline"
-            onerror="this.style.display='none';"
-          />
+      <div>
+        <div class="footer-logo-wrap">
+          <img src="https://www.strideline.com/cdn/shop/files/Strideline_Avatar_96x96.png?v=1663606644" alt="Strideline" onerror="this.style.display='none'">
           <div class="footer-brand-name">Strideline</div>
         </div>
-        <p class="footer-brand-desc">The Most Comfortable Sock on Earth™. 15 years. 21+ million pairs sold. Built by the happiest team in the world.</p>
-        <div class="footer-brand-tm">🧦 Strideline™ — Socks Since Day One</div>
+        <p class="footer-brand-desc">The Most Comfortable Sock on Earth™. 15 years of premium socks built by the happiest team in the world.</p>
+        <div class="footer-brand-tm">🧦 Strideline LLC · Socks Since Day One</div>
       </div>
       <div>
         <div class="footer-col-title">Socks</div>
         <ul class="footer-col-list">
-          <li><a href="#products">Basics</a></li>
-          <li><a href="#products">Fanwear</a></li>
-          <li><a href="#products">Limited Edition</a></li>
+          <li><a href="#collection">Basics</a></li>
+          <li><a href="#collection">Fanwear</a></li>
+          <li><a href="#collection">Combed Cotton</a></li>
+          <li><a href="#collection">Performance</a></li>
+          <li><a href="#collection">Merino Wool</a></li>
           <li><a href="#custom">Custom</a></li>
-          <li><a href="#products">Merino Wool</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">About</div>
         <ul class="footer-col-list">
           <li><a href="#about">Our Story</a></li>
-          <li><a href="#science">Our Technology</a></li>
+          <li><a href="#science">Technology</a></li>
           <li><a href="#about">Newsroom</a></li>
           <li><a href="#custom">Wholesale</a></li>
         </ul>
@@ -1717,10 +890,11 @@
       <div>
         <div class="footer-col-title">Help</div>
         <ul class="footer-col-list">
-          <li><a href="#about">Contact &amp; FAQ</a></li>
-          <li><a href="#about">Refund Policy</a></li>
-          <li><a href="#about">Privacy Policy</a></li>
-          <li><a href="#about">Terms of Service</a></li>
+          <li><a href="#top">Contact &amp; FAQ</a></li>
+          <li><a href="#top">Shipping Info</a></li>
+          <li><a href="#top">Refund Policy</a></li>
+          <li><a href="#top">Privacy Policy</a></li>
+          <li><a href="#top">SMS Sign Up</a></li>
         </ul>
       </div>
     </div>
@@ -1729,21 +903,19 @@
       <div class="footer-social">
         <a href="#" title="Instagram">📸</a>
         <a href="#" title="Facebook">📘</a>
-        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="Twitter/X">🐦</a>
         <a href="#" title="TikTok">🎵</a>
+        <a href="#" title="YouTube">▶️</a>
       </div>
     </div>
   </div>
 </footer>
 
-<a href="#hero" class="scroll-top" id="scrollTop">↑</a>
+<a href="#top" class="scroll-top" id="scrollTop">↑</a>
 
-<!-- ── SCRIPTS ── -->
 <script>
   window.addEventListener('scroll', function() {
-    const doc = document.documentElement;
-    const scrolled = doc.scrollTop || document.body.scrollTop;
-    const max = doc.scrollHeight - doc.clientHeight;
+    const scrolled = document.documentElement.scrollTop || document.body.scrollTop;
     const st = document.getElementById('scrollTop');
     if (scrolled > 400) st.classList.add('visible');
     else st.classList.remove('visible');
@@ -1752,14 +924,13 @@
   function toggleMobileNav() {
     document.getElementById('mobileNav').classList.toggle('open');
   }
-
   function closeMobileNav() {
     document.getElementById('mobileNav').classList.remove('open');
   }
 </script>
 
-<!-- ── DEMO MODE: disable all clicks except back-to-library ── -->
-<a href="../index.html" id="demoBackBtn" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;background:#FC494D;color:#fff;font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:10px 22px;border-radius:8px;text-decoration:none;box-shadow:0 4px 20px rgba(252,73,77,0.5);white-space:nowrap;">&#8592; Back to Demo Library</a>
+<!-- DEMO MODE -->
+<a href="../index.html" id="demoBackBtn" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;background:#FC494D;color:#fff;font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:10px 22px;border-radius:6px;text-decoration:none;box-shadow:0 4px 20px rgba(252,73,77,0.5);white-space:nowrap;">&#8592; Back to Demo Library</a>
 <script>
   document.addEventListener('click', function(e) {
     var a = e.target.closest('a');
