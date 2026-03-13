@@ -1096,5 +1096,18 @@
     }
   </script>
 
+  <!-- ── DEMO MODE: disable all outbound clicks ── -->
+  <script>
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest('a');
+      if (a) { e.preventDefault(); return; }
+      var btn = e.target.closest('button');
+      if (btn && !btn.classList.contains('filter-btn')) e.preventDefault();
+    }, true);
+  </script>
+  <style>
+    a, button:not(.filter-btn) { cursor: default !important; }
+  </style>
+
 </body>
 </html>

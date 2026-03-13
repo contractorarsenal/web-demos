@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Alta Exteriors — Licensed &amp; Insured exterior painting, interior painting, and cabinet refinishing in the greater Seattle area. Get a free quote today." />
+  <title>Alta Exteriors | Professional Painters in Seattle, WA</title>
+
+  <!-- Google Fonts: Oswald (headings) + Open Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #091230;
+      --navy-lt: #0D1A40;
+      --navy-md: #0F2050;
+      --teal:    #2DD4D4;
+      --teal-dk: #1AACB2;
+      --teal-bg: rgba(45,212,212,0.1);
+      --white:   #FFFFFF;
+      --light:   #EEF4FB;
+      --dim:     rgba(255,255,255,0.65);
+      --dim2:    rgba(255,255,255,0.15);
+      --radius:  8px;
+      --tr: 0.28s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Shared ─────────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all var(--tr);
+      border: 2px solid transparent;
+      white-space: nowrap;
+      min-height: 48px;
+    }
+
+    .btn-teal {
+      background: var(--teal);
+      color: var(--navy);
+      border-color: var(--teal);
+    }
+    .btn-teal:hover {
+      background: var(--teal-dk);
+      border-color: var(--teal-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(45,212,212,0.35);
+    }
+
+    .btn-outline-teal {
+      background: transparent;
+      color: var(--teal);
+      border-color: var(--teal);
+    }
+    .btn-outline-teal:hover {
+      background: var(--teal);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+    .btn-outline-white:hover {
+      background: var(--white);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    /* Section label */
+    .section-label {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    /* Section headings */
+    .section-heading {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--white);
+    }
+
+    .section-heading .teal { color: var(--teal); }
+
+    .section-heading.dark { color: var(--navy); }
+    .section-heading.dark .teal { color: var(--teal-dk); }
+
+    /* ── ANNOUNCEMENT BAR ───────────────────────────────────────── */
+    .announce-bar {
+      background: var(--navy);
+      padding: 10px 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .announce-bar a {
+      display: inline-block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      border: 1.5px solid var(--teal);
+      border-radius: 4px;
+      padding: 6px 22px;
+      transition: all var(--tr);
+    }
+    .announce-bar a:hover {
+      background: var(--teal);
+      color: var(--navy);
+    }
+
+    /* ── NAV ────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--navy-lt);
+      border-bottom: 3px solid var(--teal);
+      transition: box-shadow var(--tr);
+    }
+    nav.shadow { box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      height: 68px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .logo-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .logo-name .teal { color: var(--teal); }
+    .logo-sub {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      transition: color var(--tr);
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transition: transform var(--tr);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-phone {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+    .nav-phone:hover { color: var(--teal); transition: color var(--tr); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--tr);
+    }
+
+    /* ── MOBILE MENU ─────────────────────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      z-index: 300;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .mobile-menu a:hover { color: var(--teal); }
+
+    .mobile-phone-link {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--teal) !important;
+      border: 2px solid var(--teal);
+      padding: 12px 28px;
+      border-radius: var(--radius);
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 2.2rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+    }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(to bottom,
+          rgba(6,10,28,0.88) 0%,
+          rgba(8,14,38,0.78) 40%,
+          rgba(6,10,28,0.92) 100%
+        ),
+        url('https://images.unsplash.com/photo-1502175353174-a7a70e73b362?w=1920&q=80')
+          center / cover no-repeat;
+      background-color: #060A1C;
+    }
+
+    .hero-teal-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--teal);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 100px 20px 80px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .hero-title .teal { color: var(--teal); }
+
+    .hero-phone {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      margin: 28px 0;
+      display: block;
+    }
+    .hero-phone:hover { color: var(--teal); transition: color var(--tr); }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .hero-trust-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+    }
+    .trust-badge .icon {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      color: var(--navy);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── MARQUEE ─────────────────────────────────────────────────── */
+    .marquee-wrap {
+      background: var(--white);
+      overflow: hidden;
+      border-top: 3px solid var(--teal);
+      border-bottom: 3px solid var(--teal);
+      padding: 14px 0;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 25s linear infinite;
+      width: max-content;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 32px;
+      white-space: nowrap;
+    }
+    .marquee-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    .marquee-text .teal { color: var(--teal-dk); }
+
+    .marquee-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--teal-dk);
+      flex-shrink: 0;
+    }
+
+    /* ── ABOUT / PREMIER SECTION ─────────────────────────────────── */
+    #about {
+      padding: 90px 0;
+      background: var(--navy-lt);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #about::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 220px; height: 100%;
+      background: repeating-linear-gradient(
+        -55deg,
+        rgba(255,255,255,0.025) 0px,
+        rgba(255,255,255,0.025) 2px,
+        transparent 2px,
+        transparent 18px
+      );
+      pointer-events: none;
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-image {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--navy-md);
+      position: relative;
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-content .section-heading {
+      margin-bottom: 16px;
+    }
+    .about-subheading {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+    .about-text {
+      font-size: 0.97rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
+
+    /* ── SERVICES ────────────────────────────────────────────────── */
+    #services {
+      padding: 90px 0;
+      background: var(--navy);
+      border-top: 3px solid var(--teal);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .services-header .section-heading { margin-bottom: 14px; }
+    .services-header p {
+      font-size: 1rem;
+      color: var(--dim);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .svc-card {
+      background: var(--navy-lt);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-top: 3px solid var(--teal);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      transition: transform var(--tr), box-shadow var(--tr);
+    }
+    .svc-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+
+    .svc-icon {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .svc-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .svc-desc {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    /* ── WHY CHOOSE US ───────────────────────────────────────────── */
+    #why {
+      padding: 90px 0;
+      background: var(--light);
+    }
+
+    .why-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .why-header .section-heading.dark { margin-bottom: 12px; }
+    .why-header p {
+      font-size: 1rem;
+      color: #4B5563;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .why-item {
+      padding: 28px 0;
+      border-bottom: 1px solid #D1D9E0;
+    }
+    .why-item:first-child { padding-top: 0; }
+    .why-item:last-child { border-bottom: none; }
+
+    .why-item-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+    .why-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--teal-dk);
+      min-width: 28px;
+      padding-top: 1px;
+    }
+    .why-title {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .why-desc {
+      font-size: 0.93rem;
+      color: #4B5563;
+      line-height: 1.8;
+      padding-left: 42px;
+    }
+
+    .why-images {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .why-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--navy-md);
+      position: relative;
+    }
+    .why-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── PROCESS ─────────────────────────────────────────────────── */
+    #process {
+      padding: 90px 0;
+      background: var(--navy-lt);
+      border-top: 3px solid var(--teal);
+      border-bottom: 3px solid var(--teal);
+    }
+
+    .process-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .process-header .section-heading { margin-bottom: 12px; }
+    .process-header p {
+      font-size: 1rem;
+      color: var(--dim);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(12.5% + 2px);
+      right: calc(12.5% + 2px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal) 0%, rgba(45,212,212,0.2) 100%);
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-circle {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--navy);
+      border: 3px solid var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    .step-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .step-desc {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+
+    /* ── STATS STRIP ─────────────────────────────────────────────── */
+    .stats-strip {
+      background: var(--teal);
+      padding: 52px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 0 20px;
+      border-right: 1px solid rgba(9,18,48,0.25);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy-lt);
+    }
+
+    /* ── QUOTE FORM ──────────────────────────────────────────────── */
+    #quote {
+      padding: 90px 0;
+      background: var(--navy);
+    }
+
+    .quote-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .quote-left .section-heading { margin-bottom: 16px; }
+    .quote-sub {
+      font-size: 0.97rem;
+      color: var(--dim);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--navy-lt);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 3px solid var(--teal);
+      border-radius: var(--radius);
+    }
+    .contact-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .contact-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 2px;
+    }
+    .contact-val {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    /* Form */
+    .quote-form {
+      background: var(--navy-lt);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-top: 3px solid var(--teal);
+      border-radius: var(--radius);
+      padding: 44px 36px;
+    }
+
+    .form-heading {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    input, select, textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 13px 16px;
+      color: var(--white);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.92rem;
+      width: 100%;
+      outline: none;
+      transition: border-color var(--tr), box-shadow var(--tr);
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(45,212,212,0.12);
+    }
+    select option { background: #111827; color: #fff; }
+    textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit { margin-top: 6px; }
+    .form-submit .btn { width: 100%; font-size: 1rem; padding: 16px; }
+
+    .form-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.74rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    footer {
+      background: linear-gradient(135deg, #062035 0%, #0A2A4A 40%, #083040 100%);
+      border-top: 3px solid var(--teal);
+      padding: 70px 0 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 52px;
+    }
+
+    .footer-brand .logo-name { font-size: 1.7rem; }
+    .footer-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.8;
+      margin-top: 16px;
+      max-width: 300px;
+    }
+
+    .footer-col-heading {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.45);
+      transition: color var(--tr);
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-contact-list li {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-contact-list a {
+      color: rgba(255,255,255,0.5);
+      transition: color var(--tr);
+    }
+    .footer-contact-list a:hover { color: var(--teal); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.28);
+    }
+    .footer-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.28);
+    }
+    .footer-badge .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    /* ── FLOATING CTA ────────────────────────────────────────────── */
+    .floating-cta {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 150;
+      display: none;
+    }
+    .floating-cta.visible { display: block; }
+    .floating-cta .btn {
+      box-shadow: 0 6px 24px rgba(45,212,212,0.45);
+      border-radius: 100px;
+    }
+
+    /* ── SCROLL ANIMATIONS ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .svc-card:nth-child(3) { grid-column: 1 / -1; }
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 20px;
+      }
+      .steps-grid::before { display: none; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > *:first-child { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-phone { display: none; }
+      .hamburger { display: flex; }
+
+      .announce-bar a { font-size: 0.78rem; padding: 5px 16px; }
+
+      #hero { min-height: 85vh; }
+      .hero-content { padding: 80px 20px 60px; }
+
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-image { max-width: 560px; }
+
+      .why-inner { grid-template-columns: 1fr; gap: 50px; }
+      .why-images { flex-direction: row; }
+      .why-img { flex: 1; }
+
+      .quote-inner { grid-template-columns: 1fr; gap: 50px; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-grid > *:first-child { grid-column: auto; }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .svc-card:nth-child(3) { grid-column: auto; }
+
+      .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+      .steps-grid::before { display: none; }
+
+      .stats-grid { grid-template-columns: 1fr; gap: 0; }
+      .stat-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(9,18,48,0.25);
+        padding: 24px 20px;
+      }
+      .stat-item:last-child { border-bottom: none; }
+
+      .form-row-2 { grid-template-columns: 1fr; }
+      .quote-form { padding: 28px 20px; }
+
+      .why-images { flex-direction: column; }
+
+      .hero-trust-strip { gap: 16px; }
+      .trust-badge { font-size: 0.78rem; }
+
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .floating-cta { bottom: 16px; right: 16px; }
+    }
+
+    @media (max-width: 400px) {
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ FLOATING CTA ══════════════════════════════════════════ -->
+  <div class="floating-cta" id="floatingCta">
+    <a href="#quote" class="btn btn-teal">Free Quote</a>
+  </div>
+
+  <!-- ══ MOBILE MENU ════════════════════════════════════════════ -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#why" onclick="closeMobile()">Why Alta</a>
+    <a href="#process" onclick="closeMobile()">Process</a>
+    <a href="#quote" onclick="closeMobile()">Contact</a>
+    <a href="tel:+14256862337" class="mobile-phone-link">(425) 686-2337</a>
+    <a href="#quote" class="btn btn-teal" onclick="closeMobile()" style="margin-top:8px;">Get Free Quote</a>
+  </div>
+
+  <!-- ══ ANNOUNCEMENT BAR ══════════════════════════════════════ -->
+  <div class="announce-bar">
+    <a href="#quote">&#128222; Get a Free Estimate — No Obligation, Respond Within 24 Hours</a>
+  </div>
+
+  <!-- ══ NAV ═══════════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div class="nav-inner">
+        <a href="#hero" class="logo">
+          <span class="logo-name">Alta <span class="teal">Exteriors</span></span>
+          <span class="logo-sub">Licensed &amp; Insured · Seattle, WA</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why Alta</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#quote">Contact</a></li>
+        </ul>
+
+        <div class="nav-right">
+          <a href="tel:+14256862337" class="nav-phone">(425) 686-2337</a>
+          <a href="#quote" class="btn btn-teal" style="padding:10px 22px; font-size:0.82rem;">Free Quote</a>
+          <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-teal-bar"></div>
+    <div class="container">
+      <div class="hero-content">
+
+        <p class="hero-eyebrow">Alta Exteriors | Professional Painters in Greater Seattle, WA</p>
+
+        <h1 class="hero-title">
+          Top Residential Painting<br />Services in<br />
+          <span class="teal">Greater Seattle</span>
+        </h1>
+
+        <a href="tel:+14256862337" class="hero-phone">(425) 686-2337</a>
+
+        <div class="hero-actions">
+          <a href="#quote" class="btn btn-outline-teal" style="font-size:1rem; padding:15px 36px;">
+            Schedule Now
+          </a>
+          <a href="#services" class="btn btn-outline-white" style="font-size:1rem; padding:15px 36px;">
+            Our Services
+          </a>
+        </div>
+
+        <div class="hero-trust-strip">
+          <div class="trust-badge">
+            <span class="icon">&#10003;</span>
+            Licensed &amp; Insured
+          </div>
+          <div class="trust-badge">
+            <span class="icon">&#9733;</span>
+            5-Star Rated
+          </div>
+          <div class="trust-badge">
+            <span class="icon">&#10003;</span>
+            Free Estimates
+          </div>
+          <div class="trust-badge">
+            <span class="icon">&#127968;</span>
+            Locally Owned
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MARQUEE ════════════════════════════════════════════════ -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">ALTA EXTERIORS</span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">WE RAISE THE <span class="teal">STANDARD</span></span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">LICENSED &amp; INSURED</span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">SERVING <span class="teal">GREATER SEATTLE</span></span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">EXTERIOR · INTERIOR · CABINETS</span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">FREE <span class="teal">ESTIMATES</span></span>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">ALTA EXTERIORS</span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">WE RAISE THE <span class="teal">STANDARD</span></span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">LICENSED &amp; INSURED</span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">SERVING <span class="teal">GREATER SEATTLE</span></span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">EXTERIOR · INTERIOR · CABINETS</span>
+      </div>
+      <div class="marquee-item">
+        <span class="marquee-dot"></span>
+        <span class="marquee-text">FREE <span class="teal">ESTIMATES</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ABOUT / PREMIER SECTION ═══════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-inner">
+
+        <div class="about-image reveal">
+          <img
+            src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=700&q=80"
+            alt="Alta Exteriors painter at work on a home exterior"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="about-content">
+          <span class="section-label reveal">About Us</span>
+          <h2 class="section-heading reveal reveal-d1">Premier Painting Services in<br />Seattle, WA</h2>
+          <p class="about-subheading reveal reveal-d2">Transform Your Space with Expert Painters</p>
+          <p class="about-text reveal reveal-d2">
+            When you're searching for professional painters in the Seattle area, Alta Exteriors is your
+            top choice. We offer exterior painting, interior painting, and cabinet refinishing tailored
+            to the unique needs of Pacific Northwest homes.
+          </p>
+          <p class="about-text reveal reveal-d3">
+            Stop searching for "painters near me" and start working with a team that shows up on time,
+            communicates clearly, and delivers a finish that exceeds your expectations — every single time.
+          </p>
+          <a href="#quote" class="btn btn-teal reveal reveal-d4">Get a Free Estimate</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SERVICES ══════════════════════════════════════════════ -->
+  <section id="services">
+    <div class="container">
+
+      <div class="services-header">
+        <span class="section-label reveal">What We Do</span>
+        <h2 class="section-heading reveal reveal-d1">Our Painting Services</h2>
+        <p class="reveal reveal-d2">
+          From exterior walls to interior rooms to kitchen cabinets — we handle every surface
+          with precision and care.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="svc-card reveal">
+          <span class="svc-icon">🏠</span>
+          <h3 class="svc-title">Exterior Painting</h3>
+          <p class="svc-desc">
+            Transform your home's curb appeal with a flawless exterior paint job. We prep
+            meticulously, use premium coatings built for the Pacific Northwest climate, and
+            deliver a finish that lasts.
+          </p>
+          <a href="#quote" class="btn btn-outline-teal" style="padding:11px 22px; font-size:0.82rem;">Get a Quote</a>
+        </div>
+
+        <div class="svc-card reveal reveal-d1">
+          <span class="svc-icon">✨</span>
+          <h3 class="svc-title">Interior Painting</h3>
+          <p class="svc-desc">
+            Crisp lines, zero mess, and a showroom-quality finish — every room. We protect your
+            furniture, cover every surface, and leave your space looking brand new.
+          </p>
+          <a href="#quote" class="btn btn-outline-teal" style="padding:11px 22px; font-size:0.82rem;">Get a Quote</a>
+        </div>
+
+        <div class="svc-card reveal reveal-d2">
+          <span class="svc-icon">🍳</span>
+          <h3 class="svc-title">Cabinet Painting</h3>
+          <p class="svc-desc">
+            Breathe new life into your kitchen or bathroom without a full remodel. Our cabinet
+            refinishing delivers a factory-smooth finish that looks and feels completely custom.
+          </p>
+          <a href="#quote" class="btn btn-outline-teal" style="padding:11px 22px; font-size:0.82rem;">Get a Quote</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STATS STRIP ════════════════════════════════════════════ -->
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Licensed &amp; Insured</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5 ★</div>
+          <div class="stat-label">Star Rated Service</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">Free</div>
+          <div class="stat-label">Estimates &amp; Quotes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ WHY ALTA ═══════════════════════════════════════════════ -->
+  <section id="why">
+    <div class="container">
+
+      <div class="why-header">
+        <h2 class="section-heading dark reveal">Why Choose <span class="teal">Alta Exteriors</span></h2>
+        <p class="reveal reveal-d1">
+          We built Alta Exteriors on a simple belief: your home deserves craftsmen who take
+          pride in every detail — not just the ones you can see.
+        </p>
+      </div>
+
+      <div class="why-inner">
+
+        <div class="why-list reveal">
+          <div class="why-item">
+            <div class="why-item-header">
+              <span class="why-num">01.</span>
+              <span class="why-title">Our Work Brings Results</span>
+            </div>
+            <p class="why-desc">
+              We deliver transformative work that speaks for itself. No job is too big or too
+              small — we bring the same level of excellence to every project.
+            </p>
+          </div>
+          <div class="why-item">
+            <div class="why-item-header">
+              <span class="why-num">02.</span>
+              <span class="why-title">Stress-Free &amp; Mess-Free Service</span>
+            </div>
+            <p class="why-desc">
+              Paint is messy, but your experience shouldn't be. We start with thorough prep,
+              protect everything that matters, and leave every space spotless.
+            </p>
+          </div>
+          <div class="why-item">
+            <div class="why-item-header">
+              <span class="why-num">03.</span>
+              <span class="why-title">On Time &amp; Communicative</span>
+            </div>
+            <p class="why-desc">
+              We do everything start-to-finish on schedule while keeping you informed throughout.
+              If anything changes, we communicate how and when it will get done.
+            </p>
+          </div>
+          <div class="why-item">
+            <div class="why-item-header">
+              <span class="why-num">04.</span>
+              <span class="why-title">Transparent, Value-Based Pricing</span>
+            </div>
+            <p class="why-desc">
+              Upfront, honest pricing with zero hidden fees. You get a detailed written estimate
+              before a single brush touches your walls.
+            </p>
+          </div>
+        </div>
+
+        <div class="why-images reveal reveal-d2">
+          <div class="why-img">
+            <img
+              src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80"
+              alt="Freshly painted home exterior in Seattle"
+              loading="lazy"
+            />
+          </div>
+          <div class="why-img">
+            <img
+              src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&q=80"
+              alt="Professional painter at work"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROCESS ════════════════════════════════════════════════ -->
+  <section id="process">
+    <div class="container">
+
+      <div class="process-header">
+        <span class="section-label reveal">How It Works</span>
+        <h2 class="section-heading reveal reveal-d1">Simple. Straightforward.<br />Done Right.</h2>
+        <p class="reveal reveal-d2">
+          From your first call to the final walkthrough — we make the whole experience easy.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step reveal">
+          <div class="step-circle">01</div>
+          <h4 class="step-title">Free Consultation</h4>
+          <p class="step-desc">Tell us about your project. We'll assess your home at no cost or obligation.</p>
+        </div>
+        <div class="step reveal reveal-d1">
+          <div class="step-circle">02</div>
+          <h4 class="step-title">Detailed Quote</h4>
+          <p class="step-desc">Receive a clear, itemized estimate. No surprises — just honest pricing.</p>
+        </div>
+        <div class="step reveal reveal-d2">
+          <div class="step-circle">03</div>
+          <h4 class="step-title">Expert Execution</h4>
+          <p class="step-desc">We arrive on time, work clean, and deliver results that exceed your expectations.</p>
+        </div>
+        <div class="step reveal reveal-d3">
+          <div class="step-circle">04</div>
+          <h4 class="step-title">Final Walkthrough</h4>
+          <p class="step-desc">We walk through the completed work together. Your satisfaction is our standard.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ QUOTE FORM ══════════════════════════════════════════════ -->
+  <section id="quote">
+    <div class="container">
+      <div class="quote-inner">
+
+        <div class="quote-left">
+          <span class="section-label reveal">Get Started</span>
+          <h2 class="section-heading reveal reveal-d1">Get Your Free<br /><span class="teal">Quote Today</span></h2>
+          <p class="quote-sub reveal reveal-d2">
+            Ready to transform your home? Fill out the form or reach us directly —
+            we respond to every inquiry within one business day.
+          </p>
+
+          <div class="contact-list reveal reveal-d3">
+            <div class="contact-row">
+              <span class="contact-icon">📞</span>
+              <div>
+                <div class="contact-label">Call or Text</div>
+                <div class="contact-val"><a href="tel:+14256862337">(425) 686-2337</a></div>
+              </div>
+            </div>
+            <div class="contact-row">
+              <span class="contact-icon">✉️</span>
+              <div>
+                <div class="contact-label">Email Us</div>
+                <div class="contact-val"><a href="mailto:jdalatorre96@gmail.com">jdalatorre96@gmail.com</a></div>
+              </div>
+            </div>
+            <div class="contact-row">
+              <span class="contact-icon">📍</span>
+              <div>
+                <div class="contact-label">Service Area</div>
+                <div class="contact-val">Greater Seattle &amp; Eastside</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-form reveal reveal-d2">
+          <div class="form-heading">Request a Free Estimate</div>
+          <form name="quote-request" action="#" onsubmit="handleSubmit(event)">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="John" required autocomplete="given-name" />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Smith" required autocomplete="family-name" />
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="phone">Phone *</label>
+                <input type="tel" id="phone" name="phone" placeholder="(425) 000-0000" required autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="john@email.com" autocomplete="email" />
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label for="service">Service Needed *</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Select a service...</option>
+                <option value="exterior-painting">Exterior Painting</option>
+                <option value="interior-painting">Interior Painting</option>
+                <option value="cabinet-painting">Cabinet Painting</option>
+                <option value="multiple">Multiple Services</option>
+                <option value="unsure">Not Sure — Need Estimate</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="address">Property Address</label>
+              <input type="text" id="address" name="address" placeholder="123 Main St, Bellevue, WA" autocomplete="street-address" />
+            </div>
+
+            <div class="form-group full">
+              <label for="message">Project Details</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project, any concerns, or the best time to reach you..."></textarea>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn-teal">
+                Request My Free Quote
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <p class="form-note">No spam. No pressure. Just a free, honest estimate.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-name">Alta <span class="teal">Exteriors</span></span>
+            <span class="logo-sub">Licensed &amp; Insured Contractor</span>
+          </div>
+          <p class="footer-desc">
+            Raising the standard in exterior care for homeowners across the greater Seattle area.
+            Quality craftsmanship, honest pricing, exceptional results.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-heading">Services</div>
+          <ul class="footer-links">
+            <li><a href="#services">Exterior Painting</a></li>
+            <li><a href="#services">Interior Painting</a></li>
+            <li><a href="#services">Cabinet Painting</a></li>
+            <li><a href="#quote">Free Estimate</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-heading">Contact Info</div>
+          <ul class="footer-contact-list">
+            <li>📞 <a href="tel:+14256862337">(425) 686-2337</a></li>
+            <li>✉️ <a href="mailto:jdalatorre96@gmail.com">jdalatorre96@gmail.com</a></li>
+            <li>📍 Greater Seattle &amp; Eastside, WA</li>
+          </ul>
+          <div style="margin-top:24px;">
+            <a href="#quote" class="btn btn-outline-teal" style="padding:12px 24px; font-size:0.82rem;">Get a Free Quote</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2025 Alta Exteriors. All rights reserved.</div>
+        <div class="footer-badge">
+          <span class="dot"></span>
+          Licensed &amp; Insured — Serving Greater Seattle &amp; Eastside WA
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ SCRIPTS ══════════════════════════════════════════════════ -->
+  <script>
+    // ── Nav shadow on scroll ───────────────────────────────────
+    const navbar = document.getElementById('navbar');
+    const floatingCta = document.getElementById('floatingCta');
+    const heroEl = document.getElementById('hero');
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('shadow', window.scrollY > 10);
+      const heroBottom = heroEl.getBoundingClientRect().bottom;
+      floatingCta.classList.toggle('visible', heroBottom < 0);
+    }, { passive: true });
+
+    // ── Mobile menu ────────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    mobileClose.addEventListener('click', closeMobile);
+
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMobile();
+    });
+
+    // ── Scroll reveal ──────────────────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── Form submission ────────────────────────────────────────
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('button[type="submit"]');
+      const origHTML = btn.innerHTML;
+
+      btn.innerHTML = 'Sending...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '&#10003; Request Sent! We\'ll be in touch soon.';
+        btn.style.background = '#22c55e';
+        btn.style.borderColor = '#22c55e';
+        form.reset();
+
+        setTimeout(() => {
+          btn.innerHTML = origHTML;
+          btn.style.background = '';
+          btn.style.borderColor = '';
+          btn.disabled = false;
+        }, 5000);
+      }, 1200);
+    }
+  </script>
+
+  <!-- ── DEMO MODE: disable all outbound clicks ── -->
+  <script>
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest('a');
+      if (a) { e.preventDefault(); return; }
+      var btn = e.target.closest('button');
+      if (btn && btn.id !== 'hamburger' && btn.id !== 'mobileClose') e.preventDefault();
+    }, true);
+  </script>
+  <style>
+    a, button:not(#hamburger):not(#mobileClose) { cursor: default !important; }
+  </style>
+</body>
+</html>
