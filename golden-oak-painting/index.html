@@ -496,17 +496,19 @@ We bring samples to your home so you can see exactly how colors look in your lig
 </footer>
 <script src="script.js"></script>
 <script src="mobile-menu.js"></script>
+<!-- ── DEMO MODE: disable all clicks except back-to-library ── -->
+<a href="../index.html" id="demoBackBtn" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;background:#e8461c;color:#fff;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:10px 22px;border-radius:6px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.35);white-space:nowrap;">&#8592; Back to Demo Library</a>
 <script>
-/* ── DEMO MODE: disable all outbound clicks ── */
 document.addEventListener('click', function(e) {
   var a = e.target.closest('a');
+  if (a && a.id === 'demoBackBtn') return;
   if (a) { e.preventDefault(); return; }
   var btn = e.target.closest('button');
   if (btn && btn.id !== 'hamburger') e.preventDefault();
 }, true);
 </script>
 <style>
-a:not(#scrollTop), button:not(#hamburger) { cursor: default !important; }
+a:not(#demoBackBtn):not(#scrollTop), button:not(#hamburger) { cursor: default !important; }
 </style>
 </body>
 </html>
