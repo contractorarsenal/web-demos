@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rey Auto Detailing | Professional Car Detailing — Tacoma, WA</title>
+  <meta name="description" content="Professional car detailing in Tacoma, WA. Interior restoration, exterior detail, paint correction, ceramic coating. Serving King & Pierce County. Book online today." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+  /* ── RESET & BASE ─────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red:    #E8351A;
+    --red2:   #ff4d35;
+    --black:  #0a0a0a;
+    --dark:   #111111;
+    --card:   #141414;
+    --card2:  #1a1a1a;
+    --border: rgba(255,255,255,0.09);
+    --white:  #ffffff;
+    --off:    #f5f3ef;
+    --gray:   #888888;
+    --light:  rgba(255,255,255,0.6);
+  }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 400; overflow-x: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── UTILITY ──────────────────────────────────────────────── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 5vw; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
+    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red);
+  }
+  .tag::before { content: ''; display: block; width: 28px; height: 2px; background: var(--red); flex-shrink: 0; }
+  .hdg {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4.6rem); font-weight: 900; font-style: italic;
+    text-transform: uppercase; line-height: 0.95; letter-spacing: -0.01em; color: var(--white);
+  }
+  .hdg-lg { font-size: clamp(3rem, 7vw, 6.5rem); }
+  .btn-red {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--red); color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 2rem;
+    border: 2px solid var(--red); cursor: pointer; transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .btn-red:hover { background: var(--red2); border-color: var(--red2); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: transparent; color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 2rem;
+    border: 2px solid rgba(255,255,255,0.4); cursor: pointer; transition: border-color 0.2s;
+    white-space: nowrap;
+  }
+  .btn-outline:hover { border-color: var(--white); }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ── NAV ──────────────────────────────────────────────────── */
+  #nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    background: rgba(10,10,10,0.95); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; height: 68px;
+    padding: 0 3vw; gap: 1rem;
+  }
+  .nav-logo { flex-shrink: 0; }
+  .nav-logo img { height: 42px; width: auto; object-fit: contain; }
+  .nav-links {
+    display: flex; list-style: none; gap: 0; margin: 0 auto;
+  }
+  .nav-links a {
+    display: block; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gray); padding: 0.4rem 1rem;
+    transition: color 0.18s; border-bottom: 2px solid transparent; line-height: 1.2;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-links a.active { border-bottom-color: var(--red); }
+  .nav-actions { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+  .nav-phone-link {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.04em; color: rgba(255,255,255,0.55); transition: color 0.2s;
+  }
+  .nav-phone-link:hover { color: var(--white); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 23px; height: 2px; background: var(--white); border-radius: 1px; transition: all 0.3s; }
+
+  /* mobile drawer */
+  .nav-drawer {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: rgba(10,10,10,0.98); border-bottom: 2px solid var(--red);
+    padding: 1.5rem 5vw 2rem; z-index: 499;
+  }
+  .nav-drawer.open { display: block; }
+  .nav-drawer a {
+    display: block; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem; font-weight: 800; font-style: italic; text-transform: uppercase;
+    color: var(--gray); padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .nav-drawer a:last-child { border-bottom: none; }
+  .nav-drawer a:hover { color: var(--white); }
+
+  /* ── HERO ─────────────────────────────────────────────────── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 68px; overflow: hidden;
+    background: var(--black);
+  }
+  .hero-photo {
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: 60%; overflow: hidden;
+  }
+  .hero-photo img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    filter: brightness(0.7);
+    animation: heroZoom 10s ease-out forwards;
+  }
+  @keyframes heroZoom { from { transform: scale(1.06); } to { transform: scale(1.0); } }
+  /* dark gradient from left over photo */
+  .hero-photo::before {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(90deg, var(--black) 0%, rgba(10,10,10,0.65) 40%, rgba(10,10,10,0.05) 100%);
+  }
+  /* top & bottom darken */
+  .hero-photo::after {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.5) 0%, transparent 20%, transparent 75%, rgba(10,10,10,0.7) 100%);
+  }
+  /* left solid region */
+  .hero-left {
+    position: relative; z-index: 10;
+    width: 55%; max-width: 680px; padding: 6rem 5vw 6rem 5vw;
+    flex-shrink: 0;
+  }
+  .hero-tag { margin-bottom: 1.4rem; }
+  .hero-tag span {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--red);
+  }
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3.4rem, 7.5vw, 7.5rem); font-weight: 900; font-style: italic;
+    text-transform: uppercase; line-height: 0.93; letter-spacing: -0.01em; color: var(--white);
+    margin-bottom: 1.6rem;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .hero-desc {
+    font-size: 1rem; font-weight: 400; color: var(--light); line-height: 1.75;
+    max-width: 480px; margin-bottom: 2.4rem;
+    animation: fadeUp 0.7s 0.5s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 0.9rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.65s ease both;
+    margin-bottom: 3rem;
+  }
+  /* inline quick-book strip */
+  .hero-quickbook {
+    background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--red);
+    padding: 1.4rem 1.6rem; max-width: 520px;
+    animation: fadeUp 0.7s 0.8s ease both;
+  }
+  .hero-quickbook p {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem;
+  }
+  .quickbook-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .quickbook-row select, .quickbook-row input {
+    flex: 1; min-width: 140px; background: var(--card2); border: 1px solid var(--border);
+    color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.85rem;
+    padding: 0.65rem 0.9rem; outline: none; transition: border-color 0.2s;
+  }
+  .quickbook-row select:focus, .quickbook-row input:focus { border-color: var(--red); }
+  .quickbook-row option { background: #1a1a1a; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── STATS STRIP ──────────────────────────────────────────── */
+  .stats-bar {
+    background: var(--red);
+    display: flex; flex-wrap: wrap;
+  }
+  .stat-box {
+    flex: 1; min-width: 160px; padding: 1.8rem 1.5rem;
+    text-align: center; border-right: 1px solid rgba(255,255,255,0.18);
+  }
+  .stat-box:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; font-weight: 900;
+    font-style: italic; color: var(--white); line-height: 1; display: block;
+  }
+  .stat-lbl {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-top: 4px;
+  }
+
+  /* ── SERVICES ─────────────────────────────────────────────── */
+  #services { background: var(--black); padding: 6rem 0; }
+  .services-hdr { text-align: center; margin-bottom: 4rem; }
+  .services-hdr .tag { justify-content: center; }
+  .services-hdr .tag::before { display: none; }
+  .services-hdr .tag::after { content: ''; display: block; width: 28px; height: 2px; background: var(--red); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: rgba(255,255,255,0.05);
+  }
+  .svc {
+    background: var(--card); padding: 2.6rem 2rem;
+    position: relative; overflow: hidden; transition: background 0.25s;
+    border-bottom: 3px solid transparent;
+  }
+  .svc:hover { background: #1c1c1c; border-bottom-color: var(--red); }
+  .svc-icon {
+    width: 52px; height: 52px; background: rgba(232,53,26,0.1);
+    border: 1px solid rgba(232,53,26,0.3); display: flex; align-items: center;
+    justify-content: center; margin-bottom: 1.4rem; font-size: 1.4rem;
+  }
+  .svc-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.35rem; font-weight: 800;
+    font-style: italic; text-transform: uppercase; letter-spacing: 0.02em;
+    color: var(--white); margin-bottom: 0.7rem;
+  }
+  .svc-desc { font-size: 0.85rem; color: var(--gray); line-height: 1.7; margin-bottom: 1.2rem; }
+  .svc-link {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--red);
+    display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s;
+  }
+  .svc:hover .svc-link { gap: 10px; }
+  .svc-cta-row { text-align: center; margin-top: 3.5rem; }
+
+  /* ── WHY US ───────────────────────────────────────────────── */
+  #whyus {
+    background: var(--dark);
+    display: grid; grid-template-columns: 1fr 1fr; min-height: 600px;
+    position: relative; overflow: hidden;
+  }
+  .whyus-photo { position: relative; overflow: hidden; }
+  .whyus-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.82); transition: transform 0.7s; }
+  .whyus-photo:hover img { transform: scale(1.03); }
+  /* red geometric block */
+  .whyus-photo::after {
+    content: ''; position: absolute; bottom: -20px; left: -20px;
+    width: 160px; height: 160px; background: var(--red); z-index: 2;
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+  }
+  /* big watermark */
+  .whyus-wm {
+    position: absolute; top: 0; right: -2vw;
+    font-family: 'Barlow Condensed', sans-serif; font-size: clamp(6rem, 14vw, 16rem);
+    font-weight: 900; font-style: italic; text-transform: uppercase;
+    color: rgba(255,255,255,0.025); line-height: 1; pointer-events: none; white-space: nowrap;
+    z-index: 0; user-select: none;
+  }
+  .whyus-copy {
+    position: relative; z-index: 1;
+    padding: 5rem 5vw; display: flex; flex-direction: column; justify-content: center;
+  }
+  .whyus-copy .tag { margin-bottom: 1rem; }
+  .whyus-copy .hdg { margin-bottom: 1.2rem; }
+  .whyus-lead { font-size: 0.95rem; color: var(--light); line-height: 1.8; margin-bottom: 2.4rem; max-width: 460px; }
+  .feature-list { display: flex; flex-direction: column; gap: 1.6rem; margin-bottom: 2.8rem; }
+  .feature {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+  }
+  .feature-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    border: 1px solid var(--border); background: var(--black);
+    display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+  }
+  .feature-body {}
+  .feature-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 800;
+    font-style: italic; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--white); margin-bottom: 0.3rem;
+  }
+  .feature-desc { font-size: 0.83rem; color: var(--gray); line-height: 1.65; }
+
+  /* ── CTA BANNER ───────────────────────────────────────────── */
+  .cta-banner {
+    background: var(--red); padding: 3.5rem 5vw;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .cta-banner h2 {
+    font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 900; font-style: italic; text-transform: uppercase; color: var(--white);
+    line-height: 1; max-width: 560px;
+  }
+  .cta-banner h2 span { opacity: 0.7; }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white); color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase; padding: 0.9rem 2.2rem;
+    border: 2px solid var(--white); cursor: pointer; transition: background 0.2s; white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .btn-white:hover { background: var(--off); }
+
+  /* ── PACKAGES ─────────────────────────────────────────────── */
+  #packages { background: var(--black); padding: 6rem 0; }
+  .packages-hdr { text-align: center; margin-bottom: 4rem; }
+  .packages-hdr .tag { justify-content: center; }
+  .packages-hdr .tag::before { display: none; }
+  .packages-hdr .tag::after { content: ''; display: block; width: 28px; height: 2px; background: var(--red); }
+  .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.05); }
+  .pkg {
+    background: var(--card); padding: 2.8rem 2.2rem; position: relative;
+    display: flex; flex-direction: column; transition: background 0.25s;
+  }
+  .pkg:hover { background: var(--card2); }
+  .pkg.popular { background: var(--red); }
+  .pkg.popular:hover { background: var(--red2); }
+  .pkg-badge {
+    display: inline-block; background: var(--white); color: var(--red);
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 0.16em; text-transform: uppercase; padding: 0.25rem 0.8rem;
+    margin-bottom: 1.2rem; align-self: flex-start;
+  }
+  .pkg-name {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 900;
+    font-style: italic; text-transform: uppercase; color: var(--white); margin-bottom: 0.5rem;
+  }
+  .pkg-desc { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 1.8rem; }
+  .pkg-price {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 3.2rem; font-weight: 900;
+    font-style: italic; color: var(--white); line-height: 1; margin-bottom: 1.8rem;
+  }
+  .pkg-price sub { font-size: 1.2rem; font-weight: 700; vertical-align: top; margin-top: 0.5rem; }
+  .pkg-price sup { font-size: 1rem; font-weight: 600; }
+  .pkg-list { list-style: none; flex: 1; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .pkg-list li {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.4;
+  }
+  .pkg-list li::before { content: '✓'; color: var(--white); font-weight: 700; flex-shrink: 0; font-size: 0.8rem; }
+  .pkg.popular .pkg-list li::before { color: rgba(255,255,255,0.9); }
+  .pkg-btn {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 1.5rem;
+    border: 2px solid rgba(255,255,255,0.35); color: var(--white);
+    cursor: pointer; transition: background 0.2s, border-color 0.2s; background: transparent;
+  }
+  .pkg-btn:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+  .pkg.popular .pkg-btn { border-color: var(--white); background: rgba(255,255,255,0.15); }
+  .pkg.popular .pkg-btn:hover { background: rgba(255,255,255,0.25); }
+
+  /* ── REVIEWS ──────────────────────────────────────────────── */
+  #reviews { background: var(--dark); padding: 6rem 0; }
+  .reviews-hdr {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .reviews-score { text-align: right; }
+  .reviews-score .big { font-family: 'Barlow Condensed', sans-serif; font-size: 4.5rem; font-weight: 900; font-style: italic; color: var(--white); line-height: 1; }
+  .reviews-score .stars { color: var(--red); letter-spacing: 0.08em; font-size: 1.1rem; }
+  .reviews-score small { font-size: 0.72rem; color: var(--gray); display: block; margin-top: 2px; letter-spacing: 0.06em; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: rgba(255,255,255,0.05); }
+  .rev {
+    background: var(--black); padding: 2.4rem 2rem;
+    border-left: 3px solid transparent; transition: border-color 0.25s, background 0.25s;
+  }
+  .rev:hover { border-color: var(--red); background: #0e0e0e; }
+  .rev-stars { color: var(--red); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .rev-text { font-size: 0.88rem; color: rgba(255,255,255,0.68); line-height: 1.8; margin-bottom: 1.6rem; font-style: italic; }
+  .rev-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 800; font-style: italic; text-transform: uppercase; color: var(--white); }
+  .rev-role { font-size: 0.72rem; color: var(--gray); margin-top: 3px; }
+  .reviews-cta { text-align: center; margin-top: 3rem; }
+
+  /* ── ABOUT ────────────────────────────────────────────────── */
+  #about {
+    background: var(--black);
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
+  .about-copy { padding: 5.5rem 5vw; display: flex; flex-direction: column; justify-content: center; }
+  .about-copy .tag { margin-bottom: 1rem; }
+  .about-copy .hdg { margin-bottom: 1.4rem; }
+  .about-copy p { font-size: 0.92rem; color: var(--light); line-height: 1.85; margin-bottom: 1.2rem; max-width: 480px; }
+  .about-facts { display: flex; gap: 2.5rem; margin: 1.8rem 0 2.4rem; border-top: 1px solid var(--border); padding-top: 1.8rem; flex-wrap: wrap; }
+  .about-fact-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.4rem; font-weight: 900; font-style: italic; color: var(--white); line-height: 1; display: block; }
+  .about-fact-lbl { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); margin-top: 3px; }
+  .about-photo { position: relative; overflow: hidden; }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.82); transition: transform 0.7s; }
+  .about-photo:hover img { transform: scale(1.03); }
+  .about-badge {
+    position: absolute; bottom: 0; right: 0;
+    background: var(--red); padding: 1.4rem 1.8rem;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-style: italic; text-transform: uppercase;
+  }
+  .about-badge .n { font-size: 2.8rem; line-height: 1; display: block; }
+  .about-badge .l { font-size: 0.75rem; letter-spacing: 0.1em; opacity: 0.9; }
+
+  /* ── BOOKING FORM ─────────────────────────────────────────── */
+  #booking {
+    background: var(--dark); padding: 6rem 0;
+  }
+  .booking-inner {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start;
+  }
+  .booking-left .hdg { margin-bottom: 1.2rem; }
+  .booking-left p { font-size: 0.92rem; color: var(--light); line-height: 1.8; margin-bottom: 2rem; max-width: 400px; }
+  .booking-contacts { display: flex; flex-direction: column; gap: 1.2rem; }
+  .bc {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding-bottom: 1.2rem; border-bottom: 1px solid var(--border);
+  }
+  .bc:last-child { border-bottom: none; }
+  .bc-icon {
+    width: 40px; height: 40px; flex-shrink: 0; background: rgba(232,53,26,0.1);
+    border: 1px solid rgba(232,53,26,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  }
+  .bc-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+  .bc-val { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+  .bc-val a { color: inherit; transition: color 0.2s; }
+  .bc-val a:hover { color: var(--white); }
+
+  /* form */
+  .booking-form { background: var(--card); border: 1px solid var(--border); padding: 2.6rem 2.4rem; }
+  .booking-form h3 {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 900;
+    font-style: italic; text-transform: uppercase; color: var(--white); margin-bottom: 1.8rem;
+    padding-bottom: 1rem; border-bottom: 2px solid var(--red);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1rem; }
+  .form-field label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.63rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); }
+  .form-field input, .form-field select, .form-field textarea {
+    background: var(--card2); border: 1px solid var(--border); border-bottom: 2px solid rgba(255,255,255,0.12);
+    color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.9rem;
+    padding: 0.75rem 0.95rem; outline: none; transition: border-color 0.2s; width: 100%;
+  }
+  .form-field select option { background: #1a1a1a; }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-bottom-color: var(--red); }
+  .form-field textarea { resize: vertical; min-height: 90px; }
+  .form-submit { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .form-submit small { font-size: 0.72rem; color: var(--gray); }
+  #form-ok { display: none; color: #6fcf97; font-size: 0.82rem; font-weight: 600; margin-top: 0.8rem; }
+
+  /* ── TEAM ─────────────────────────────────────────────────── */
+  #team { background: var(--black); padding: 6rem 0; }
+  .team-hdr { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1.5rem; }
+  .team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; background: rgba(255,255,255,0.05); }
+  .tm { background: var(--card); padding: 2.2rem 1.2rem; text-align: center; position: relative; overflow: hidden; transition: background 0.2s; }
+  .tm:hover { background: var(--card2); }
+  .tm::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 0; background: var(--red); transition: height 0.25s; }
+  .tm:hover::after { height: 3px; }
+  .tm-av { width: 66px; height: 66px; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800; font-style: italic; color: rgba(255,255,255,0.45); transition: border-color 0.25s, color 0.25s; }
+  .tm:hover .tm-av { border-color: var(--red); color: var(--red); }
+  .tm-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 800; font-style: italic; text-transform: uppercase; color: var(--white); margin-bottom: 4px; }
+  .tm-role { font-size: 0.72rem; color: var(--gray); line-height: 1.4; }
+
+  /* ── FOOTER ───────────────────────────────────────────────── */
+  footer { background: #060606; border-top: 1px solid var(--border); }
+  .footer-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 2.8rem 5vw; flex-wrap: wrap; gap: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .footer-logo img { height: 40px; width: auto; object-fit: contain; }
+  .footer-nav { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+  .footer-nav a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); padding: 0.3rem 0.8rem; transition: color 0.2s; }
+  .footer-nav a:hover { color: var(--white); }
+  .footer-socials { display: flex; gap: 0.5rem; }
+  .footer-socials a { width: 34px; height: 34px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--gray); font-size: 0.9rem; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+  .footer-socials a:hover { border-color: var(--red); background: var(--red); color: var(--white); }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 5vw; flex-wrap: wrap; gap: 1rem; }
+  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.22); }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .hero-photo { width: 100%; opacity: 0.35; }
+    .hero-photo::before { background: rgba(10,10,10,0.6); }
+    .hero-left { width: 100%; max-width: 100%; }
+    #whyus { grid-template-columns: 1fr; }
+    .whyus-photo { height: 55vw; }
+    #about { grid-template-columns: 1fr; }
+    .about-photo { height: 55vw; }
+    .booking-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .packages-grid { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: repeat(3, 1fr); }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-phone-link { display: none; }
+    .hamburger { display: flex; }
+    .packages-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .cta-banner { flex-direction: column; }
+    footer .footer-top, footer .footer-bottom { flex-direction: column; }
+    .reviews-hdr { flex-direction: column; align-items: flex-start; }
+    .reviews-score { text-align: left; }
+    .hero-btns { flex-direction: column; }
+    .hero-btns a { width: 100%; }
+    .quickbook-row { flex-direction: column; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════ NAV ══════════════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="https://github.com/user-attachments/assets/b514821a-f0c2-4650-89c9-1354dcd60529" alt="Rey Auto Detailing" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#booking">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:5642354652" class="nav-phone-link">(564) 235-4652</a>
+      <a href="#booking" class="btn-red">Book Now</a>
+    </div>
+    <div class="hamburger" id="hbg" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <a href="#hero" onclick="closeMenu()">Home</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#packages" onclick="closeMenu()">Packages & Pricing</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="#about" onclick="closeMenu()">About Us</a>
+  <a href="#booking" onclick="closeMenu()">Book Now</a>
+</div>
+
+<!-- ════════════════════════════ HERO ═════════════════════════ -->
+<section id="hero">
+  <div class="hero-photo">
+    <img
+      src="https://static.wixstatic.com/media/f67dd8_f9c05b7d18a443d3878eaaf2f2ac422d~mv2.jpg/v1/fit/w_1740,h_979,q_90,enc_avif,quality_auto/f67dd8_f9c05b7d18a443d3878eaaf2f2ac422d~mv2.jpg"
+      alt="Rey Auto Detailing — Exterior Detail"
+    />
+  </div>
+
+  <div class="hero-left">
+    <div class="hero-tag tag">
+      <span>Auto Detailing — Tacoma, WA</span>
+    </div>
+
+    <h1 class="hero-title">
+      Professional<br />Car Detailing<br />& Restoration.
+    </h1>
+
+    <p class="hero-desc">
+      From daily drivers to luxury builds — we deliver paint correction, interior restoration,
+      and ceramic coatings engineered for showroom-level results. Serving King & Pierce County.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#booking" class="btn-red">
+        &#128197; Schedule an Appointment
+      </a>
+      <a href="#services" class="btn-outline">Browse Services</a>
+    </div>
+
+    <!-- Quick book strip -->
+    <div class="hero-quickbook">
+      <p>Quick Book — Choose Your Service</p>
+      <div class="quickbook-row">
+        <select id="qb-service" aria-label="Service">
+          <option value="">Select service…</option>
+          <option>Interior Detail</option>
+          <option>Exterior Detail</option>
+          <option>Paint Correction</option>
+          <option>Ceramic Coating</option>
+          <option>Full Detail Package</option>
+          <option>Mobile Detailing</option>
+        </select>
+        <input type="tel" id="qb-phone" placeholder="Your phone number" aria-label="Phone" />
+        <button class="btn-red" onclick="quickBook()" style="flex-shrink:0;">Book →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ STATS ════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat-box"><span class="stat-num">500+</span><div class="stat-lbl">Vehicles Detailed</div></div>
+  <div class="stat-box"><span class="stat-num">5.0★</span><div class="stat-lbl">Average Rating</div></div>
+  <div class="stat-box"><span class="stat-num">2</span><div class="stat-lbl">Counties Served</div></div>
+  <div class="stat-box"><span class="stat-num">100%</span><div class="stat-lbl">Satisfaction Guaranteed</div></div>
+</div>
+
+<!-- ════════════════════════════ SERVICES ═════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-hdr">
+      <div class="tag" style="justify-content:center;">Services</div>
+      <h2 class="hdg reveal" style="margin-top:0.8rem;">We Offer a Wide Range of<br />Detailing Services</h2>
+    </div>
+    <div class="services-grid">
+      <div class="svc reveal">
+        <div class="svc-icon">&#10024;</div>
+        <div class="svc-title">Interior Detail</div>
+        <p class="svc-desc">Deep clean of seats, carpets, dashboard, door panels, and all the small areas most shops skip. Odor elimination included.</p>
+        <a href="#booking" class="svc-link">Schedule Now →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">&#128663;</div>
+        <div class="svc-title">Exterior Detail</div>
+        <p class="svc-desc">Hand wash, clay bar, gloss enhancement, and tire dressing for a showroom-fresh finish every single time.</p>
+        <a href="#booking" class="svc-link">Schedule Now →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">&#128142;</div>
+        <div class="svc-title">Paint Correction</div>
+        <p class="svc-desc">Multi-stage machine polishing removes swirl marks, scratches, and oxidation — restoring true depth and clarity.</p>
+        <a href="#booking" class="svc-link">Schedule Now →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">&#128737;</div>
+        <div class="svc-title">Ceramic Coating</div>
+        <p class="svc-desc">Long-lasting hydrophobic protection that repels water, UV rays, and contaminants. Your paint, preserved for years.</p>
+        <a href="#booking" class="svc-link">Schedule Now →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">&#128269;</div>
+        <div class="svc-title">Full Detail Package</div>
+        <p class="svc-desc">Complete interior restoration plus exterior enhancement. The most comprehensive detail we offer — guaranteed results.</p>
+        <a href="#booking" class="svc-link">Schedule Now →</a>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-icon">&#128665;</div>
+        <div class="svc-title">Mobile Detailing</div>
+        <p class="svc-desc">We come to your home or office throughout King County and Pierce County, Washington. Convenience without compromise.</p>
+        <a href="#booking" class="svc-link">Schedule Now →</a>
+      </div>
+    </div>
+    <div class="svc-cta-row reveal">
+      <a href="#booking" class="btn-red" style="font-size:0.88rem;">&#128197; Schedule an Appointment</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ WHY US ═══════════════════════ -->
+<section id="whyus">
+  <div class="whyus-photo">
+    <img
+      src="https://static.wixstatic.com/media/f67dd8_238d0acfb97545259ff0103299dc96c4~mv2.jpg/v1/fit/w_1098,h_677,q_90,enc_avif,quality_auto/f67dd8_238d0acfb97545259ff0103299dc96c4~mv2.jpg"
+      alt="Rey Auto Detailing Shop"
+    />
+  </div>
+  <div class="whyus-wm" aria-hidden="true">WHY US</div>
+  <div class="whyus-copy">
+    <div class="tag" style="margin-bottom:1rem;">Why Choose Us</div>
+    <h2 class="hdg reveal">What Makes Us<br />Different?</h2>
+    <p class="whyus-lead reveal">
+      At Rey Auto Detailing, we elevate the detailing experience through professional-grade service,
+      paint-safe techniques, and an obsession with the details most shops overlook.
+      We treat every vehicle like it's our own — because excellence shows in the finish.
+    </p>
+    <div class="feature-list">
+      <div class="feature reveal">
+        <div class="feature-icon">&#127942;</div>
+        <div class="feature-body">
+          <div class="feature-title">Certified & Experienced Professionals</div>
+          <p class="feature-desc">Fully certified detailing team with years of hands-on experience working on daily drivers, trucks, and luxury vehicles.</p>
+        </div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon">&#128276;</div>
+        <div class="feature-body">
+          <div class="feature-title">Professional-Grade Products Only</div>
+          <p class="feature-desc">We use professional detailing products proven safe for all paint finishes — no shortcuts, no cheap supplies.</p>
+        </div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon">&#128200;</div>
+        <div class="feature-body">
+          <div class="feature-title">Transparent Pricing & 100% Satisfaction</div>
+          <p class="feature-desc">No hidden fees. Clear quotes upfront. If you're not happy, we'll make it right — no questions asked.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#booking" class="btn-red reveal">&#128197; Schedule an Appointment</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════ CTA BANNER ═══════════════════ -->
+<div class="cta-banner">
+  <h2>Get Your Vehicle Detailed<br /><span>Today — Book in Under 60 Seconds.</span></h2>
+  <a href="#booking" class="btn-white">&#128197; Schedule an Appointment</a>
+</div>
+
+<!-- ════════════════════════════ PACKAGES ═════════════════════ -->
+<section id="packages">
+  <div class="container">
+    <div class="packages-hdr">
+      <div class="tag" style="justify-content:center;">Pricing</div>
+      <h2 class="hdg reveal" style="margin-top:0.8rem;">Packages for All<br />Types of Vehicles</h2>
+      <p style="color:var(--gray);font-size:0.88rem;margin-top:0.8rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7;" class="reveal">
+        Choose a package that fits your vehicle and budget. All packages include professional-grade products and satisfaction guarantee.
+      </p>
+    </div>
+    <div class="packages-grid">
+
+      <!-- Starter -->
+      <div class="pkg reveal">
+        <div class="pkg-name">Starter</div>
+        <p class="pkg-desc">A thorough exterior refresh — perfect for regular maintenance and keeping your vehicle clean.</p>
+        <div class="pkg-price"><sub>$</sub>79<sup>.00</sup></div>
+        <ul class="pkg-list">
+          <li>Hand exterior wash</li>
+          <li>Wheel & tire clean</li>
+          <li>Windows & mirrors</li>
+          <li>Interior vacuum</li>
+          <li>Dashboard wipe-down</li>
+        </ul>
+        <a href="#booking" class="pkg-btn">Book This Package →</a>
+      </div>
+
+      <!-- Professional (featured) -->
+      <div class="pkg popular reveal">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-name">Full Detail</div>
+        <p class="pkg-desc" style="color:rgba(255,255,255,0.75);">Our best-seller. Complete interior + exterior for drivers who want their car to truly look brand new.</p>
+        <div class="pkg-price"><sub>$</sub>149<sup>.00</sup></div>
+        <ul class="pkg-list">
+          <li>Everything in Starter</li>
+          <li>Deep interior clean</li>
+          <li>Seat & carpet shampoo</li>
+          <li>Odor elimination</li>
+          <li>Paint gloss enhancement</li>
+          <li>Clay bar treatment</li>
+        </ul>
+        <a href="#booking" class="pkg-btn">Book This Package →</a>
+      </div>
+
+      <!-- Deluxe -->
+      <div class="pkg reveal">
+        <div class="pkg-name">Elite</div>
+        <p class="pkg-desc">The ultimate treatment — paint correction, full detail, and long-term ceramic sealant protection.</p>
+        <div class="pkg-price"><sub>$</sub>249<sup>.00</sup></div>
+        <ul class="pkg-list">
+          <li>Everything in Full Detail</li>
+          <li>Multi-stage paint correction</li>
+          <li>Swirl & scratch removal</li>
+          <li>Ceramic sealant coating</li>
+          <li>Engine bay clean</li>
+          <li>Premium interior protection</li>
+        </ul>
+        <a href="#booking" class="pkg-btn">Book This Package →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ REVIEWS ══════════════════════ -->
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-hdr">
+      <div>
+        <div class="tag">Testimonials</div>
+        <h2 class="hdg reveal" style="margin-top:0.8rem;">What Our Clients<br />Say About Us</h2>
+      </div>
+      <div class="reviews-score reveal">
+        <div class="big">5.0</div>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <small>Average across all reviews</small>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="rev reveal">
+        <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="rev-text">&ldquo;Rey Mobile Detailing did an awesome job. Gael and his team got rid of mold and a bad smell from water damage, and my car smells clean again. Very professional — highly recommend.&rdquo;</p>
+        <div class="rev-name">Omar Polvos</div>
+        <div class="rev-role">Car Enthusiast — Tacoma, WA</div>
+      </div>
+      <div class="rev reveal">
+        <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="rev-text">&ldquo;Got our 2024 Colorado Trail Boss detailed and couldn&rsquo;t be happier! It looks brand new! The crew were professional, on time, and communication was on point from start to finish.&rdquo;</p>
+        <div class="rev-name">Cameron Formanczyk</div>
+        <div class="rev-role">Happy Customer — Tacoma, WA</div>
+      </div>
+      <div class="rev reveal">
+        <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="rev-text">&ldquo;Outstanding from start to finish. Professional, friendly, and extremely knowledgeable. The quality of work was truly unparalleled. My car looks brand new inside and out, despite being a 2017.&rdquo;</p>
+        <div class="rev-name">John Manuel</div>
+        <div class="rev-role">Happy Customer — Tacoma, WA</div>
+      </div>
+      <div class="rev reveal">
+        <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="rev-text">&ldquo;Gael and his team are so great, on time, and paid close attention to every detail. They took care of the seats, carpets, dashboard, and even the small areas most places miss.&rdquo;</p>
+        <div class="rev-name">Gerardo Barrera</div>
+        <div class="rev-role">Happy Customer — Tacoma, WA</div>
+      </div>
+    </div>
+    <div class="reviews-cta reveal">
+      <a href="#booking" class="btn-red">&#128197; Schedule an Appointment</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ ABOUT ════════════════════════ -->
+<section id="about">
+  <div class="about-copy">
+    <div class="tag">About Us</div>
+    <h2 class="hdg reveal" style="margin-top:0.8rem;">The Story Behind<br />Rey Auto Detailing</h2>
+    <p class="reveal">
+      At Rey Auto Detailing, our dedication is to elevate the car detailing experience by offering
+      convenient, high-quality services. We strive to exceed customer expectations and set new standards
+      in auto detailing — ensuring every client receives personalized attention and exceptional results.
+    </p>
+    <p class="reveal">
+      We treat every vehicle like it&rsquo;s our own — because excellence shows in the finish.
+      We are fully certified detailing professionals serving King & Pierce County, Washington.
+    </p>
+    <div class="about-facts reveal">
+      <div><span class="about-fact-num">500+</span><div class="about-fact-lbl">Vehicles Detailed</div></div>
+      <div><span class="about-fact-num">5.0★</span><div class="about-fact-lbl">Rating</div></div>
+      <div><span class="about-fact-num">100%</span><div class="about-fact-lbl">Satisfaction</div></div>
+    </div>
+    <a href="#booking" class="btn-red reveal">&#128197; Schedule an Appointment</a>
+  </div>
+  <div class="about-photo">
+    <img
+      src="https://static.wixstatic.com/media/f67dd8_ed2ca9389b3a4f4dbfa5be273c8d26f8~mv2.jpg/v1/fit/w_1843,h_1037,q_90,enc_avif,quality_auto/f67dd8_ed2ca9389b3a4f4dbfa5be273c8d26f8~mv2.jpg"
+      alt="Interior restoration"
+    />
+    <div class="about-badge">
+      <span class="n">&#10003;</span>
+      <span class="l">Certified</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ BOOKING ══════════════════════ -->
+<section id="booking">
+  <div class="container">
+    <div class="booking-inner">
+      <!-- Left -->
+      <div class="booking-left">
+        <div class="tag">Get In Touch</div>
+        <h2 class="hdg reveal" style="margin-top:0.8rem;">Schedule an<br />Appointment Today</h2>
+        <p class="reveal">Ready to give your vehicle the care it deserves? Fill out the form and we&rsquo;ll get back to you within 24 hours to confirm your appointment.</p>
+        <div class="booking-contacts">
+          <div class="bc">
+            <div class="bc-icon">&#128222;</div>
+            <div>
+              <div class="bc-label">Phone</div>
+              <div class="bc-val"><a href="tel:5642354652">(564) 235-4652</a></div>
+            </div>
+          </div>
+          <div class="bc">
+            <div class="bc-icon">&#9993;</div>
+            <div>
+              <div class="bc-label">Email</div>
+              <div class="bc-val"><a href="mailto:reymobiledetailingbooking@gmail.com">reymobiledetailingbooking@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="bc">
+            <div class="bc-icon">&#128205;</div>
+            <div>
+              <div class="bc-label">Address</div>
+              <div class="bc-val">6402 E. McKinley Ave.<br />Tacoma, WA 98404</div>
+            </div>
+          </div>
+          <div class="bc">
+            <div class="bc-icon">&#128506;</div>
+            <div>
+              <div class="bc-label">Service Area</div>
+              <div class="bc-val">King County & Pierce County, WA<br />Mobile service available</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right — form -->
+      <div class="booking-form reveal">
+        <h3>Book Your Detail</h3>
+        <form onsubmit="handleBook(event)">
+          <div class="form-row">
+            <div class="form-field"><label>First Name *</label><input type="text" placeholder="John" required /></div>
+            <div class="form-field"><label>Last Name *</label><input type="text" placeholder="Doe" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Email *</label><input type="email" placeholder="john@example.com" required /></div>
+            <div class="form-field"><label>Phone</label><input type="tel" placeholder="(253) 555-0100" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Service Needed *</label>
+              <select required>
+                <option value="">Select a service…</option>
+                <option>Starter Package — $79</option>
+                <option>Full Detail Package — $149</option>
+                <option>Elite Package — $249</option>
+                <option>Interior Detail</option>
+                <option>Exterior Detail</option>
+                <option>Paint Correction</option>
+                <option>Ceramic Coating</option>
+                <option>Mobile Detailing</option>
+              </select>
+            </div>
+            <div class="form-field"><label>Vehicle</label><input type="text" placeholder="2021 Ford F-150" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Preferred Date</label><input type="date" /></div>
+            <div class="form-field"><label>Preferred Time</label>
+              <select>
+                <option value="">Anytime</option>
+                <option>8:00 AM – 10:00 AM</option>
+                <option>10:00 AM – 12:00 PM</option>
+                <option>12:00 PM – 2:00 PM</option>
+                <option>2:00 PM – 4:00 PM</option>
+                <option>4:00 PM – 6:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field"><label>Additional Notes</label><textarea placeholder="Any details about your vehicle or special requests…"></textarea></div>
+          <div class="form-submit">
+            <small>&#128274; We never share your info. Replies within 24 hours.</small>
+            <button type="submit" class="btn-red">Send Request &#128197;</button>
+          </div>
+          <div id="form-ok">&#10003; Your request was sent! We&rsquo;ll confirm your appointment shortly.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ TEAM ═════════════════════════ -->
+<section id="team">
+  <div class="container">
+    <div class="team-hdr">
+      <div>
+        <div class="tag">Our Team</div>
+        <h2 class="hdg reveal" style="margin-top:0.8rem;">Dedicated &<br />Experienced Professionals</h2>
+      </div>
+    </div>
+    <div class="team-grid reveal">
+      <div class="tm"><div class="tm-av">JD</div><div class="tm-name">John Doe</div><div class="tm-role">Founder & Detailing Specialist</div></div>
+      <div class="tm"><div class="tm-av">DS</div><div class="tm-name">David Smith</div><div class="tm-role">Detailing Specialist</div></div>
+      <div class="tm"><div class="tm-av">CR</div><div class="tm-name">Carlos Rodriguez</div><div class="tm-role">Customer Service</div></div>
+      <div class="tm"><div class="tm-av">LC</div><div class="tm-name">Linda Chen</div><div class="tm-role">Logistics Manager</div></div>
+      <div class="tm"><div class="tm-av">AT</div><div class="tm-name">Aiko Tanaka</div><div class="tm-role">Marketing Coordinator</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <a href="#" class="footer-logo">
+      <img src="https://github.com/user-attachments/assets/b514821a-f0c2-4650-89c9-1354dcd60529" alt="Rey Auto Detailing" />
+    </a>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#hero">Home</a>
+      <a href="#services">Services</a>
+      <a href="#packages">Packages</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+      <a href="#booking">Contact</a>
+    </nav>
+    <div class="footer-socials">
+      <a href="#" aria-label="Instagram">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="tel:5642354652" aria-label="Phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.13 6.13l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 Rey Auto Detailing. All Rights Reserved. 6402 E. McKinley Ave., Tacoma, WA 98404.</div>
+    <div class="footer-copy">Serving King County & Pierce County, Washington</div>
+  </div>
+</footer>
+
+<script>
+  /* ── Mobile nav ── */
+  function toggleMenu() {
+    document.getElementById('navDrawer').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('navDrawer').classList.remove('open');
+  }
+
+  /* ── Active nav link on scroll ── */
+  const sections = ['hero','services','packages','reviews','about','booking','team'];
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = 'hero';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 90) cur = id;
+    });
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  }, { passive: true });
+
+  /* ── Scroll reveal ── */
+  const revEls = document.querySelectorAll('.reveal');
+  const revObs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 60);
+        revObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revEls.forEach(el => revObs.observe(el));
+
+  /* ── Quick book ── */
+  function quickBook() {
+    const svc = document.getElementById('qb-service').value;
+    const ph  = document.getElementById('qb-phone').value;
+    if (!svc) { alert('Please select a service.'); return; }
+    if (!ph)  { alert('Please enter your phone number.'); return; }
+    document.querySelector('#booking').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  /* ── Booking form ── */
+  function handleBook(e) {
+    e.preventDefault();
+    document.getElementById('form-ok').style.display = 'block';
+    e.target.reset();
+    e.target.querySelector('.btn-red').disabled = true;
+    e.target.querySelector('.btn-red').textContent = 'Request Sent ✓';
+  }
+</script>
+
+
+<!-- DEMO MODE -->
+<a href="../index.html" id="demoBackBtn" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;background:#E8351A;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:10px 22px;border-radius:2px;text-decoration:none;box-shadow:0 4px 20px rgba(232,53,26,0.5);white-space:nowrap;">&#8592; Back to Demo Library</a>
+<script>
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (a && a.id === 'demoBackBtn') return;
+    if (a) { e.preventDefault(); return; }
+    var btn = e.target.closest('button');
+    if (btn && btn.id !== 'hbg') e.preventDefault();
+  }, true);
+</script>
+<style>
+  a:not(#demoBackBtn), button:not(#hbg) { cursor: default !important; }
+  #demoBackBtn { cursor: pointer !important; }
+</style>
+</body>
+</html>
