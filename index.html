@@ -799,17 +799,19 @@
     .footer-right { flex-shrink: 0; }
 
     .footer-partner-link {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
+      font-size: 10px;
+      color: transparent;
       text-decoration: none;
-      opacity: 0.4;
-      transition: opacity 0.2s, color 0.2s;
+      user-select: none;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--gray-dim);
+      opacity: 0.18;
+      transition: opacity 0.3s;
     }
-    .footer-partner-link:hover { opacity: 1; color: var(--red); }
+    .footer-partner-link:hover { opacity: 0.6; }
 
     /* ─── MOBILE RESPONSIVE ─── */
     @media (max-width: 768px) {
