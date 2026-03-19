@@ -799,19 +799,22 @@
     .footer-right { flex-shrink: 0; }
 
     .footer-partner-link {
-      font-size: 10px;
-      color: transparent;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.13);
       text-decoration: none;
-      user-select: none;
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--gray-dim);
-      opacity: 0.18;
-      transition: opacity 0.3s;
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 5px 10px;
+      transition: color 0.25s, border-color 0.25s;
+      white-space: nowrap;
     }
-    .footer-partner-link:hover { opacity: 0.6; }
+    .footer-partner-link:hover {
+      color: rgba(255,255,255,0.5);
+      border-color: rgba(255,255,255,0.2);
+    }
 
     /* ─── MOBILE RESPONSIVE ─── */
     @media (max-width: 768px) {
@@ -1141,7 +1144,7 @@
       <span class="footer-copy">Growing collection of live website demos &bull; Build fast, store clean, showcase better</span>
     </div>
     <div class="footer-right">
-      <a href="./partner/" class="footer-partner-link">Partner Network</a>
+      <a href="./partner/" class="footer-partner-link">Partners — Enter Here</a>
     </div>
   </footer>
 
