@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Partner Network — Request a Free Demo</title>
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;0,900;1,900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--s1:#141414;--s2:#1a1a1a;--s3:#1e1e1e;
+  --red:#e8461c;--red-dark:#c43a16;
+  --border:rgba(255,255,255,.07);--b2:rgba(255,255,255,.11);
+  --wh:#fff;--gray:#999;--dim:#555;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--wh);font-family:'Barlow',sans-serif;min-height:100vh}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* NAV */
+.pnav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:60px}
+.pnav-logo{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+.pnav-logo span{color:var(--red)}
+.pnav-back{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);display:flex;align-items:center;gap:6px;transition:color .2s}
+.pnav-back:hover{color:var(--wh)}
+.pnav-back svg{flex-shrink:0}
+
+/* HERO STRIP */
+.phero{background:var(--s1);border-bottom:1px solid var(--border);padding:56px 5vw 52px}
+.phero-in{max-width:860px;margin:0 auto}
+.phero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--red);display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
+.phero-eyebrow::before,.phero-eyebrow::after{content:'';display:block;width:22px;height:2px;background:var(--red)}
+.phero-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:900;font-style:italic;text-transform:uppercase;line-height:.93;color:var(--wh);margin-bottom:18px}
+.phero-title .red{color:var(--red)}
+.phero-sub{font-size:.95rem;color:var(--gray);line-height:1.72;max-width:600px;margin-bottom:32px}
+.phero-pills{display:flex;gap:10px;flex-wrap:wrap}
+.ppill{display:flex;align-items:center;gap:7px;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);padding:7px 14px;border:1px solid var(--b2)}
+.ppill::before{content:'';width:6px;height:6px;background:var(--red)}
+
+/* FORM WRAPPER */
+.pform-wrap{max-width:860px;margin:0 auto;padding:56px 5vw 80px}
+
+/* FORM SECTIONS */
+.pfs{margin-bottom:44px}
+.pfs-title{font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--red);padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.pfs-title span{font-size:1.6rem;font-weight:900;font-style:italic;color:rgba(232,70,28,.2);line-height:1}
+
+/* GRID */
+.fg{display:grid;gap:14px}
+.fg-2{grid-template-columns:1fr 1fr}
+.fg-3{grid-template-columns:1fr 1fr 1fr}
+.ff{display:flex;flex-direction:column;gap:6px}
+.ff.full{grid-column:1/-1}
+
+/* LABELS + INPUTS */
+.flbl{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gray)}
+.flbl .req{color:var(--red)}
+.fi,.fs,.ft{background:var(--s2);border:1px solid var(--b2);color:var(--wh);font-family:'Barlow',sans-serif;font-size:.9rem;padding:11px 14px;outline:none;width:100%;transition:border-color .2s;appearance:none;-webkit-appearance:none}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--red)}
+.fs option{background:#1a1a1a}
+.ft{resize:vertical;min-height:90px}
+.fi[type="file"]{padding:9px 14px;cursor:pointer;font-size:.82rem;color:var(--gray)}
+.fi[type="color"]{padding:4px 6px;height:42px;cursor:pointer;width:48px;flex-shrink:0}
+.fi[type="number"]{-moz-appearance:textfield}
+
+/* CHECKBOXES */
+.check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:6px}
+.ci{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--s2);border:1px solid var(--b2);cursor:pointer;transition:border-color .2s;user-select:none}
+.ci:hover{border-color:rgba(232,70,28,.4)}
+.ci input{display:none}
+.ci input:checked~.cbox{background:var(--red);border-color:var(--red)}
+.ci input:checked~.cbox::after{display:block}
+.ci input:checked~.clbl{color:var(--wh)}
+.cbox{width:16px;height:16px;border:2px solid rgba(255,255,255,.22);flex-shrink:0;position:relative;transition:all .2s}
+.cbox::after{content:'';position:absolute;top:1px;left:4px;width:4px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg);display:none}
+.clbl{font-size:.83rem;color:var(--gray);transition:color .2s;line-height:1.3}
+
+/* RADIO PILLS */
+.rprow{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.rp{display:flex;align-items:center;gap:8px;padding:9px 16px;background:var(--s2);border:1px solid var(--b2);cursor:pointer;transition:all .2s;user-select:none}
+.rp:hover{border-color:rgba(232,70,28,.4)}
+.rp input{display:none}
+.rp:has(input:checked){border-color:var(--red);background:rgba(232,70,28,.1)}
+.rp span{font-size:.82rem;color:var(--gray);transition:color .2s}
+.rp:has(input:checked) span{color:var(--wh)}
+
+/* COLOR REVEAL */
+.color-reveal{display:none;padding-top:16px}
+.color-reveal.show{display:block}
+
+/* BUSINESS TYPE SEARCH */
+.btype-wrap{position:relative}
+.btype-wrap .fs{padding-right:36px}
+.btype-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--gray)}
+
+/* SUBMIT */
+.psubmit{margin-top:48px;text-align:center}
+.pbtn{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:18px 52px;border:none;cursor:pointer;transition:background .2s,transform .15s}
+.pbtn:hover{background:var(--red-dark);transform:translateY(-1px)}
+.pbtn:disabled{background:#444;cursor:default;transform:none}
+.psub-note{margin-top:14px;font-size:.78rem;color:var(--dim)}
+
+/* SUCCESS */
+.psuccess{display:none;max-width:560px;margin:0 auto;text-align:center;padding:48px 32px;background:rgba(30,122,62,.1);border:1px solid rgba(30,122,62,.25)}
+.psuccess-icon{width:56px;height:56px;background:rgba(30,122,62,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.psuccess h3{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;text-transform:uppercase;color:#4CAF70;margin-bottom:10px}
+.psuccess p{font-size:.9rem;color:var(--gray);line-height:1.7}
+.psuccess-back{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);border:1px solid var(--b2);padding:10px 22px;transition:all .2s}
+.psuccess-back:hover{border-color:var(--wh);color:var(--wh)}
+
+/* RESPONSIVE */
+@media(max-width:680px){
+  .fg-2,.fg-3{grid-template-columns:1fr}
+  .check-grid{grid-template-columns:1fr 1fr}
+  .phero-pills{gap:8px}
+}
+@media(max-width:400px){
+  .check-grid{grid-template-columns:1fr}
+  .rprow{flex-direction:column}
+  .rp{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="pnav">
+  <span class="pnav-logo">Demo<span>Library</span> &nbsp;/&nbsp; Partner</span>
+  <a href="../" class="pnav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to Library
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="phero">
+  <div class="phero-in">
+    <div class="phero-eyebrow">Partner Network</div>
+    <h1 class="phero-title">Get a Free Demo<br>for Your <span class="red">Client.</span></h1>
+    <p class="phero-sub">We build a fully custom demo website for your agency client — free. Fill out the form below with their details and we'll have a live, clickable demo ready within 48 hours.</p>
+    <div class="phero-pills">
+      <div class="ppill">Free for Agency Partners</div>
+      <div class="ppill">Live in 48 Hours</div>
+      <div class="ppill">Fully Custom Build</div>
+      <div class="ppill">White-Label Ready</div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="pform-wrap">
+  <div id="pSuccess" class="psuccess">
+    <div class="psuccess-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4CAF70" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h3>Request Received!</h3>
+    <p>We'll review your submission and have a live demo ready within 48 hours. Keep an eye on your inbox for updates.</p>
+    <a href="../" class="psuccess-back">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Demo Library
+    </a>
+  </div>
+
+  <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" id="partnerForm">
+    <input type="hidden" name="access_key" value="dd5d5604-811f-4cc9-b97b-68a57d6fa20c"/>
+    <input type="hidden" name="subject" value="New Partner Demo Request — Demo Library"/>
+    <input type="hidden" name="from_name" value="Demo Library Partner Form"/>
+
+    <!-- 01 YOUR INFO -->
+    <div class="pfs">
+      <div class="pfs-title"><span>01</span> Your Info (Agency / Sales Rep)</div>
+      <div class="fg fg-2">
+        <div class="ff">
+          <label class="flbl">Your Name <span class="req">*</span></label>
+          <input type="text" name="your_name" class="fi" placeholder="Jane Smith" required/>
+        </div>
+        <div class="ff">
+          <label class="flbl">Your Email <span class="req">*</span></label>
+          <input type="email" name="your_email" class="fi" placeholder="you@agency.com" required/>
+        </div>
+        <div class="ff">
+          <label class="flbl">Your Phone</label>
+          <input type="tel" name="your_phone" class="fi" placeholder="(206) 555-0100"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 CLIENT INFO -->
+    <div class="pfs">
+      <div class="pfs-title"><span>02</span> About Your Client</div>
+      <div class="fg fg-2">
+        <div class="ff">
+          <label class="flbl">Business Name <span class="req">*</span></label>
+          <input type="text" name="business_name" class="fi" placeholder="Alta Exteriors LLC" required/>
+        </div>
+        <div class="ff">
+          <label class="flbl">Current Website (if any)</label>
+          <input type="url" name="website" class="fi" placeholder="https://..."/>
+        </div>
+        <div class="ff">
+          <label class="flbl">Industry / Business Type <span class="req">*</span></label>
+          <div class="btype-wrap">
+            <select name="business_type" class="fs" required>
+              <option value="">Select industry…</option>
+              <optgroup label="Home Services">
+                <option>Painting Contractor</option>
+                <option>Roofing Contractor</option>
+                <option>Landscaping / Lawn Care</option>
+                <option>HVAC</option>
+                <option>Plumbing</option>
+                <option>Electrical</option>
+                <option>Flooring</option>
+                <option>Concrete / Masonry</option>
+                <option>Pool Service / Maintenance</option>
+                <option>Pest Control</option>
+                <option>Tree Service / Arborist</option>
+                <option>Pressure Washing / Exterior Cleaning</option>
+                <option>General Contractor</option>
+              </optgroup>
+              <optgroup label="Professional Services">
+                <option>Accounting / Tax Services</option>
+                <option>Real Estate Agent</option>
+                <option>Photography / Videography</option>
+                <option>Event Planning</option>
+                <option>Insurance Agent</option>
+                <option>Mortgage / Finance</option>
+              </optgroup>
+              <optgroup label="Health & Wellness">
+                <option>Personal Training / Fitness</option>
+                <option>Hair / Nail Salon</option>
+                <option>Spa / Massage</option>
+                <option>Chiropractic / Physical Therapy</option>
+              </optgroup>
+              <optgroup label="Auto & Transport">
+                <option>Auto Repair / Detailing</option>
+                <option>Towing / Roadside</option>
+              </optgroup>
+              <optgroup label="Food & Hospitality">
+                <option>Restaurant / Food Service</option>
+                <option>Catering</option>
+                <option>Café / Coffee Shop</option>
+              </optgroup>
+              <optgroup label="Other">
+                <option>Pet Services</option>
+                <option>Retail / E-Commerce</option>
+                <option>Other</option>
+              </optgroup>
+            </select>
+            <svg class="btype-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="ff">
+          <label class="flbl">Years in Business</label>
+          <input type="number" name="years_in_business" class="fi" placeholder="e.g. 5" min="0" max="100"/>
+        </div>
+        <div class="ff full">
+          <label class="flbl">Services They Offer <span class="req">*</span></label>
+          <textarea name="services" class="ft" placeholder="e.g. Interior painting, exterior painting, cabinet refinishing, deck staining…" required></textarea>
+        </div>
+        <div class="ff full">
+          <label class="flbl">What Makes Them Different from Competitors?</label>
+          <textarea name="differentiator" class="ft" placeholder="e.g. Family-owned, 12 years experience, lifetime warranty, same-day service…"></textarea>
+        </div>
+        <div class="ff full">
+          <label class="flbl">Cities / Areas They Serve <span class="req">*</span></label>
+          <input type="text" name="service_areas" class="fi" placeholder="e.g. Seattle, Bellevue, Kirkland, Redmond, Bothell…" required/>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 BRAND -->
+    <div class="pfs">
+      <div class="pfs-title"><span>03</span> Brand &amp; Identity</div>
+      <div class="fg fg-2">
+        <div class="ff">
+          <label class="flbl">Upload Their Logo</label>
+          <input type="file" name="logo" class="fi" accept="image/*"/>
+        </div>
+        <div class="ff">
+          <label class="flbl">Upload Photos (up to 5)</label>
+          <input type="file" name="photos" class="fi" accept="image/*" multiple/>
+        </div>
+        <div class="ff full">
+          <label class="flbl">Business Tagline / Slogan</label>
+          <input type="text" name="tagline" class="fi" placeholder="e.g. Raising the standard in exterior care."/>
+        </div>
+        <div class="ff full">
+          <label class="flbl">Do They Have Brand Colors?</label>
+          <div class="rprow">
+            <label class="rp">
+              <input type="radio" name="has_colors" value="yes" onchange="document.getElementById('colorReveal').classList.add('show')"/>
+              <span>Yes — I'll provide them below</span>
+            </label>
+            <label class="rp">
+              <input type="radio" name="has_colors" value="no" onchange="document.getElementById('colorReveal').classList.remove('show')"/>
+              <span>No — Help choose colors for their industry</span>
+            </label>
+          </div>
+          <div id="colorReveal" class="color-reveal">
+            <div class="fg fg-2" style="margin-top:0">
+              <div class="ff">
+                <label class="flbl">Primary Brand Color</label>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <input type="color" name="primary_color_pick" class="fi" value="#e8461c"/>
+                  <input type="text" name="primary_color" class="fi" placeholder="#e8461c" oninput="syncColor(this,'primary_color_pick')"/>
+                </div>
+              </div>
+              <div class="ff">
+                <label class="flbl">Secondary Brand Color</label>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <input type="color" name="secondary_color_pick" class="fi" value="#1a1a1a"/>
+                  <input type="text" name="secondary_color" class="fi" placeholder="#1a1a1a" oninput="syncColor(this,'secondary_color_pick')"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 WEBSITE CONTACT -->
+    <div class="pfs">
+      <div class="pfs-title"><span>04</span> Client's Contact Info for the Website</div>
+      <div class="fg fg-2">
+        <div class="ff">
+          <label class="flbl">Their Phone Number <span class="req">*</span></label>
+          <input type="tel" name="client_phone" class="fi" placeholder="(425) 555-0100" required/>
+        </div>
+        <div class="ff">
+          <label class="flbl">Their Contact / Lead Email <span class="req">*</span></label>
+          <input type="email" name="client_email" class="fi" placeholder="owner@business.com" required/>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 GOALS -->
+    <div class="pfs">
+      <div class="pfs-title"><span>05</span> Goals &amp; Details</div>
+      <div class="fg" style="gap:28px;">
+
+        <div class="ff">
+          <label class="flbl" style="margin-bottom:8px;">Main Website Goals <span style="color:var(--dim);font-style:normal;text-transform:none;letter-spacing:0;">(check all that apply)</span></label>
+          <div class="check-grid">
+            <label class="ci"><input type="checkbox" name="goals" value="Generate more leads"/><div class="cbox"></div><span class="clbl">Generate more leads / quote requests</span></label>
+            <label class="ci"><input type="checkbox" name="goals" value="Look more professional"/><div class="cbox"></div><span class="clbl">Look more professional than competitors</span></label>
+            <label class="ci"><input type="checkbox" name="goals" value="Rank higher on Google"/><div class="cbox"></div><span class="clbl">Rank higher on Google (SEO)</span></label>
+            <label class="ci"><input type="checkbox" name="goals" value="Showcase portfolio"/><div class="cbox"></div><span class="clbl">Showcase portfolio / past work</span></label>
+            <label class="ci"><input type="checkbox" name="goals" value="Build trust"/><div class="cbox"></div><span class="clbl">Build trust with potential customers</span></label>
+          </div>
+        </div>
+
+        <div class="ff">
+          <label class="flbl" style="margin-bottom:8px;">Ideal Customer <span style="color:var(--dim);font-style:normal;text-transform:none;letter-spacing:0;">(check all that apply)</span></label>
+          <div class="check-grid">
+            <label class="ci"><input type="checkbox" name="customers" value="Residential homeowners"/><div class="cbox"></div><span class="clbl">Residential homeowners</span></label>
+            <label class="ci"><input type="checkbox" name="customers" value="Commercial properties"/><div class="cbox"></div><span class="clbl">Commercial properties</span></label>
+            <label class="ci"><input type="checkbox" name="customers" value="Luxury / high-end clients"/><div class="cbox"></div><span class="clbl">Luxury / high-end clients</span></label>
+            <label class="ci"><input type="checkbox" name="customers" value="Property managers"/><div class="cbox"></div><span class="clbl">Property managers</span></label>
+          </div>
+        </div>
+
+        <div class="fg fg-2">
+          <div class="ff">
+            <label class="flbl" style="margin-bottom:8px;">Licensed &amp; Insured?</label>
+            <div class="rprow" style="flex-direction:column;gap:6px;">
+              <label class="rp"><input type="radio" name="licensed" value="Yes — Licensed & Insured"/><span>Yes — Licensed &amp; Insured</span></label>
+              <label class="rp"><input type="radio" name="licensed" value="Licensed only"/><span>Licensed only</span></label>
+              <label class="rp"><input type="radio" name="licensed" value="Insured only"/><span>Insured only</span></label>
+              <label class="rp"><input type="radio" name="licensed" value="No"/><span>No</span></label>
+              <label class="rp"><input type="radio" name="licensed" value="Not applicable"/><span>Not applicable</span></label>
+            </div>
+          </div>
+          <div class="ff">
+            <label class="flbl" style="margin-bottom:8px;">Preferred Call-to-Action on the Site</label>
+            <div class="rprow" style="flex-direction:column;gap:6px;">
+              <label class="rp"><input type="radio" name="cta" value="Get a Free Quote"/><span>Get a Free Quote</span></label>
+              <label class="rp"><input type="radio" name="cta" value="Book Appointment"/><span>Book Appointment</span></label>
+              <label class="rp"><input type="radio" name="cta" value="Call Us Today"/><span>Call Us Today</span></label>
+              <label class="rp"><input type="radio" name="cta" value="Request Service"/><span>Request Service</span></label>
+              <label class="rp"><input type="radio" name="cta" value="Contact Us"/><span>Contact Us</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="ff">
+          <label class="flbl">Certifications, Awards, or Accreditations (optional)</label>
+          <input type="text" name="certifications" class="fi" placeholder="e.g. GAF Certified, BBB Accredited, Angi Super Service Award, NRCA Member…"/>
+        </div>
+
+        <div class="ff">
+          <label class="flbl">Customer Testimonials (optional)</label>
+          <textarea name="testimonials" class="ft" style="min-height:110px;" placeholder="Paste any reviews or testimonials here — include customer name if available. Or just say 'pull from Google'."></textarea>
+        </div>
+
+        <div class="ff">
+          <label class="flbl">Anything Else We Should Know?</label>
+          <textarea name="notes" class="ft" placeholder="Competitor examples, inspiration sites, special requests, important pages needed, etc."></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="psubmit">
+      <button type="submit" class="pbtn" id="pSubmitBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Submit Demo Request
+      </button>
+      <p class="psub-note">We'll respond within 48 hours with a live demo link for your client.</p>
+    </div>
+
+  </form>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:#000;border-top:1px solid rgba(255,255,255,.06);padding:24px 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+  <span style="font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.2);">Demo<span style="color:var(--red)">Library</span> Partner Network</span>
+  <span style="font-size:.72rem;color:rgba(255,255,255,.18);">For authorized agency partners only</span>
+</footer>
+
+<script>
+// Color picker sync
+function syncColor(textInput, pickerId) {
+  var val = textInput.value.trim();
+  if (/^#[0-9a-f]{6}$/i.test(val)) {
+    document.querySelector('[name="' + pickerId + '"]').value = val;
+  }
+}
+// Also sync color picker -> text input
+document.querySelectorAll('[type="color"]').forEach(function(picker) {
+  picker.addEventListener('input', function() {
+    var textInput = picker.nextElementSibling;
+    if (textInput && textInput.type === 'text') {
+      textInput.value = picker.value;
+    }
+  });
+});
+
+// Form submit
+document.getElementById('partnerForm').addEventListener('submit', function(e) {
+  var btn = document.getElementById('pSubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Sending…';
+  // Web3Forms will handle redirect — show local success as fallback
+  setTimeout(function() {
+    document.getElementById('partnerForm').style.display = 'none';
+    document.getElementById('pSuccess').style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }, 2200);
+});
+</script>
+</body>
+</html>
