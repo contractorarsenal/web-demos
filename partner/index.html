@@ -63,7 +63,6 @@ img{display:block;max-width:100%}
 .fi:focus,.fs:focus,.ft:focus{border-color:var(--red)}
 .fs option{background:#1a1a1a}
 .ft{resize:vertical;min-height:90px}
-.fi[type="file"]{padding:9px 14px;cursor:pointer;font-size:.82rem;color:var(--gray)}
 .fi[type="color"]{padding:4px 6px;height:42px;cursor:pointer;width:48px;flex-shrink:0}
 .fi[type="number"]{-moz-appearance:textfield}
 
@@ -165,7 +164,7 @@ img{display:block;max-width:100%}
     </a>
   </div>
 
-  <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" id="partnerForm">
+  <form action="https://api.web3forms.com/submit" method="POST" id="partnerForm">
     <input type="hidden" name="access_key" value="dd5d5604-811f-4cc9-b97b-68a57d6fa20c"/>
     <input type="hidden" name="subject" value="New Partner Demo Request — Demo Library"/>
     <input type="hidden" name="from_name" value="Demo Library Partner Form"/>
@@ -276,14 +275,6 @@ img{display:block;max-width:100%}
     <div class="pfs">
       <div class="pfs-title"><span>03</span> Brand &amp; Identity</div>
       <div class="fg fg-2">
-        <div class="ff">
-          <label class="flbl">Upload Their Logo</label>
-          <input type="file" name="logo" class="fi" accept="image/*"/>
-        </div>
-        <div class="ff">
-          <label class="flbl">Upload Photos (up to 5)</label>
-          <input type="file" name="photos" class="fi" accept="image/*" multiple/>
-        </div>
         <div class="ff full">
           <label class="flbl">Business Tagline / Slogan</label>
           <input type="text" name="tagline" class="fi" placeholder="e.g. Raising the standard in exterior care."/>
