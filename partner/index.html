@@ -430,17 +430,36 @@ document.querySelectorAll('[type="color"]').forEach(function(picker) {
   });
 });
 
-// Form submit
+// Form submit — fetch, no redirect
 document.getElementById('partnerForm').addEventListener('submit', function(e) {
+  e.preventDefault();
   var btn = document.getElementById('pSubmitBtn');
   btn.disabled = true;
   btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Sending…';
-  // Web3Forms will handle redirect — show local success as fallback
-  setTimeout(function() {
-    document.getElementById('partnerForm').style.display = 'none';
-    document.getElementById('pSuccess').style.display = 'block';
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }, 2200);
+
+  var data = new FormData(e.target);
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: data
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    if (json.success) {
+      document.getElementById('partnerForm').style.display = 'none';
+      document.getElementById('pSuccess').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit Demo Request';
+      alert('Something went wrong. Please try again.');
+    }
+  })
+  .catch(function() {
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit Demo Request';
+    alert('Network error. Please check your connection and try again.');
+  });
 });
 </script>
 </body>
