@@ -1,1191 +1,1386 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demo Library — Live Website Builds</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:       #0d0d0d;
-      --surface:  #141414;
-      --surface2: #1a1a1a;
-      --border:   rgba(255,255,255,0.07);
-      --red:      #e8461c;
-      --red-dark: #c43a16;
-      --white:    #ffffff;
-      --gray:     #999999;
-      --gray-dim: #555555;
-      --text:     #c8c8c8;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Barlow', sans-serif;
-      background: var(--bg);
-      color: var(--white);
-      overflow-x: hidden;
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 32px;
-      background: rgba(13,13,13,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--white);
-      text-decoration: none;
-    }
-
-    .nav-logo span { color: var(--red); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gray);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--white); }
-
-    .nav-cta {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--white) !important;
-      background: var(--red);
-      padding: 9px 20px;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-
-    .nav-cta:hover { background: var(--red-dark) !important; color: var(--white) !important; }
-
-    .nav-mobile-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .nav-mobile-toggle span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--white);
-    }
-
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 100px 32px 80px;
-      position: relative;
-      overflow: hidden;
-      background: var(--bg);
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 50%;
-      height: 100%;
-      background: radial-gradient(ellipse 80% 80% at 0% 50%, rgba(232,70,28,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .hero-left {}
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid var(--red);
-      padding: 6px 14px;
-      margin-bottom: 28px;
-    }
-
-    .hero-badge-dot {
-      width: 6px; height: 6px;
-      background: var(--red);
-      border-radius: 50%;
-    }
-
-    .hero-badge-text {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--red);
-    }
-
-    .hero-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(52px, 7vw, 92px);
-      font-weight: 900;
-      line-height: 0.95;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 24px;
-    }
-
-    .hero-title .red { color: var(--red); }
-
-    .hero-sub {
-      font-size: 16px;
-      line-height: 1.65;
-      color: var(--text);
-      max-width: 440px;
-      margin-bottom: 36px;
-    }
-
-    .hero-perks {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 36px;
-    }
-
-    .hero-perk {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--gray);
-      text-transform: uppercase;
-    }
-
-    .hero-perk::before {
-      content: '◆';
-      color: var(--red);
-      font-size: 8px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn-red {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--white);
-      background: var(--red);
-      padding: 14px 32px;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .btn-red:hover { background: var(--red-dark); transform: translateY(-1px); }
-
-    .btn-outline {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.25);
-      padding: 14px 32px;
-      text-decoration: none;
-      display: inline-block;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .btn-outline:hover { border-color: var(--red); background: rgba(232,70,28,0.07); }
-
-    /* Hero right — stat stack */
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .hero-stat-block {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 28px 32px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      transition: border-color 0.2s;
-    }
-
-    .hero-stat-block:hover { border-color: rgba(232,70,28,0.3); }
-
-    .hero-stat-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 48px;
-      font-weight: 900;
-      color: var(--red);
-      line-height: 1;
-      min-width: 80px;
-    }
-
-    .hero-stat-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-
-    .hero-stat-sub {
-      font-size: 13px;
-      color: var(--gray);
-      line-height: 1.4;
-    }
-
-    /* ─── SECTION HEADER ─── */
-    .section-eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .section-eyebrow::before {
-      content: '';
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--red);
-    }
-
-    .section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      line-height: 1;
-      color: var(--white);
-    }
-
-    /* ─── FILTER BAR ─── */
-    .filter-section {
-      padding: 0 32px 40px;
-      max-width: 1264px;
-      margin: 0 auto;
-    }
-
-    .filter-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-      margin-bottom: 14px;
-    }
-
-    .filters {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--gray);
-      padding: 8px 18px;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--red);
-      border-color: var(--red);
-      color: var(--white);
-    }
-
-    /* ─── DEMOS SECTION ─── */
-    .demos-section {
-      padding: 0 32px 80px;
-      max-width: 1264px;
-      margin: 0 auto;
-    }
-
-    .demos-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 4px;
-    }
-
-    .demos-count {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-    }
-
-    /* ─── FEATURED CARD ─── */
-    .featured-card {
-      display: grid;
-      grid-template-columns: 1fr 400px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      margin-bottom: 4px;
-      transition: border-color 0.2s;
-    }
-
-    .featured-card:hover { border-color: rgba(232,70,28,0.4); }
-
-    .featured-preview {
-      position: relative;
-      min-height: 440px;
-      background: #0a0a0a;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .featured-preview-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 60% at 40% 40%, rgba(1,173,185,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 70% 70%, rgba(239,59,70,0.08) 0%, transparent 50%);
-    }
-
-    .featured-preview-content {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      padding: 40px;
-      text-align: center;
-    }
-
-    .featured-preview-logo {
-      width: 130px;
-      height: auto;
-      filter: drop-shadow(0 0 20px rgba(239,59,70,0.3));
-    }
-
-    .featured-live-badge {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--red);
-      border: 1px solid var(--red);
-      padding: 4px 12px;
-      background: rgba(232,70,28,0.08);
-    }
-
-    .featured-preview-sub {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-    }
-
-    /* browser chrome mock */
-    .browser-mock {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 4px 4px 0 0;
-      padding: 8px 12px 0;
-    }
-
-    .browser-dots {
-      display: flex;
-      gap: 5px;
-      margin-bottom: 8px;
-    }
-
-    .browser-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.12); }
-
-    .browser-url-bar {
-      background: rgba(255,255,255,0.05);
-      border-radius: 2px;
-      height: 18px;
-      display: flex;
-      align-items: center;
-      padding: 0 8px;
-      margin-bottom: 8px;
-    }
-
-    .browser-url-bar span {
-      font-size: 9px;
-      color: var(--gray-dim);
-      letter-spacing: 0.05em;
-    }
-
-    .browser-screen {
-      height: 60px;
-      background: linear-gradient(180deg, rgba(220,222,201,0.04) 0%, transparent 100%);
-    }
-
-    .featured-info {
-      padding: 40px 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .featured-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 80px;
-      font-weight: 900;
-      color: rgba(255,255,255,0.04);
-      line-height: 1;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-
-    .featured-type {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 10px;
-    }
-
-    .featured-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 36px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      line-height: 1;
-      margin-bottom: 14px;
-    }
-
-    .featured-desc {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-
-    .featured-goal {
-      border-left: 3px solid var(--red);
-      padding: 10px 16px;
-      background: rgba(232,70,28,0.06);
-      margin-bottom: 20px;
-    }
-
-    .featured-goal-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 4px;
-    }
-
-    .featured-goal-text {
-      font-size: 13px;
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    .featured-tags {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-    }
-
-    .featured-cta {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--white);
-      background: var(--red);
-      padding: 13px 28px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      align-self: flex-start;
-      transition: background 0.2s, gap 0.2s;
-    }
-
-    .featured-cta:hover { background: var(--red-dark); gap: 14px; }
-
-    /* ─── DEMO GRID ─── */
-    .demo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 4px;
-    }
-
-    .demo-card {
-      background: var(--surface);
-      border: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    .demo-card:hover { border-color: rgba(232,70,28,0.25); }
-
-    .demo-card-thumb {
-      height: 180px;
-      background: var(--surface2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .demo-card-thumb-icon {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 28px;
-      font-weight: 900;
-      color: rgba(255,255,255,0.07);
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-
-    .demo-card-thumb-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-    }
-
-    .demo-card-body { padding: 24px; }
-
-    .demo-card-type {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 8px;
-    }
-
-    .demo-card-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      margin-bottom: 8px;
-      line-height: 1;
-    }
-
-    .demo-card-desc {
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--gray);
-      margin-bottom: 16px;
-    }
-
-    .demo-card-tags {
-      display: flex;
-      gap: 5px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .demo-card-status {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-    }
-
-    /* ─── ABOUT STRIP ─── */
-    .about-strip {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 72px 32px;
-    }
-
-    .about-strip-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .about-strip-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      line-height: 1.0;
-      color: var(--white);
-      margin-bottom: 20px;
-    }
-
-    .about-strip-title span { color: var(--red); }
-
-    .about-strip-body {
-      font-size: 15px;
-      line-height: 1.75;
-      color: var(--text);
-    }
-
-    .step-list {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .step-item {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 18px 20px;
-      transition: border-color 0.2s;
-    }
-
-    .step-item:hover { border-color: rgba(232,70,28,0.2); }
-
-    .step-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--red);
-      min-width: 28px;
-      line-height: 1.2;
-    }
-
-    .step-text {
-      font-size: 14px;
-      color: var(--text);
-      line-height: 1.55;
-      padding-top: 2px;
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      padding: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-logo {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gray-dim);
-    }
-
-    .footer-logo span { color: var(--red); }
-
-    .footer-copy {
-      font-size: 12px;
-      color: var(--gray-dim);
-      letter-spacing: 0.03em;
-    }
-
-    .footer-left { display: flex; align-items: center; gap: 20px; }
-
-    .footer-right { flex-shrink: 0; }
-
-    .footer-partner-link {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.13);
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.07);
-      padding: 5px 10px;
-      transition: color 0.25s, border-color 0.25s;
-      white-space: nowrap;
-    }
-    .footer-partner-link:hover {
-      color: rgba(255,255,255,0.5);
-      border-color: rgba(255,255,255,0.2);
-    }
-
-    /* ─── MOBILE RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .nav-mobile-toggle { display: flex; }
-
-      .hero { padding: 80px 20px 60px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .hero-right { display: none; }
-      .hero-title { font-size: 56px; }
-      .hero-sub { max-width: 100%; }
-
-      .filter-section { padding: 0 20px 32px; }
-      .demos-section { padding: 0 20px 60px; }
-
-      .featured-card { grid-template-columns: 1fr; }
-      .featured-preview { min-height: 280px; }
-      .featured-info { padding: 28px 24px; }
-      .featured-num { font-size: 60px; }
-
-      .demo-grid { grid-template-columns: 1fr; }
-
-      .about-strip { padding: 52px 20px; }
-      .about-strip-inner { grid-template-columns: 1fr; gap: 40px; }
-
-      footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
-    }
-
-    @media (max-width: 1024px) and (min-width: 769px) {
-      .hero-inner { gap: 48px; }
-      .demo-grid { grid-template-columns: repeat(2, 1fr); }
-      .featured-card { grid-template-columns: 1fr 340px; }
-    }
-  </style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5PKHXQ2R');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contractor Arsenal — Websites That Win Contractors Jobs | $297/Month</title>
+<meta name="description" content="Premium contractor websites for $297/month. Custom design, local SEO, lead capture, hosting, and ongoing support. No thousands upfront. Fast launch.">
+<link rel="canonical" href="https://contractorarsenal.com/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contractor Arsenal — Websites That Win Contractors Jobs">
+<meta property="og:description" content="Premium contractor websites for $297/month. Custom design, local SEO, lead capture, hosting, and ongoing support.">
+<meta property="og:url" content="https://contractorarsenal.com/">
+<meta property="og:image" content="https://storage.googleapis.com/msgsndr/kfZT6c91jZcZU6PUztl8/media/69387c0a578cc7a588bf9199.png">
+<meta property="og:site_name" content="Contractor Arsenal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contractor Arsenal — Websites That Win Contractors Jobs">
+<meta name="twitter:description" content="Premium contractor websites for $297/month. Custom design, local SEO, lead capture, hosting, and ongoing support.">
+<meta name="twitter:image" content="https://storage.googleapis.com/msgsndr/kfZT6c91jZcZU6PUztl8/media/69387c0a578cc7a588bf9199.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Light base */
+  --bg:#FFFFFF;--bg2:#F5F7FA;--bg3:#EDEEF2;
+  /* Dark sections (30%) */
+  --dark:#0F1115;--dark2:#151922;--dark3:#1B2130;
+  /* Accent */
+  --accent:#FF5E2B;--accent-dim:rgba(255,94,43,0.08);--accent-mid:rgba(255,94,43,0.14);
+  /* Text */
+  --text:#1C1C1E;--muted:#6B7280;
+  --text-inv:#F0F2F5;--muted-inv:#A8AFBC;
+  /* Borders */
+  --border:rgba(0,0,0,0.08);--border-inv:rgba(255,255,255,0.07);
+  /* Brand radius */
+  --rad:0 16px 0 16px;
+  --rad-sm:0 10px 0 10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#fff;color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;line-height:1.6;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;height:auto;display:block;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:82px;padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(15,17,21,0.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.nav-logo{display:flex;align-items:center;}
+.nav-logo img{height:48px;width:auto;object-fit:contain;}
+.nav-links{display:flex;gap:0;align-items:center;position:relative;}
+.nav-slider{
+  position:absolute;height:calc(100% - 8px);top:4px;left:0;
+  background:rgba(255,94,43,0.08);border-radius:var(--rad-sm);
+  transition:left .2s ease,width .2s ease,opacity .15s;
+  opacity:0;pointer-events:none;
+}
+.nav-links a{
+  position:relative;z-index:1;
+  font-weight:600;font-size:.8rem;letter-spacing:.5px;
+  text-transform:uppercase;color:#F0F2F5;
+  padding:.55rem .95rem;transition:color .2s;
+}
+.nav-links a:hover{color:var(--accent);}
+.nav-links a.active{color:var(--accent);}
+.nav-cta{
+  background:var(--accent);color:#fff !important;
+  padding:.46rem 1.25rem;border-radius:var(--rad-sm);
+  font-weight:700;font-size:.78rem;letter-spacing:.5px;
+  text-transform:uppercase;
+  transition:all .2s;margin-left:.75rem;
+}
+.nav-cta:hover{background:#e85520;transform:translateY(-1px);}
+/* Animated hamburger */
+.nav-hamburger{
+  display:none;cursor:pointer;background:none;border:none;
+  padding:6px;color:#F0F2F5;
+}
+.nav-hamburger svg{
+  width:28px;height:28px;
+  transition:transform 500ms ease;
+}
+.nav-hamburger.open svg{transform:rotate(-45deg);}
+.nav-hamburger svg path:first-child{
+  transition:stroke-dasharray 500ms ease,stroke-dashoffset 500ms ease;
+  stroke-dasharray:12 63;
+}
+.nav-hamburger.open svg path:first-child{
+  stroke-dasharray:20 300;
+  stroke-dashoffset:-32.42px;
+}
+.nav-mobile{
+  display:none;position:fixed;top:82px;left:0;right:0;
+  background:rgba(15,17,21,0.98);
+  padding:1.25rem 5%;flex-direction:column;gap:0;
+  z-index:999;border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{
+  font-weight:600;font-size:1rem;text-transform:uppercase;
+  letter-spacing:.5px;padding:.85rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.1);color:#F0F2F5;
+}
+.nav-mobile a:hover{color:var(--accent);}
+.nav-mobile .mob-cta{
+  margin-top:1rem;text-align:center;
+  background:var(--accent);color:#fff;
+  padding:.85rem;border-radius:var(--rad-sm);
+  font-weight:700;border:none;
+}
+
+/* ── BUTTONS ── */
+.btn-lime{
+  background:var(--accent);color:#fff;
+  padding:.9rem 2.2rem;border-radius:var(--rad);
+  font-weight:700;font-size:.95rem;letter-spacing:.4px;
+  display:inline-block;transition:all .2s;border:2px solid var(--accent);
+}
+.btn-lime:hover{background:#e85520;border-color:#e85520;transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,94,43,0.22);}
+.btn-outline{
+  border:2px solid var(--text);color:var(--text);
+  padding:.9rem 2.2rem;border-radius:var(--rad);
+  font-weight:700;font-size:.95rem;letter-spacing:.4px;
+  display:inline-block;transition:all .2s;
+}
+.btn-outline:hover{background:var(--text);color:#fff;transform:translateY(-2px);}
+
+.btn-dark-outline{border:2px solid rgba(255,255,255,.35);color:#F5F7FA;background:transparent;padding:.9rem 2.2rem;border-radius:0 16px 0 16px;font-weight:700;font-size:.95rem;letter-spacing:.4px;display:inline-block;transition:all .2s;}
+.btn-dark-outline:hover{background:#F5F7FA;color:#0F1115;transform:translateY(-2px);}
+.btn-outline-white{
+  border:2px solid rgba(255,255,255,0.3);color:#fff;
+  padding:.9rem 2.2rem;border-radius:var(--rad);
+  font-weight:700;font-size:.95rem;letter-spacing:.4px;
+  display:inline-block;transition:all .2s;
+}
+.btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,0.08);transform:translateY(-2px);}
+
+/* ── SECTION UTILITIES ── */
+section{padding:100px 5%;}
+.section-inner{max-width:1280px;margin:0 auto;}
+.section-label{
+  font-size:.72rem;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:.85rem;display:block;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.6rem,4.8vw,4rem);
+  line-height:1;letter-spacing:1px;margin-bottom:1.1rem;color:var(--text);
+}
+.section-title.inv{color:var(--text-inv);}
+.section-sub{color:var(--muted);max-width:560px;font-size:1rem;line-height:1.72;}
+.section-sub.inv{color:var(--muted-inv);}
+
+/* ── HERO ── */
+.hero{
+  min-height:90vh;display:flex;align-items:center;
+  padding:82px 5% 60px;background:#fff;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:0;right:0;width:55%;height:100%;
+  background:linear-gradient(145deg,#F5F7FA 0%,#EDEEF2 100%);
+  clip-path:polygon(8% 0,100% 0,100% 100%,0 100%);z-index:0;
+}
+.hero-content{position:relative;z-index:1;max-width:1280px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.hero-left{max-width:560px;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:#FFF0EB;border:1px solid rgba(255,94,43,0.2);
+  color:var(--accent);padding:.38rem .9rem;border-radius:100px;
+  font-size:.72rem;font-weight:700;letter-spacing:1.2px;
+  text-transform:uppercase;margin-bottom:1.75rem;
+}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.6rem,7vw,6.8rem);
+  line-height:.92;letter-spacing:1.5px;
+  color:var(--text);margin-bottom:1rem;
+}
+.hero h1 .a-accent{color:var(--accent);}
+.hero-sub{
+  font-size:1.05rem;color:var(--muted);
+  max-width:490px;margin-bottom:2.25rem;line-height:1.78;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.25rem;}
+.hero-trust{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;}
+.trust-item{
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.8rem;color:var(--muted);font-weight:500;
+}
+.trust-item svg{width:13px;height:13px;flex-shrink:0;stroke:var(--accent);fill:none;stroke-width:2.5;}
+
+/* Hero right: website showcase stack */
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;min-height:480px;}
+.hero-desktop-frame{
+  width:100%;max-width:440px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.1);
+  border-radius:var(--rad);
+  box-shadow:0 24px 80px rgba(0,0,0,0.12),0 4px 16px rgba(0,0,0,0.06);
+  overflow:hidden;
+}
+.frame-chrome{
+  background:#F5F7FA;border-bottom:1px solid rgba(0,0,0,0.07);
+  padding:.55rem .85rem;display:flex;align-items:center;gap:.6rem;
+}
+.frame-dots{display:flex;gap:.35rem;}
+.frame-dots span{width:10px;height:10px;border-radius:50%;display:block;}
+.frame-dots span:nth-child(1){background:#FF5F57;}
+.frame-dots span:nth-child(2){background:#FEBC2E;}
+.frame-dots span:nth-child(3){background:#28C840;}
+.frame-url{
+  flex:1;background:#fff;border:1px solid rgba(0,0,0,0.08);
+  border-radius:4px;padding:.28rem .65rem;
+  font-size:.72rem;color:var(--muted);font-family:'Inter',monospace;
+}
+.frame-body{padding:1.5rem;background:#fff;}
+.frame-hero-band{
+  background:linear-gradient(135deg,var(--dark),var(--dark2));
+  border-radius:var(--rad-sm);padding:1.5rem;margin-bottom:1rem;
+}
+.frame-co{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;color:#fff;margin-bottom:.2rem;}
+.frame-tag{font-size:.72rem;color:rgba(255,255,255,0.55);margin-bottom:.85rem;}
+.frame-cta-mini{display:inline-block;background:var(--accent);color:#fff;padding:.32rem .8rem;border-radius:var(--rad-sm);font-size:.72rem;font-weight:700;}
+.frame-cards{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+.frame-card{background:#F5F7FA;border:1px solid rgba(0,0,0,0.07);border-radius:var(--rad-sm);padding:.75rem;font-size:.72rem;color:var(--muted);}
+.frame-card strong{display:block;color:var(--text);font-size:.78rem;margin-bottom:.18rem;}
+
+/* Floating mobile frame */
+.hero-mobile-frame{
+  position:absolute;right:-1.5rem;bottom:-1rem;
+  width:120px;
+  background:#fff;border:1px solid rgba(0,0,0,0.1);
+  border-radius:12px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.14);overflow:hidden;
+}
+.mobile-top-bar{background:var(--dark);height:24px;display:flex;align-items:center;justify-content:center;}
+.mobile-top-bar span{width:36px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px;display:block;}
+.mobile-content{padding:.75rem .6rem;background:#fff;}
+.mobile-hero-band{background:linear-gradient(135deg,var(--dark),var(--dark2));border-radius:6px;padding:.75rem .6rem;margin-bottom:.5rem;}
+.mobile-co{font-family:'Bebas Neue',sans-serif;font-size:.85rem;color:#fff;letter-spacing:.5px;margin-bottom:.2rem;}
+.mobile-cta{display:inline-block;background:var(--accent);color:#fff;padding:.18rem .45rem;border-radius:4px;font-size:.52rem;font-weight:700;}
+.mobile-stat{font-size:.58rem;color:var(--muted);margin-top:.35rem;text-align:center;}
+
+/* Floating lead card */
+.hero-lead-card{
+  position:absolute;left:-2rem;top:30%;
+  background:#fff;border:1px solid rgba(0,0,0,0.09);
+  border-left:3px solid var(--accent);
+  border-radius:var(--rad-sm);
+  padding:.85rem 1rem;
+  box-shadow:0 8px 28px rgba(0,0,0,0.1);
+  min-width:160px;
+}
+.lead-card-label{font-size:.58rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;}
+.lead-card-value{font-weight:700;font-size:.9rem;color:var(--text);}
+.lead-card-sub{font-size:.68rem;color:var(--muted);margin-top:.1rem;}
+
+/* ── TRUST STRIP ── */
+.trust-strip{
+  background:#F5F7FA;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:24px 5%;
+}
+.trust-strip-inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;gap:0;
+}
+.trust-stats{
+  display:flex;gap:0;flex:1;width:100%;
+}
+.ts-stat{
+  text-align:center;flex:1;
+  border-right:1px solid var(--border);padding:.6rem 1.25rem;
+}
+.ts-stat:last-child{border-right:none;}
+.ts-num{
+  font-weight:700;font-size:.88rem;
+  color:var(--text);margin-bottom:.15rem;letter-spacing:.01em;
+  display:flex;align-items:center;justify-content:center;
+}
+.ts-label{font-size:.68rem;font-weight:500;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;}
+.whop-badge{
+  display:flex;align-items:center;gap:.6rem;
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--rad-sm);padding:.65rem 1.1rem;flex-shrink:0;
+}
+.whop-badge-title{font-weight:700;font-size:.8rem;color:var(--text);}
+.whop-badge-sub{font-size:.65rem;color:var(--muted);letter-spacing:.3px;}
+.whop-logo{height:22px;width:auto;display:block;object-fit:contain;}
+.whop-logo-wrap{background:#fff;border-radius:8px;padding:4px 8px;display:inline-flex;align-items:center;border:1px solid rgba(0,0,0,0.07);}
+
+/* ── WHATS INCLUDED (light section) ── */
+.whats-included{background:#fff;padding:100px 5%;}
+.included-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;margin-top:3.5rem;
+  direction:rtl;
+}
+.included-grid>*{direction:ltr;}
+.included-list{list-style:none;display:flex;flex-direction:column;gap:.85rem;}
+.included-item{
+  display:flex;align-items:flex-start;gap:.85rem;
+  font-size:.97rem;color:var(--text);line-height:1.5;
+}
+.check-circle{
+  width:22px;height:22px;min-width:22px;border-radius:50%;
+  background:var(--accent);display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.check-circle svg{width:11px;height:11px;}
+.included-right{
+  background:var(--bg2);border-radius:var(--rad);padding:2.5rem;
+  border:1px solid var(--border);
+}
+.price-card-header{margin-bottom:1.5rem;}
+.price-card-title{
+  font-family:'Bebas Neue',sans-serif;font-size:1.8rem;
+  letter-spacing:.5px;color:var(--text);margin-bottom:.25rem;
+}
+.price-card-price{
+  font-family:'Bebas Neue',sans-serif;font-size:4rem;
+  line-height:1;color:var(--text);
+}
+.price-card-price span{font-family:'Inter',sans-serif;font-size:1rem;font-weight:600;color:var(--muted);letter-spacing:0;}
+.price-card-note{
+  font-size:.82rem;color:var(--muted);margin-top:.5rem;line-height:1.5;
+  padding:.6rem .85rem;background:rgba(255,94,43,0.08);border-radius:var(--rad-sm);
+  border-left:3px solid var(--accent);
+}
+.price-card-whop{
+  display:flex;align-items:center;gap:.5rem;
+  margin:1.2rem 0;padding:.55rem .85rem;
+  background:rgba(255,94,43,0.06);border:1px solid rgba(255,94,43,0.15);border-radius:var(--rad-sm);
+  font-size:.78rem;font-weight:700;color:var(--text);
+}
+.price-card-cta{display:block;text-align:center;margin-top:1.5rem;}
+
+/* ── TRANSFORMATION ── */
+.transformation{background:var(--dark);padding:100px 5%;}
+.transformation .section-title{color:var(--text-inv);}
+.transformation .section-sub{color:var(--muted-inv);}
+.transform-header{margin-bottom:3.5rem;}
+.transform-grid{
+  display:grid;grid-template-columns:1fr 80px 1fr;
+  gap:0;align-items:center;
+}
+.transform-col h4{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1.25rem;}
+.transform-col.before h4{color:rgba(255,255,255,0.5);}
+.transform-col.after h4{color:var(--accent);}
+.transform-arrow{
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;color:var(--accent);font-weight:700;line-height:1;
+}
+.fake-site{
+  background:var(--dark2);border:1px solid var(--border-inv);
+  border-radius:var(--rad);overflow:hidden;
+}
+.fake-chrome{background:var(--dark);padding:.5rem .75rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border-inv);}
+.fake-dots{display:flex;gap:.28rem;}
+.fake-dots span{width:8px;height:8px;border-radius:50%;background:var(--border-inv);display:block;}
+.fake-url{flex:1;background:rgba(255,255,255,0.03);border:1px solid var(--border-inv);border-radius:4px;padding:.22rem .5rem;font-size:.65rem;color:var(--muted-inv);}
+.before-body{padding:1.25rem;}
+.before-hero-block{background:rgba(255,255,255,0.03);border:1px solid var(--border-inv);border-radius:8px;padding:1rem;margin-bottom:.75rem;}
+.before-title{font-size:.85rem;font-weight:600;color:var(--muted-inv);margin-bottom:.35rem;}
+.before-text{font-size:.72rem;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:.6rem;}
+.before-tag{
+  display:inline-block;font-size:.62rem;padding:.2rem .5rem;
+  background:rgba(255,94,43,0.12);color:var(--accent);border-radius:4px;font-weight:600;
+}
+.before-issue{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:rgba(255,94,43,0.6);padding:.35rem 0;border-bottom:1px solid var(--border-inv);}
+.before-issue:last-child{border-bottom:none;}
+.before-issue::before{content:'›';font-size:.85rem;}
+.after-body{padding:1.25rem;}
+.after-hero-block{
+  background:linear-gradient(135deg,var(--dark2),var(--dark3));
+  border:1px solid rgba(255,94,43,0.15);border-radius:var(--rad-sm);
+  padding:1rem;margin-bottom:.75rem;
+}
+.after-co-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.5px;color:var(--text-inv);margin-bottom:.2rem;}
+.after-tagline{font-size:.72rem;color:var(--muted-inv);margin-bottom:.65rem;}
+.after-btn-mini{
+  display:inline-block;background:var(--accent);color:#fff;
+  padding:.28rem .65rem;border-radius:var(--rad-sm);font-size:.65rem;font-weight:700;
+}
+.after-win{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--accent);padding:.35rem 0;border-bottom:1px solid var(--border-inv);}
+.after-win:last-child{border-bottom:none;}
+.after-win::before{content:'+';font-size:.65rem;font-weight:700;}
+
+/* ── WHY WEBSITES FAIL (light) ── */
+.why-fail{background:#fff;padding:100px 5%;}
+.fail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.fail-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--rad);padding:2rem;
+  box-shadow:0 4px 24px rgba(0,0,0,0.04);
+  transition:transform .3s,box-shadow .3s;
+}
+.fail-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.09);}
+.fail-num{
+  font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;
+  color:rgba(255,94,43,0.1);margin-bottom:.5rem;
+}
+.fail-card h3{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.6rem;}
+.fail-card p{font-size:.9rem;color:var(--muted);line-height:1.7;}
+.fail-card-top{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;}
+.fail-icon-wrap{
+  width:40px;height:40px;border-radius:var(--rad-sm);
+  background:rgba(255,94,43,0.08);display:flex;align-items:center;justify-content:center;
+}
+.fail-icon-wrap svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ── GROWTH SYSTEM ── */
+.growth-system{background:var(--bg2);}
+.system-header{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:3.5rem;}
+.system-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
+.sys-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--rad);padding:1.75rem 1.4rem;
+  position:relative;overflow:hidden;transition:all .3s;
+}
+.sys-card:hover{border-color:rgba(255,94,43,0.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.06);}
+.sys-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--accent);opacity:0;transition:opacity .3s;
+}
+.sys-card:hover::after{opacity:1;}
+.sys-icon{
+  width:44px;height:44px;border-radius:var(--rad-sm);
+  background:rgba(255,94,43,0.08);display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.1rem;
+}
+.sys-icon svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.sys-num{
+  display:inline-block;
+  background:rgba(255,94,43,0.08);color:var(--accent);
+  font-size:.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:.18rem .5rem;border-radius:4px;margin-bottom:.75rem;
+}
+.sys-card h3{font-size:.97rem;font-weight:700;margin-bottom:.4rem;color:var(--text);}
+.sys-card p{font-size:.83rem;color:var(--muted);line-height:1.65;}
+
+/* ── INDUSTRIES (light) ── */
+.industries{background:var(--bg2);padding:100px 5%;}
+.industries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem;}
+.industry-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--rad);padding:1.75rem 1.4rem;
+  transition:all .3s;box-shadow:0 2px 12px rgba(0,0,0,0.04);
+  position:relative;overflow:hidden;
+}
+.industry-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08);}
+.industry-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.industry-card:hover::after{transform:scaleX(1);}
+.industry-icon{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(255,94,43,0.08);border:1px solid rgba(255,94,43,0.2);padding:4px 10px;border-radius:var(--rad-sm);margin-bottom:.85rem;font-family:'Inter',sans-serif;}
+.industry-card h3{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.4rem;}
+.industry-card p{font-size:.84rem;color:var(--muted);line-height:1.65;}
+.industries-note{
+  margin-top:2rem;text-align:center;
+  font-size:.9rem;color:var(--muted);
+}
+.industries-note a{color:var(--text);font-weight:700;text-decoration:underline;text-underline-offset:3px;}
+
+/* ── PROCESS ── */
+.process{background:var(--dark);padding:100px 5%;}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:3.5rem;position:relative;}
+.process-grid::before{
+  content:'';position:absolute;
+  top:38px;left:calc(12.5% + 8px);right:calc(12.5% + 8px);
+  height:1px;background:linear-gradient(90deg,var(--accent),rgba(255,94,43,0.3));z-index:0;
+}
+.process-step{text-align:center;position:relative;z-index:1;padding:0 1rem;}
+.process-num{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--dark2);border:2px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--accent);
+  margin:0 auto 1.5rem;position:relative;z-index:2;
+  box-shadow:0 0 0 6px var(--dark);
+}
+.process-step h3{font-size:1rem;font-weight:700;margin-bottom:.5rem;color:var(--text-inv);}
+.process-step p{font-size:.87rem;color:var(--muted-inv);line-height:1.65;}
+
+/* ── TESTIMONIALS (light) ── */
+.testimonials{background:#fff;padding:100px 5%;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.testi-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--rad);padding:2rem;
+  box-shadow:0 4px 20px rgba(0,0,0,0.05);
+  transition:transform .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.09);}
+.testi-stars{font-size:.85rem;letter-spacing:2px;margin-bottom:1rem;color:#F59E0B;}
+.testi-quote{font-size:.93rem;color:var(--muted);line-height:1.78;margin-bottom:1.5rem;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:.85rem;}
+.testi-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.85rem;flex-shrink:0;color:var(--accent);
+  border:2px solid var(--accent);
+}
+.testi-name strong{display:block;font-size:.9rem;font-weight:700;color:var(--text);}
+.testi-name span{font-size:.77rem;color:var(--muted);}
+
+/* ── PRICING ── */
+.pricing{background:var(--bg2);padding:100px 5%;}
+.pricing-inner{max-width:1280px;margin:0 auto;}
+.pricing-layout{display:grid;grid-template-columns:1fr 480px;gap:5rem;align-items:center;}
+.pricing-left .section-sub{margin-top:1rem;}
+.pricing-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--rad);padding:2.75rem;
+  box-shadow:0 24px 64px rgba(0,0,0,0.08);
+  position:relative;overflow:hidden;
+}
+.pricing-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:var(--accent);
+}
+.pricing-card-title{
+  font-family:'Bebas Neue',sans-serif;font-size:1.6rem;
+  letter-spacing:.5px;color:var(--text);margin-bottom:.5rem;
+}
+.pricing-price-row{display:flex;align-items:baseline;gap:.35rem;margin-bottom:.4rem;}
+.pricing-price{
+  font-family:'Bebas Neue',sans-serif;font-size:5rem;
+  line-height:1;color:var(--accent);
+}
+.pricing-period{font-size:1rem;font-weight:600;color:var(--muted);}
+.pricing-note{
+  font-size:.82rem;color:var(--muted);
+  margin-bottom:1.75rem;padding:.6rem .85rem;
+  background:rgba(255,94,43,0.06);border-radius:var(--rad-sm);
+  border-left:3px solid var(--accent);line-height:1.5;
+}
+.pricing-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem;}
+.pricing-item{
+  display:flex;align-items:center;gap:.75rem;
+  font-size:.92rem;color:var(--text);
+}
+.pricing-check{
+  width:20px;height:20px;min-width:20px;border-radius:50%;
+  background:var(--accent);display:flex;align-items:center;justify-content:center;
+}
+.pricing-check svg{width:10px;height:10px;}
+.pricing-whop{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.65rem .9rem;background:rgba(255,94,43,0.06);
+  border:1px solid rgba(255,94,43,0.15);border-radius:var(--rad-sm);
+  margin-bottom:1.5rem;font-size:.8rem;font-weight:700;color:var(--accent);
+}
+.pricing-cta{display:block;text-align:center;}
+
+/* ── METRICS ── */
+.metrics{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 5%;}
+.metrics-inner{max-width:1280px;margin:0 auto;}
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
+.metric-card{
+  text-align:center;padding:2.25rem 2rem;
+  border:1px solid var(--border);border-radius:var(--rad);
+  background:var(--bg2);transition:border-color .3s;
+}
+.metric-card:hover{border-color:rgba(255,94,43,0.25);}
+.metric-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.2rem,5.5vw,5rem);
+  line-height:1;color:var(--accent);margin-bottom:.3rem;
+}
+.metric-label{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text);margin-bottom:.3rem;}
+.metric-sub{font-size:.77rem;color:var(--muted);}
+
+/* ── FINAL CTA ── */
+.final-cta{
+  background:var(--dark);padding:120px 5%;
+  text-align:center;position:relative;overflow:hidden;
+}
+.final-cta::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(255,94,43,0.07),transparent);
+}
+.final-cta-inner{position:relative;z-index:1;}
+.final-cta-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,94,43,0.1);border:1px solid rgba(255,94,43,0.2);
+  color:var(--accent);padding:.38rem .9rem;border-radius:100px;
+  font-size:.7rem;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;margin-bottom:1.5rem;
+}
+.final-cta h2{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,6.5vw,5.5rem);
+  letter-spacing:1.5px;margin-bottom:1.25rem;line-height:.95;
+  color:var(--text-inv);
+}
+.final-cta h2 .a-accent{color:var(--accent);}
+.final-cta p{
+  color:var(--muted-inv);font-size:1.05rem;
+  max-width:480px;margin:0 auto 2.75rem;line-height:1.75;
+}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+/* ── POPUP ── */
+.offer-popup{
+  position:fixed;bottom:2rem;left:2rem;z-index:9000;
+  width:285px;
+  background:#fff;border:1px solid var(--border);
+  border-left:3px solid var(--accent);border-radius:var(--rad);
+  padding:1.5rem;
+  box-shadow:0 20px 60px rgba(0,0,0,0.15);
+  opacity:0;transform:translateY(20px);
+  transition:opacity .5s ease,transform .5s ease;
+  pointer-events:none;
+}
+.offer-popup.visible{opacity:1;transform:none;pointer-events:auto;}
+.offer-popup.gone{display:none;}
+.popup-close{
+  position:absolute;top:.75rem;right:.75rem;
+  background:none;border:none;color:var(--muted);
+  cursor:pointer;font-size:1rem;line-height:1;padding:.25rem;transition:color .2s;
+}
+.popup-close:hover{color:var(--text);}
+.popup-tag{
+  font-size:.63rem;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:.45rem;display:flex;align-items:center;gap:.38rem;
+}
+.popup-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 1.5s infinite;}
+.popup-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.65rem;line-height:1;letter-spacing:.5px;
+  margin-bottom:.45rem;color:var(--text);
+}
+.popup-sub{font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:1.2rem;}
+.popup-cta{
+  display:block;text-align:center;
+  background:var(--accent);color:#fff;
+  padding:.7rem 1rem;border-radius:var(--rad-sm);
+  font-weight:700;font-size:.83rem;letter-spacing:.5px;
+  text-transform:uppercase;transition:background .2s;
+}
+.popup-cta:hover{background:#e85520;}
+
+/* ── FOOTER ── */
+footer{background:#09090C;}
+.footer-main{padding:80px 5% 70px;max-width:1280px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3rem;}
+.footer-col h4{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.1);}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.8rem;}
+.footer-col a{font-size:.88rem;color:var(--muted);transition:color .2s;}
+.footer-col a:hover{color:#fff;}
+.footer-col li span{font-size:.88rem;color:var(--muted);}
+.footer-bar{background:#FF5E2B;padding:1.5rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-bar-logo{display:flex;flex-direction:column;gap:.4rem;}.footer-bar-logo img{height:36px;width:auto;display:block;filter:brightness(0) invert(1);}.footer-bar-tagline{font-size:.75rem;font-weight:700;color:#0F1115;letter-spacing:.5px;opacity:.6;}
+.footer-bar-right{display:flex;align-items:center;gap:1.75rem;flex-wrap:wrap;}
+.footer-bar-right p,.footer-bar-right a{font-size:.8rem;color:#fff;font-weight:500;text-decoration:none;}
+.footer-bar-right a:hover{text-decoration:underline;}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1200px){
+  .system-grid{grid-template-columns:repeat(3,1fr);}
+  .pricing-layout{grid-template-columns:1fr;gap:3rem;}
+  .footer-grid{grid-template-columns:repeat(4,1fr);}
+  .footer-grid .footer-col:last-child{display:none;}
+  .hero-content{grid-template-columns:1fr;gap:3rem;}
+  .hero-right{display:none;}
+}
+@media(max-width:1024px){
+  .industries-grid{grid-template-columns:repeat(3,1fr);}
+  .transform-grid{grid-template-columns:1fr 40px 1fr;}
+  .system-header{grid-template-columns:1fr;}
+  .included-grid{grid-template-columns:1fr;gap:3rem;}
+  .footer-grid{grid-template-columns:repeat(3,1fr);}
+  .footer-grid .footer-col:last-child,.footer-grid .footer-col:nth-child(4){display:block;}
+}
+@media(max-width:768px){
+  nav{padding:0 4%;height:76px;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;align-items:center;justify-content:center;}
+  .nav-mobile{top:76px;}
+  section,.whats-included,.industries,.testimonials,.pricing,.why-fail{padding:70px 4%;}
+  .hero{padding:96px 4% 56px;min-height:auto;}
+  .hero-left{max-width:100%;}
+  .trust-strip{padding:20px 4%;}
+  .trust-strip-inner{flex-direction:column;gap:1rem;}
+  .trust-stats{gap:0;}
+  .ts-stat{border-right:none;border-bottom:1px solid var(--border);padding:.75rem .5rem;}
+  .ts-stat:last-child{border-bottom:none;}
+  .whop-badge{width:100%;justify-content:center;}
+  .fail-grid{grid-template-columns:1fr;}
+  .system-grid{grid-template-columns:repeat(2,1fr);}
+  .industries-grid{grid-template-columns:repeat(2,1fr);}
+  .process-grid{grid-template-columns:repeat(2,1fr);gap:2rem;}
+  .process-grid::before{display:none;}
+  .metrics-grid{grid-template-columns:1fr;gap:1.25rem;}
+  .testi-grid{grid-template-columns:1fr;}
+  .transform-grid{grid-template-columns:1fr;gap:1rem;}
+  .transform-arrow{transform:rotate(90deg);margin:.5rem 0;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+  .footer-bar{flex-direction:column;align-items:flex-start;gap:.75rem;}
+  .hero-actions,.cta-actions{flex-direction:column;align-items:stretch;}
+  .btn-lime,.btn-outline,.btn-outline-white,.btn-dark-outline{text-align:center;width:100%;}
+  .offer-popup{left:1rem;right:1rem;width:auto;bottom:1rem;}
+}
+@media(max-width:480px){
+  section,.whats-included,.industries,.testimonials,.pricing,.why-fail{padding:60px 4%;}
+  .hero{padding:88px 4% 48px;}
+  .hero h1{font-size:3rem;}
+  .industries-grid{grid-template-columns:1fr;}
+  .system-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr;}
+  .footer-bar-right{flex-direction:column;gap:.4rem;align-items:flex-start;}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Contractor Arsenal","url":"https://contractorarsenal.com","logo":"https://storage.googleapis.com/msgsndr/kfZT6c91jZcZU6PUztl8/media/69387c0a578cc7a588bf9199.png","description":"Premium contractor websites for $297/month. Custom design, local SEO, lead capture, hosting, and ongoing support.","contactPoint":{"@type":"ContactPoint","contactType":"sales","url":"https://contractorarsenal.com/demo.html"}}
+</script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5PKHXQ2R"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Demo<span>Library</span></a>
-    <ul class="nav-links">
-      <li><a href="#demos">Demos</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#demos" class="nav-cta">View All Demos</a></li>
-    </ul>
-    <div class="nav-mobile-toggle" onclick="toggleMobileNav(this)">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
+<!-- POPUP -->
+<div class="offer-popup gone" id="offerPopup">
+  <button class="popup-close" onclick="closePopup()" aria-label="Close">&times;</button>
+  <div class="popup-tag">Free. No Commitment.</div>
+  <div class="popup-title">GET YOUR FREE DEMO</div>
+  <p class="popup-sub">We'll build a custom demo for your business. No templates, no cost, no strings attached.</p>
+  <a href="demo.html" class="popup-cta">Claim My Free Demo →</a>
+</div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="hero-badge">
-          <div class="hero-badge-dot"></div>
-          <span class="hero-badge-text">Live Website Demo Library</span>
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="favicon.png" alt="Contractor Arsenal">
+  </a>
+  <div class="nav-links" id="navLinks">
+    <span class="nav-slider" id="navSlider"></span>
+    <a href="services.html">Services</a>
+    <a href="industries.html">Industries</a>
+    <a href="about.html">Company</a>
+    <a href="demo.html" class="nav-cta">Get Started</a>
+  </div>
+  <button class="nav-hamburger" id="navBtn" onclick="toggleMenu()" aria-label="Menu">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/>
+      <path d="M7 16 27 16"/>
+    </svg>
+  </button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="services.html" onclick="closeMenu()">Services</a>
+  <a href="industries.html" onclick="closeMenu()">Industries</a>
+  <a href="about.html" onclick="closeMenu()">Company</a>
+  <a href="demo.html" class="mob-cta" onclick="closeMenu()">Get Started</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Washington State · Contractor Websites
+      </div>
+      <h1>
+        WEBSITES THAT<br>
+        WIN <span class="a-accent">JOBS.</span>
+      </h1>
+      <p class="hero-sub">Built for contractors who want more calls, estimate requests, and booked work.</p>
+      <div class="hero-actions">
+        <a href="demo.html" class="btn-lime">Get My Free Demo</a>
+        <a href="work.html" class="btn-outline">See Examples</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          120+ sites built
         </div>
-        <h1 class="hero-title">
-          Real Sites.<br>
-          <span class="red">Real Builds.</span><br>
-          Every Industry.
-        </h1>
-        <p class="hero-sub">
-          A growing library of live website demos built for real businesses across different industries. Browse by type, see the build, judge the work.
-        </p>
-        <div class="hero-perks">
-          <span class="hero-perk">Live demos</span>
-          <span class="hero-perk">Multiple industries</span>
-          <span class="hero-perk">Always growing</span>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          $297/month flat
         </div>
-        <div class="hero-actions">
-          <a href="#demos" class="btn-red">Browse Demos</a>
-          <a href="#about" class="btn-outline">How It Works</a>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Fast launch
         </div>
       </div>
-      <div class="hero-right">
-        <div class="hero-stat-block">
-          <div class="hero-stat-num">06</div>
-          <div>
-            <p class="hero-stat-label">Live Demos</p>
-            <p class="hero-stat-sub">Fully built, browsable sites</p>
-          </div>
+    </div>
+    <div class="hero-right reveal reveal-delay-1">
+      <div class="hero-desktop-frame">
+        <div class="frame-chrome">
+          <div class="frame-dots"><span></span><span></span><span></span></div>
+          <div class="frame-url">granitestateroofing.com</div>
         </div>
-        <div class="hero-stat-block">
-          <div class="hero-stat-num">2+</div>
-          <div>
-            <p class="hero-stat-label">Industries</p>
-            <p class="hero-stat-sub">Cafés, contractors, outdoor services & more</p>
+        <div class="frame-body">
+          <div class="frame-hero-band">
+            <div class="frame-co">GRANITE STATE ROOFING</div>
+            <div class="frame-tag">Licensed &middot; Insured &middot; 400+ Reviews</div>
+            <div class="frame-cta-mini">Get a Free Estimate</div>
           </div>
-        </div>
-        <div class="hero-stat-block">
-          <div class="hero-stat-num">∞</div>
-          <div>
-            <p class="hero-stat-label">Growing</p>
-            <p class="hero-stat-sub">New demos added regularly</p>
+          <div class="frame-cards">
+            <div class="frame-card"><strong>Roof Replacement</strong>Residential &amp; commercial</div>
+            <div class="frame-card"><strong>Storm Damage</strong>Emergency response</div>
+            <div class="frame-card"><strong>New Construction</strong>Builder preferred</div>
+            <div class="frame-card"><strong>Gutters</strong>Full install &amp; repair</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- FILTER BAR -->
-  <div class="filter-section" id="demos">
-    <p class="filter-label">Filter by industry</p>
-    <div class="filters">
-      <button class="filter-btn active" onclick="filterDemos('all', this)">All</button>
-      <button class="filter-btn" onclick="filterDemos('cafe', this)">Café &amp; Coffee</button>
-      <button class="filter-btn" onclick="filterDemos('contractor', this)">Contractor</button>
-      <button class="filter-btn" onclick="filterDemos('painting', this)">Painting</button>
-      <button class="filter-btn" onclick="filterDemos('restaurant', this)">Restaurant</button>
-      <button class="filter-btn" onclick="filterDemos('services', this)">Outdoor Services</button>
-      <button class="filter-btn" onclick="filterDemos('ecommerce', this)">E-Commerce</button>
+      <div class="hero-mobile-frame">
+        <div class="mobile-top-bar"><span></span></div>
+        <div class="mobile-content">
+          <div class="mobile-hero-band">
+            <div class="mobile-co">GRANITE STATE</div>
+            <div class="mobile-cta">Get Estimate</div>
+          </div>
+          <div class="mobile-stat">Licensed &middot; Insured</div>
+        </div>
+      </div>
+      <div class="hero-lead-card">
+        <div class="lead-card-label">New Estimate Request</div>
+        <div class="lead-card-value">James M. &middot; Reroof</div>
+        <div class="lead-card-sub">Submitted 4 min ago &middot; $14,800</div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- DEMOS -->
-  <div class="demos-section">
-    <div class="demos-header">
-      <span class="demos-count" id="demos-count">Showing 6 projects</span>
-    </div>
-
-    <!-- FEATURED: FRAM CAFÉ -->
-    <div class="featured-card" data-industry="cafe" id="demo-featured">
-      <div class="featured-preview">
-        <div class="featured-preview-bg"></div>
-        <div class="featured-preview-content">
-          <img
-            src="https://github.com/user-attachments/assets/1776cf39-fb37-4512-b917-4784f1e3f63a"
-            alt="FRAM Café"
-            class="featured-preview-logo"
-          />
-          <span class="featured-live-badge">&#9679; Live Demo</span>
-          <span class="featured-preview-sub">Café &bull; Coffee &bull; Beer &bull; Wine</span>
-        </div>
-        <div class="browser-mock">
-          <div class="browser-dots">
-            <div class="browser-dot"></div>
-            <div class="browser-dot"></div>
-            <div class="browser-dot"></div>
-          </div>
-          <div class="browser-url-bar"><span>framcafe.com</span></div>
-          <div class="browser-screen"></div>
-        </div>
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-strip-inner">
+    <div class="trust-stats">
+      <div class="ts-stat reveal">
+        <div class="ts-num">120+</div>
+        <div class="ts-label">Contractor Websites Built</div>
       </div>
-      <div class="featured-info">
-        <div>
-          <div class="featured-num">01</div>
-          <p class="featured-type">Café &amp; Coffee Shop</p>
-          <h2 class="featured-name">FRAM Café</h2>
-          <p class="featured-desc">
-            A modern website rebuild for a Seattle neighborhood café on Lake Union. Full menu, events, happy hour, and a strong order-pickup CTA — mobile first, clean design.
-          </p>
-          <div class="featured-goal">
-            <p class="featured-goal-label">Primary Goal</p>
-            <p class="featured-goal-text">Drive pickup orders and turn first-time visitors into regulars with a fast, clean, mobile-first experience.</p>
-          </div>
-          <div class="featured-tags">
-            <span class="tag">Café</span>
-            <span class="tag">Seattle</span>
-            <span class="tag">Mobile-First</span>
-            <span class="tag">Food &amp; Drink</span>
-            <span class="tag">Local Business</span>
-          </div>
-        </div>
-        <a href="./fram-cafe/index.html" class="featured-cta">View Demo →</a>
+      <div class="ts-stat reveal reveal-delay-1">
+        <div class="ts-num">8+</div>
+        <div class="ts-label">Contractor Niches Served</div>
       </div>
-    </div>
-
-    <!-- COMING SOON GRID -->
-    <div class="demo-grid" id="demos-grid">
-      <a href="./golden-oak-painting/index.html" class="demo-card demo-card--live" data-industry="contractor" style="text-decoration:none;display:block;">
-        <div class="demo-card-thumb" style="background:linear-gradient(135deg,#0D1108 60%,#1E7A3E 100%);position:relative;overflow:hidden;">
-          <img src="https://cdn.prod.website-files.com/67cbada18d07464c05c5ebd4/68ad2a985d8bb816f4c9b958_GOP%20-%20Main%20Logo%20Transparent%20(1).png" alt="Golden Oak Painting" style="max-width:160px;max-height:80px;object-fit:contain;filter:brightness(0) invert(1);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <div style="display:none;flex-direction:column;align-items:center;gap:8px;">
-            <div class="demo-card-thumb-icon" style="color:rgba(201,168,76,0.4);">GOP</div>
-          </div>
-          <span style="position:absolute;top:12px;right:12px;background:#1E7A3E;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:4px 8px;border-radius:4px;">&#9679; Live</span>
-        </div>
-        <div class="demo-card-body">
-          <p class="demo-card-type">Painting Contractor</p>
-          <h3 class="demo-card-name">Golden Oak Painting</h3>
-          <p class="demo-card-desc">Local service site built to look premium and generate estimate requests for a residential painting company.</p>
-          <div class="demo-card-tags">
-            <span class="tag">Painting</span>
-            <span class="tag">Lead Gen</span>
-            <span class="tag">Contractor</span>
-          </div>
-          <span class="demo-card-status" style="color:#4CAF70;">View Demo →</span>
-        </div>
-      </a>
-      <a href="./alta-exteriors/index.html" class="demo-card demo-card--live" data-industry="painting" style="text-decoration:none;display:block;">
-        <div class="demo-card-thumb" style="background:linear-gradient(135deg,#091230 60%,#2DD4D4 100%);position:relative;overflow:hidden;">
-          <div style="font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#fff;">Alta <span style="color:#2DD4D4">Exteriors</span></div>
-          <span style="position:absolute;top:12px;right:12px;background:#1E7A3E;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:4px 8px;border-radius:4px;">&#9679; Live</span>
-        </div>
-        <div class="demo-card-body">
-          <p class="demo-card-type">Painting Contractor</p>
-          <h3 class="demo-card-name">Alta Exteriors</h3>
-          <p class="demo-card-desc">Clean, bold painting contractor site with a quote form, process section, and service pages targeting greater Seattle.</p>
-          <div class="demo-card-tags">
-            <span class="tag">Painting</span>
-            <span class="tag">Lead Gen</span>
-            <span class="tag">Seattle</span>
-          </div>
-          <span class="demo-card-status" style="color:#4CAF70;">View Demo →</span>
-        </div>
-      </a>
-      <a href="./pristine-outdoor-services/index.html" class="demo-card demo-card--live" data-industry="services" style="text-decoration:none;display:block;">
-        <div class="demo-card-thumb" style="background:linear-gradient(135deg,#4A0D16 55%,#FBDB1B 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
-          <img src="https://github.com/user-attachments/assets/f348aa9c-7342-433b-ae87-ca6213905b1d" alt="Pristine Outdoor Services" style="width:80px;height:80px;object-fit:contain;border-radius:50%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <div style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#FBDB1B;text-align:center;">PRISTINE<br>OUTDOOR</div>
-          <span style="position:absolute;top:12px;right:12px;background:#1E7A3E;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:4px 8px;border-radius:4px;">&#9679; Live</span>
-        </div>
-        <div class="demo-card-body">
-          <p class="demo-card-type">Outdoor Services</p>
-          <h3 class="demo-card-name">Pristine Outdoor Services</h3>
-          <p class="demo-card-desc">Full-service site for a Nassau County pressure washing, window cleaning & snow removal company. Clean design, bold colors, built to convert.</p>
-          <div class="demo-card-tags">
-            <span class="tag">Pressure Washing</span>
-            <span class="tag">Home Services</span>
-            <span class="tag">New York</span>
-          </div>
-          <span class="demo-card-status" style="color:#4CAF70;">View Demo →</span>
-        </div>
-      </a>
-      <a href="./strideline/index.html" class="demo-card demo-card--live" data-industry="ecommerce" style="text-decoration:none;display:block;">
-        <div class="demo-card-thumb" style="background:linear-gradient(135deg,#111111 50%,#FC494D 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;flex-direction:column;">
-          <img src="https://www.strideline.com/cdn/shop/files/Strideline_Avatar_96x96.png?v=1663606644" alt="Strideline" style="width:72px;height:72px;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
-          <div style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;color:#fff;">STRIDELINE</div>
-          <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);">🧦 The Most Comfortable Sock on Earth™</span>
-          <span style="position:absolute;top:12px;right:12px;background:#1E7A3E;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:4px 8px;border-radius:4px;">&#9679; Live</span>
-        </div>
-        <div class="demo-card-body">
-          <p class="demo-card-type">E-Commerce &bull; Apparel</p>
-          <h3 class="demo-card-name">Strideline</h3>
-          <p class="demo-card-desc">Full e-commerce demo for a premium sock brand. Product grid, sock science features, league partnerships, custom orders, and email capture.</p>
-          <div class="demo-card-tags">
-            <span class="tag">E-Commerce</span>
-            <span class="tag">Apparel</span>
-            <span class="tag">Shopify-Style</span>
-          </div>
-          <span class="demo-card-status" style="color:#4CAF70;">View Demo →</span>
-        </div>
-      </a>
-      <a href="./celestial-construction/index.html" class="demo-card demo-card--live" data-industry="contractor" style="text-decoration:none;display:block;">
-        <div class="demo-card-thumb" style="background:linear-gradient(135deg,#1c2333 55%,#36a9e1 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
-          <img src="https://celestialconstructionio.com/images/ayarlar/ayarlar-1059932609-site_logo.png" alt="Celestial Construction" style="max-width:160px;max-height:70px;object-fit:contain;filter:brightness(0) invert(1);" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
-          <div style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;color:#fff;text-align:center;">CELESTIAL<br><span style="color:#36a9e1">CONSTRUCTION</span></div>
-          <span style="position:absolute;top:12px;right:12px;background:#1E7A3E;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:4px 8px;border-radius:4px;">&#9679; Live</span>
-          <span style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-family:'Barlow Condensed',sans-serif;">Seattle, WA &bull; 17 Years</span>
-        </div>
-        <div class="demo-card-body">
-          <p class="demo-card-type">Construction &amp; Renovation</p>
-          <h3 class="demo-card-name">Celestial Construction LLC</h3>
-          <p class="demo-card-desc">Full contractor site for a Seattle-based construction company. Pergola systems, interior design, flooring, glass &amp; facade — hero slideshow, project gallery &amp; contact strip.</p>
-          <div class="demo-card-tags">
-            <span class="tag">Construction</span>
-            <span class="tag">Renovation</span>
-            <span class="tag">Seattle</span>
-          </div>
-          <span class="demo-card-status" style="color:#4CAF70;">View Demo →</span>
-        </div>
-      </a>
-
-      <!-- Rey Auto Detailing -->
-      <a href="./rey-auto-detailing/index.html" class="demo-card demo-card--live" data-industry="services" style="text-decoration:none;display:block;">
-        <div class="demo-card-thumb" style="background:linear-gradient(135deg,#0d0d0d 55%,#E8351A 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
-          <img src="https://github.com/user-attachments/assets/b514821a-f0c2-4650-89c9-1354dcd60529" alt="Rey Auto Detailing" style="max-width:140px;max-height:80px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <div style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;color:#fff;text-align:center;">REY<br><span style="color:#E8351A">AUTO DETAILING</span></div>
-          <span style="position:absolute;top:12px;right:12px;background:#1E7A3E;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:4px 8px;border-radius:4px;">&#9679; Live</span>
-          <span style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-family:'Barlow Condensed',sans-serif;">Tacoma, WA</span>
-        </div>
-        <div class="demo-card-body">
-          <p class="demo-card-type">Auto Detailing</p>
-          <h3 class="demo-card-name">Rey Auto Detailing</h3>
-          <p class="demo-card-desc">Professional mobile car detailing site for a Tacoma-based business. Interior &amp; exterior detail, paint correction, ceramic coating, packages &amp; online booking.</p>
-          <div class="demo-card-tags">
-            <span class="tag">Auto Detailing</span>
-            <span class="tag">Mobile</span>
-            <span class="tag">Tacoma</span>
-          </div>
-          <span class="demo-card-status" style="color:#4CAF70;">View Demo →</span>
-        </div>
-      </a>
+      <div class="ts-stat reveal reveal-delay-2">
+        <div class="ts-num">Launch In 7 Days</div>
+        <div class="ts-label">Your Site Up and Getting Calls</div>
+      </div>
+      <div class="ts-stat reveal reveal-delay-3">
+        <div class="ts-num">$297/Month</div>
+        <div class="ts-label">No Setup Fees. No Surprises.</div>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- ABOUT -->
-  <div class="about-strip" id="about">
-    <div class="about-strip-inner">
+<!-- WHAT'S INCLUDED -->
+<section class="whats-included" id="pricing">
+  <div class="section-inner">
+    <div class="included-grid">
       <div>
-        <p class="section-eyebrow">What This Is</p>
-        <h2 class="about-strip-title">Build fast.<br><span>Store clean.</span><br>Showcase better.</h2>
-        <p class="about-strip-body">
-          This is a centralized portfolio and demo library. Every website built gets dropped into this repo as its own project — and instantly becomes a portfolio piece on this gallery page.
-          <br><br>
-          Each demo is a real, live, browsable website. Not mockups. Not screenshots. Actual builds.
-        </p>
+        <span class="section-label dark">Everything in one price</span>
+        <h2 class="section-title on-light">One Price.<br>Everything Included.</h2>
+        <p class="section-sub on-light">Everything you need to turn your website into a job-winning machine. One flat price.</p>
+        <ul class="included-list" style="margin-top:2rem;">
+          <li class="included-item reveal">
+            <span class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 6 4.5 9 10.5 3"/></svg></span>
+            A site built to win jobs in your trade and city
+          </li>
+          <li class="included-item reveal reveal-delay-1">
+            <span class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 6 4.5 9 10.5 3"/></svg></span>
+            Mobile-first design that converts on every screen
+          </li>
+          <li class="included-item reveal reveal-delay-2">
+            <span class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 6 4.5 9 10.5 3"/></svg></span>
+            More people finding you and requesting estimates
+          </li>
+          <li class="included-item reveal">
+            <span class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 6 4.5 9 10.5 3"/></svg></span>
+            Service pages written and optimized for your trade
+          </li>
+          <li class="included-item reveal reveal-delay-1">
+            <span class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 6 4.5 9 10.5 3"/></svg></span>
+            Lead capture forms and click-to-call buttons
+          </li>
+          <li class="included-item reveal reveal-delay-2">
+            <span class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 6 4.5 9 10.5 3"/></svg></span>
+            Hosting, SSL, and ongoing site support
+          </li>
+          <li class="included-item reveal">
+            <span class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 6 4.5 9 10.5 3"/></svg></span>
+            Google Business Profile optimization support
+          </li>
+          <li class="included-item reveal reveal-delay-1">
+            <span class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 6 4.5 9 10.5 3"/></svg></span>
+            Monthly updates and ongoing optimization
+          </li>
+        </ul>
       </div>
-      <div class="step-list">
-        <div class="step-item">
-          <span class="step-num">01</span>
-          <span class="step-text">Build a website demo — drop it into the repo as a new project folder</span>
-        </div>
-        <div class="step-item">
-          <span class="step-num">02</span>
-          <span class="step-text">Add one card to this homepage — instantly live as a portfolio piece</span>
-        </div>
-        <div class="step-item">
-          <span class="step-num">03</span>
-          <span class="step-text">Show clients real, industry-specific examples with one link</span>
-        </div>
-        <div class="step-item">
-          <span class="step-num">04</span>
-          <span class="step-text">The gallery grows with every new build — proof of range, proof of work</span>
+      <div>
+        <div class="included-right reveal">
+          <div class="price-card-header">
+            <div class="price-card-title">Contractor Growth Website</div>
+            <div class="price-card-price">$297<span>/month</span></div>
+          </div>
+          <div class="price-card-note">Built to win jobs from day one. No big upfront cost.</div>
+          <div class="price-card-whop">
+            <span class="whop-logo-wrap" style="padding:4px 8px"><img src="assets/whop-logo.svg" alt="WHOP" class="whop-logo" style="height:18px"></span>
+            Official Partner
+          </div>
+          <a href="demo.html" class="btn-lime price-card-cta">Start With a Free Demo →</a>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-left">
-      <span class="footer-logo">Demo<span>Library</span></span>
-      <span class="footer-copy">Growing collection of live website demos &bull; Build fast, store clean, showcase better</span>
+<!-- WEBSITE TRANSFORMATION -->
+<section class="transformation">
+  <div class="section-inner">
+    <div class="transform-header">
+      <span class="section-label">Before &amp; After</span>
+      <h2 class="section-title">Your Site Either<br>Wins Jobs or It Doesn't.</h2>
+      <p class="section-sub">Most contractor websites drive people away. Here's the difference between a site that sits there and one that brings in calls.</p>
     </div>
-    <div class="footer-right">
-      <a href="./partner/" class="footer-partner-link">Partners — Enter Here</a>
+    <div class="transform-grid">
+      <div class="transform-col before reveal">
+        <h4>Before: Losing Jobs</h4>
+        <div class="fake-site">
+          <div class="fake-chrome">
+            <div class="fake-dots"><span></span><span></span><span></span></div>
+            <div class="fake-url">acmepainting2008.weebly.com</div>
+          </div>
+          <div class="before-body">
+            <div class="before-hero-block">
+              <div class="before-title" style="font-size:1rem;font-weight:400;color:#666;">Welcome to ACME Painting</div>
+              <div class="before-text">We are a painting company. We do interior and exterior painting. Contact us for a free quote. We have many years of experience in painting homes and businesses.</div>
+              <div class="before-tag">No rank · No calls · No leads</div>
+            </div>
+            <div class="before-issue">Invisible on Google, stuck on page 4+</div>
+            <div class="before-issue">No click-to-call on mobile</div>
+            <div class="before-issue">Loads in 8+ seconds</div>
+            <div class="before-issue">No local SEO, zero service pages</div>
+            <div class="before-issue">Looks like 2009</div>
+          </div>
+        </div>
+      </div>
+      <div class="transform-arrow reveal reveal-delay-1">→</div>
+      <div class="transform-col after reveal reveal-delay-2">
+        <h4>After: Winning Jobs</h4>
+        <div class="fake-site">
+          <div class="fake-chrome">
+            <div class="fake-dots"><span></span><span></span><span></span></div>
+            <div class="fake-url">elitepainting-portland.com</div>
+          </div>
+          <div class="after-body">
+            <div class="after-hero-block">
+              <div class="after-co-name">ELITE PAINTING · PORTLAND</div>
+              <div class="after-tagline">Interior · Exterior · Cabinet Refinishing</div>
+              <div class="after-btn-mini">Call Now: (503) 555-0142</div>
+            </div>
+            <div class="after-win">Google #1 for "painter Portland OR"</div>
+            <div class="after-win">Click-to-call on every page</div>
+            <div class="after-win">Sub-2 second load time</div>
+            <div class="after-win">6 optimized service pages</div>
+            <div class="after-win">Mobile-first, conversion-built</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    function filterDemos(industry, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+<!-- WHY WEBSITES FAIL -->
+<section class="why-fail">
+  <div class="section-inner">
+    <span class="section-label dark">The Problem</span>
+    <h2 class="section-title on-light">Why Most Contractor<br>Websites Fail in 5 Seconds.</h2>
+    <p class="section-sub on-light">Visitors make a decision instantly. If your site doesn't rank, load fast, and make calling easy, you're handing jobs to your competition every day.</p>
+    <div class="fail-grid">
+      <div class="fail-card reveal">
+        <div class="fail-card-top">
+          <div class="fail-icon-wrap">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+        <div class="fail-num">01</div>
+        <h3>You're Invisible on Google</h3>
+        <p>Competitors with optimized local SEO show up first. Your phone stays quiet while theirs rings. Every search you miss is a job you didn't bid.</p>
+      </div>
+      <div class="fail-card reveal reveal-delay-1">
+        <div class="fail-card-top">
+          <div class="fail-icon-wrap">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+        </div>
+        <div class="fail-num">02</div>
+        <h3>Visitors Leave Without Calling</h3>
+        <p>No clear call to action. Slow load time. Generic copy that doesn't speak to the customer's problem. They bounce in seconds and call the next result.</p>
+      </div>
+      <div class="fail-card reveal reveal-delay-2">
+        <div class="fail-card-top">
+          <div class="fail-icon-wrap">
+            <svg viewBox="0 0 24 24"><polyline points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+        </div>
+        <div class="fail-num">03</div>
+        <h3>You're Losing Jobs Every Week</h3>
+        <p>Every week without a working website is jobs you never bid. You're on the job, not chasing plugins and writing SEO copy. You shouldn't have to be.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      const featured = document.getElementById('demo-featured');
-      const cards = document.querySelectorAll('.demo-card');
-      let visible = 0;
+<!-- GROWTH SYSTEM -->
+<section class="growth-system">
+  <div class="section-inner">
+    <div class="system-header">
+      <div>
+        <span class="section-label">The System</span>
+        <h2 class="section-title">One Website.<br>Every Job.</h2>
+      </div>
+      <p class="section-sub">Your website should be winning jobs every month. We build it, launch it, and keep it running. One price. No tech headaches.</p>
+    </div>
+    <div class="system-grid">
+      <div class="sys-card reveal">
+        <div class="sys-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="sys-num">01</div>
+        <h3>Custom Website</h3>
+        <p>Built from scratch. Fast, mobile-first, conversion-focused. Every page written for your trade and city.</p>
+      </div>
+      <div class="sys-card reveal reveal-delay-1">
+        <div class="sys-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="sys-num">02</div>
+        <h3>Local SEO</h3>
+        <p>Google Business, city pages, schema markup, and keyword targeting baked in. Built to rank, not just look good.</p>
+      </div>
+      <div class="sys-card reveal reveal-delay-2">
+        <div class="sys-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="sys-num">03</div>
+        <h3>Lead Capture</h3>
+        <p>Every warm lead goes straight to your phone. No missed calls, no lost estimates.</p>
+      </div>
+      <div class="sys-card reveal reveal-delay-1">
+        <div class="sys-icon">
+          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="sys-num">04</div>
+        <h3>Ongoing Updates</h3>
+        <p>Your site stays current, fast, and optimized. We handle the changes so you stay on the job.</p>
+      </div>
+      <div class="sys-card reveal reveal-delay-2">
+        <div class="sys-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="sys-num">05</div>
+        <h3>Ongoing Support</h3>
+        <p>Updates, optimization, and support included every month. Your site keeps improving the longer it runs.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      if (industry === 'all' || featured.dataset.industry === industry) {
-        featured.style.display = 'grid';
-        visible++;
-      } else {
-        featured.style.display = 'none';
-      }
+<!-- INDUSTRIES -->
+<section class="industries">
+  <div class="section-inner">
+    <span class="section-label dark">Who We Serve</span>
+    <h2 class="section-title on-light">Built for Every Trade.</h2>
+    <p class="section-sub on-light">Roofers, painters, landscapers, remodelers, HVAC, plumbers, electricians, and more. We know what wins jobs in your trade.</p>
+    <div class="industries-grid">
+      <div class="industry-card reveal">
+        <div class="industry-icon">Roofing</div>
+        <h3>Roofers</h3>
+        <p>Capture storm damage leads, premium re-roofs, and replacement jobs. Rank when homeowners are searching hardest.</p>
+      </div>
+      <div class="industry-card reveal reveal-delay-1">
+        <div class="industry-icon">Painting</div>
+        <h3>Painters</h3>
+        <p>Interior, exterior, cabinet painting. Get in front of homeowners ready to spend on quality work, not the cheapest bid.</p>
+      </div>
+      <div class="industry-card reveal reveal-delay-2">
+        <div class="industry-icon">Landscaping</div>
+        <h3>Landscapers</h3>
+        <p>Design, installation, maintenance. Attract clients ready to invest in their outdoor space, not just mow the lawn.</p>
+      </div>
+      <div class="industry-card reveal reveal-delay-3">
+        <div class="industry-icon">Remodeling</div>
+        <h3>Remodelers</h3>
+        <p>Kitchen, bath, whole-home. Position yourself as the premium contractor for high-ticket renovation projects.</p>
+      </div>
+      <div class="industry-card reveal">
+        <div class="industry-icon">HVAC</div>
+        <h3>HVAC</h3>
+        <p>Own the seasonal search spikes. Capture emergency and replacement calls before your competitors do.</p>
+      </div>
+      <div class="industry-card reveal reveal-delay-1">
+        <div class="industry-icon">Plumbing</div>
+        <h3>Plumbers</h3>
+        <p>Emergency service, installs, remodels. Rank when homeowners need help fast and are ready to call the first result they trust.</p>
+      </div>
+      <div class="industry-card reveal reveal-delay-2">
+        <div class="industry-icon">Electrical</div>
+        <h3>Electricians</h3>
+        <p>Residential and commercial electrical. Win panel upgrades, EV charger installs, and rewires from homeowners near you.</p>
+      </div>
+      <div class="industry-card reveal reveal-delay-3">
+        <div class="industry-icon">Gen. Contractor</div>
+        <h3>General Contractors</h3>
+        <p>New builds, additions, renovations. A site that reflects your scale and closes clients before they call anyone else.</p>
+      </div>
+    </div>
+    <p class="industries-note">Don't see your trade? <a href="demo.html">Apply anyway</a>. If you do residential or commercial work, we can build for you.</p>
+  </div>
+</section>
 
-      cards.forEach(card => {
-        if (industry === 'all' || card.dataset.industry === industry) {
-          card.style.display = 'block';
-          visible++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
+<!-- PROCESS -->
+<section class="process">
+  <div class="section-inner">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-title inv">Simple Process.<br>Fast Results.</h2>
+    <p class="section-sub inv">You stay on the job. We build the website that brings the work to you.</p>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <h3>Demo</h3>
+        <p>See the website that could win your next jobs. Free to look at, no commitment required.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">02</div>
+        <h3>Build</h3>
+        <p>We write every word, design every page, and set up the full system. You review once. We handle everything else.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">03</div>
+        <h3>Launch</h3>
+        <p>Your site live and ready to win work. Up and running fast.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-num">04</div>
+        <h3>Optimize</h3>
+        <p>Monthly ranking improvements and ongoing optimization included. The system gets stronger every month.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      document.getElementById('demos-count').textContent =
-        `Showing ${visible} project${visible !== 1 ? 's' : ''}`;
-    }
+<!-- METRICS -->
+<section class="metrics">
+  <div class="metrics-inner">
+    <span class="section-label" style="display:block;text-align:center;">By the Numbers</span>
+    <h2 class="section-title" style="text-align:center;">The Results Speak<br>for Themselves.</h2>
+    <div class="metrics-grid">
+      <div class="metric-card reveal">
+        <div class="metric-num">$4M+</div>
+        <div class="metric-label">Revenue Generated</div>
+        <div class="metric-sub">Across contractor clients in the last 12 months</div>
+      </div>
+      <div class="metric-card reveal reveal-delay-1">
+        <div class="metric-num">$23K</div>
+        <div class="metric-label">Avg. Contract Value</div>
+        <div class="metric-sub">Median job won through our sites</div>
+      </div>
+      <div class="metric-card reveal reveal-delay-2">
+        <div class="metric-num">9.2×</div>
+        <div class="metric-label">Average Client ROI</div>
+        <div class="metric-sub">Return on website investment</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    function toggleMobileNav(el) {
-      const nav = document.querySelector('.nav-links');
-      const isOpen = nav.style.display === 'flex';
-      nav.style.cssText = isOpen
-        ? 'display: none;'
-        : 'display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: #0d0d0d; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 20px 32px; gap: 16px; z-index: 99;';
-    }
-  </script>
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-inner">
+    <span class="section-label dark">Real Contractors</span>
+    <h2 class="section-title on-light">Contractors Who Made the Move.</h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">5 STARS</div>
+        <p class="testi-quote">My old site got maybe 1 call a month. Within 2 weeks of launching I had 4 estimates booked. Best investment I made for my painting business.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MC</div>
+          <div class="testi-name">
+            <strong>Mike C.</strong>
+            <span>Painter in Phoenix, AZ</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">5 STARS</div>
+        <p class="testi-quote">These guys know what they're doing. They wrote all the copy, set up the SEO, and launched everything fast. I'm on page 1 for roofing in my city and the leads keep coming.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">TR</div>
+          <div class="testi-name">
+            <strong>Tony R.</strong>
+            <span>Roofer in Nashville, TN</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">5 STARS</div>
+        <p class="testi-quote">I was skeptical but the ROI is undeniable. Got a $45K remodel job from a lead that came through my new site. The whole site paid for itself with one call.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">DS</div>
+          <div class="testi-name">
+            <strong>Dave S.</strong>
+            <span>Remodeler in Denver, CO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <div class="final-cta-badge">$297/month · No setup fees · Fast launch</div>
+    <h2>
+      Your Website Should<br>
+      Bring In <span class="a-accent">Jobs.</span>
+    </h2>
+    <p>One price. Built to win jobs. See your site before you start.</p>
+    <div class="cta-actions">
+      <a href="demo.html" class="btn-lime">Get My Free Demo</a>
+      <a href="services.html" class="btn-outline-white">See What's Included</a>
+    </div>
+  </div>
+</section>
 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">What's Included</a></li>
+          <li><a href="services.html#seo">Local SEO</a></li>
+          <li><a href="services.html#leads">Lead Capture</a></li>
+          <li><a href="services.html#support">Ongoing Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="industries.html">All Trades</a></li>
+          <li><a href="industries.html#roofing">Roofing</a></li>
+          <li><a href="industries.html#painting">Painting</a></li>
+          <li><a href="industries.html">HVAC</a></li>
+          <li><a href="industries.html#landscaping">Landscaping</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="work.html">Our Work</a></li>
+          <li><a href="partner.html">Free CRM</a></li>
+          <li><a href="mailto:contractorarsenal@gmail.com">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Started</h4>
+        <ul>
+          <li><a href="demo.html">Free Demo</a></li>
+          <li><a href="apply.html">Apply Now</a></li>
+          <li><a href="arsenal.html">Arsenal 001</a></li>
+          <li><a href="https://www.instagram.com/contractorarsenal/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="mailto:contractorarsenal@gmail.com">Email Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service Areas</h4>
+        <ul>
+          <li><span>Seattle, WA</span></li>
+          <li><span>Bellevue, WA</span></li>
+          <li><span>Tacoma, WA</span></li>
+          <li><span>Spokane, WA</span></li>
+          <li><span>Everett &amp; Redmond</span></li>
+          <li><span>Wenatchee &amp; PNW</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <a href="/" class="footer-bar-logo">
+      <img src="assets/ca-logo.png" alt="Contractor Arsenal">
+    </a>
+    <div class="footer-bar-right">
+      <p>&copy; 2026 Contractor Arsenal. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  var btn=document.getElementById('navBtn');
+  btn.classList.toggle('open');
+  document.getElementById('navMobile').classList.toggle('open');
+}
+function closeMenu(){
+  var btn=document.getElementById('navBtn');
+  btn.classList.remove('open');
+  document.getElementById('navMobile').classList.remove('open');
+}
+
+/* Sliding nav indicator */
+(function(){
+  var links=document.querySelectorAll('#navLinks a:not(.nav-cta)');
+  var slider=document.getElementById('navSlider');
+  var container=document.getElementById('navLinks');
+  if(!slider||!container)return;
+  links.forEach(function(link){
+    link.addEventListener('mouseenter',function(){
+      var cr=container.getBoundingClientRect();
+      var lr=link.getBoundingClientRect();
+      slider.style.width=lr.width+'px';
+      slider.style.left=(lr.left-cr.left)+'px';
+      slider.style.opacity='1';
+    });
+  });
+  container.addEventListener('mouseleave',function(){
+    slider.style.opacity='0';
+  });
+})();
+
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
+
+(function(){
+  if(sessionStorage.getItem('popupDone'))return;
+  var p=document.getElementById('offerPopup');
+  setTimeout(function(){
+    p.classList.remove('gone');
+    requestAnimationFrame(function(){requestAnimationFrame(function(){p.classList.add('visible');});});
+  },window.innerWidth<768?9000:5000);
+})();
+function closePopup(){
+  var p=document.getElementById('offerPopup');
+  p.classList.remove('visible');
+  sessionStorage.setItem('popupDone','1');
+  setTimeout(function(){p.classList.add('gone');},500);
+}
+</script>
 </body>
 </html>
